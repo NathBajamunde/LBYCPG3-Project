@@ -11,7 +11,74 @@
 </head>
 
 <body>
-    
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNavbar">
+        <div class="container-fluid px-3">
+
+            <button class="menu-toggle me-2" onclick="toggleNav()" aria-label="Toggle side menu">☰</button>
+
+            <!-- Site logo / brand name -->
+            <a class="navbar-brand ms-1 fw-bold d-flex align-items-center gap-0.1" href="#">
+                <img src="assets/images/orlogo.png" alt="Logo" class="brandLogo"> 
+                <span>IGITAL LAB</span>
+            </a>
+            
+            <!-- Navbar Toggling during mobile collapse -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
+                aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Collapsible content -->
+            <div class="collapse navbar-collapse" id="navbarContent">
+
+                <!-- Nav links --> 
+                <ul class="navbar-nav mx-auto align-items-center gap-1">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"
+                            onclick="changeContent('home.html'); setActive(this); return false;">
+                            Home
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"
+                            onclick="changeContent('logicGates.html'); setActive(this); return false;">
+                            Learn
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"
+                            onclick="changeContent('logicCalculator.html'); setActive(this); return false;">
+                            Interact
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"
+                            onclick="changeContent('quiz.html'); setActive(this); return false;">
+                            Quiz
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"
+                            onclick="changeContent('account.html'); setActive(this); return false;">
+                            Account
+                        </a>
+                    </li>
+                </ul>
+
+                <!-- Search bar -->
+                <div class="searchBar me-3">
+                    <input id="searchInput" type="text" placeholder="Search...">
+                    <button id="srchBtn" onclick="search()" aria-label="Search">🔍</button>
+                </div>
+
+                <!-- Circular user icon on the far right -->
+                <div class="userIcon" onclick="changeContent('account.html')" title="Account">👤</div>
+
+            </div>
+        </div>
+    </nav>
+
+
     <!-- Script Include Script Files -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="app.js"></script>

@@ -22,8 +22,25 @@ body {
     padding-top: 8vh;
 }
 
-/* Bootstrap Navbar */
+.brandLogo {
+    height: 35px; /* Adjust accordingly */
+    width: auto;
+    object-fit: contain;
+    
+    /* To allow overlap  */
+    margin-right: -15px; /* Negative margin pulls the brand leftwards over the image */
+    
+    position: relative;
+    z-index: 1; /* Lower number = back */
+    opacity: 0.8; /* Optional: slightly fade the logo so the text is easier to read */
+}
 
+.brandText {
+    position: relative;
+    z-index: 2; /* Higher number = forward */
+}
+
+/* Bootstrap Navbar */
 #mainNavbar {
     background-color: var(--blue);
     padding: 10px 30px;
@@ -62,16 +79,69 @@ body {
     box-shadow: 0 3px 10px rgba(46, 196, 182, 0.4);
 }
 
+#mainNavbar .nav-link.active-page {
+    color: var(--orange) !important;  /* Orange text */
+    font-weight: 700;
+    position: relative;
+}
+
+/* The small orange underline bar below the active link */
+#mainNavbar .nav-link.active-page::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    height: 3px;
+    background: var(--orange);
+    border-radius: 2px;
+}
+
 .searchBar {
     flex: 1;
     max-width: 300px;
     
-    background: (46, 196, 182, 0.2);
+    background: rgba(255, 255, 255, 0.8);
     padding: 10px 20px;
     border-radius: 25px;
 
     display: flex;
     align-items: center;
     gap: 10px;
+
+    border: 1.5px solid rgba(46, 196, 182, 0.35);
     backdrop-filter: blur(10px);
+    transition: all 0.3s;
+}
+
+.searchBar span {
+    font-size: 18px;
+    color: var(--blue);
+}
+
+.searchBar button {
+    background: none;
+}
+
+.searchBar input {
+    background: none;
+    border: none;
+    color: var(--blue);
+    outline: none;
+    width: 100%;
+    font-size: 16px;
+    font-family: inherit;
+}
+
+.searchBar input::placeholder {
+    color: var(--blue);
+}
+
+/* Responsive where it will stack search bar on small screens */
+@media (max-width: 767px) {
+    .searchBar {
+        max-width: 100%;
+        margin: 8px 0;
+    }
 }
