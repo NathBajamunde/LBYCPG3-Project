@@ -268,3 +268,59 @@ body {
     }
 }
 
+/*TITLE SECTION */
+.title-section {
+    position: relative;
+    min-height: 100vh; /* Full screen height */
+    width: 100%;
+    background-image: url("assets/images/bgintro.jpg");
+    background-size: cover;      /* Important */
+    background-position: center; /* Keeps focus center */
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+}
+
+/* Dark overlay */
+.title-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.55);
+}
+
+/* Content above overlay */
+.title-content {
+    position: relative;
+    z-index: 2;
+}
+
+/* Orange box */
+.welcome-box {
+    background: rgba(255, 159, 28, 0.85);
+    padding: 40px 60px;
+    max-width: 600px;
+    color: white;
+}
+
+.welcome-box h5 {
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.welcome-box h1 {
+    font-size: 60px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+/* Big D styling */
+.big-d {
+    font-size: 80px;
+    font-weight: 900;
+}
+
+
