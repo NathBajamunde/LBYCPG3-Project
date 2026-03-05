@@ -1,0 +1,306 @@
+<!--
+NOTE:
+
+FOR TESTING PURPOSES ONLY
+
+STILL NEEDS TO BE CHANGED FOR FINAL
+
+
+-->
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Logic Gates</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <h1> Logic Gates </h1>
+    <section class="what">
+        <h2>What are Logic Gates?</h2>
+        <p>
+            A Logic Gate is a digital circuit that allows or prevents signals from passing 
+            based on a specified condition. Specifically, these signals can represent two 
+            states, either true or false. Normally, the positive supply (+Vs) voltage 
+            represents the true state, while 0V represents the false state. However, this 
+            can be changed depending on the user's interpretation and the internal circuit 
+            configuration. 
+        </p>
+    </section>
+
+    <section class="types"> 
+        <h2>Categories of Logic Gates</h2>
+        <p>
+            Logic Gates are primarily identified by the function or operation they perform. 
+            For each type of logic gate, there are symbols formed by distinctive shapes that 
+            make them easy to identify and understand. The symbols utilized in this website 
+            are of the Traditional Type. Other notable symbols available include IEC 
+            (International Electrotechnical Commission) symbols. The primary purpose of Logic 
+            Gates is to bridge Boolean Algebra into reality through electrical circuits.
+        </p>
+        
+        <h3>Basic Gates</h3>
+        <div class="textImgRow">
+            <div class="column textCol"> 
+                <p>
+                    Basic Logic Gates serve as the foundation of all higher-level logic gates. 
+                    They are composed of the three operations in Boolean Algebra, which include 
+                    negation (NOT), conjunction (AND), as well as disjunction (OR). These three 
+                    serve as the base components and are combined to form the other types of gates.
+                </p>
+            </div>
+
+            <div class="column textCol">
+                <table class="truthTable">
+                    <tr>
+                        <th>Logic Gate</th>
+                        <th>Boolean Expression</th>
+                    </tr>
+                    <tr>
+                        <td><a href="not.html" target="content_frame">NOT Gate</a></td>
+                        <td>X=A’</td>
+                    </tr>
+                    <tr>
+                        <td><a href="and.html" target="content_frame">AND Gate</a></td>
+                        <td>X=A⋅B</td>
+                    </tr>
+                    <tr>
+                        <td><a href="or.html" target="content_frame">OR Gate</a></td>
+                        <td>X=A+B</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <h3>Universal Gates</h3>
+        <div class="textImgRow">
+            <div class="column textCol"> 
+                <p>
+                    Universal Gates are a special type of logic gate dubbed as such for their 
+                    ability to form any other logic gate without needing the help of additional 
+                    gate types. There are two available Universal Gates: the NAND Gate and the 
+                    NOR Gate. As their names suggest, they are formed by combining the NOT Gate 
+                    with the AND or OR Gate, respectively.
+                </p>
+            </div>
+
+            <div class="column textCol">
+                <table class="truthTable">
+                    <tr>
+                        <th>Logic Gate</th>
+                        <th>Boolean Expression</th>
+                    </tr>
+                    <tr>
+                        <td><a href="nand.html" target="content_frame">NAND Gate</a></td>
+                        <td>X=(A⋅B)’</td>
+                    </tr>
+                    <tr>
+                        <td><a href="nor.html" target="content_frame">NOR Gate</a></td>
+                        <td>X=(A+B)’</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <h3>Exclusive Gates</h3>
+        <div class="textImgRow">
+            <div class="column textCol"> 
+                <p>
+                    Exclusive Gates are digital logic gates that produce an output based on the 
+                    similarity or differences between the logic state of their inputs. There are 
+                    two types of gates in this category: the XOR Gate and the XNOR Gate, both of 
+                    which are also made from the Basic Gates.
+                </p>
+            </div>
+
+            <div class="column textCol">
+                <table class="truthTable">
+                    <tr>
+                        <th>Logic Gate</th>
+                        <th>Boolean Expression</th>
+                    </tr>
+                    <tr>
+                        <td><a href="xor.html" target="content_frame">XOR Gate</a></td>
+                        <td>X=A⊕B</td>
+                    </tr>
+                    <tr>
+                        <td><a href="xnor.html" target="content_frame">XNOR Gate</a></td>
+                        <td>X=A⊙B</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </section>
+    
+    <section class="what">
+        <h2>Truth Tables</h2> 
+        <p>
+            Truth Tables are tables that illustrate the corresponding output states 
+            for every possible input combination. For that reason, they are excellent 
+            at showing the function of a logic gate. As mentioned earlier, the symbols 
+            used to represent logic states can vary. On this website, 1 and 0 will be 
+            used in the Truth Tables. The tables shown are examples of what a truth table 
+            can look like and what it can contain. 
+        </p>
+
+        <div class="textImgRow">
+            <div class="column textCol">     
+                <h4 class="truthTableHeader">Summary for All 2-Input Gates</h4>
+                <table class="truthTable">
+                    <tr>
+                        <th colspan="2">Inputs</th>
+                        <th colspan="6">Outputs</th>
+                    </tr>
+                    <tr>
+                        <th>A</th>
+                        <th>B</th>
+                        <th>AND</th>
+                        <th>NAND</th>
+                        <th>OR</th>
+                        <th>NOR</th>
+                        <th>XOR</th>
+                        <th>XNOR</th>
+                    </tr>
+                    <tr>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>1</td>
+                        <td>0</td>
+                        <td>1</td>
+                        <td>0</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td>0</td>
+                        <td>1</td>
+                        <td>0</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>0</td>
+                        <td>1</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>0</td>
+                        <td>1</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>0</td>
+                        <td>1</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>1</td>
+                    </tr>
+                </table>    
+            </div>
+
+            <div class="column textCol">
+                <h4 class="truthTableHeader">Summary for Some 3-Input Gates</h4>
+                <table class="truthTable">
+                    <tr>
+                        <th colspan="3">Inputs</th>
+                        <th colspan="4">Outputs</th>
+                    </tr>
+                    <tr>
+                        <th>A</th>
+                        <th>B</th>
+                        <th>C</th>
+                        <th>AND</th>
+                        <th>NAND</th>
+                        <th>OR</th>
+                        <th>NOR</th>
+                    </tr>
+                    <tr>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>1</td>
+                        <td>0</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>1</td>
+                        <td>0</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td>0</td>
+                        <td>1</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td>0</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>0</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>0</td>
+                        <td>1</td>
+                        <td>0</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>0</td>
+                        <td>1</td>
+                        <td>0</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </section> 
+</body>
+
+</html>

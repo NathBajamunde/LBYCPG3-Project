@@ -5,8 +5,8 @@ Change Page Content
 const target = document.querySelector(".main-content");
 
 // Function to Change Content to Specified Page
-const changeContent = page => { 
-    fetch(`./assets/pages/${page}`)
+function changeContent(page) { 
+    fetch(`./assets/pages/${page}.html`)
         .then(res => {
             // Get Text from Fetched Page if Response is OK
             if (res.ok) {
@@ -17,7 +17,7 @@ const changeContent = page => {
             // Swap Main Content with the New Page
             target.innerHTML = content;
     });
-};
+}
 
 var navBarItem;
 var dropDownParent;
@@ -50,13 +50,190 @@ function setActive(id) {
         dropDownParent.classList.add("active");
     }
 }
+
+// Function to make calling page change functions simpler
+function pageChange(page) {
+    changeContent(page);
+    setActive(page);
+    clearList();
+    addToList([0]);
+}
+
 /***********************************************
 Search Functionality
 ***********************************************/
+// Search Results Look Up Table
+const searchList = [
+    ["disabled", "searchNoResults",     "", "No Results Found"],
+    ["", "searchLogicGates",    "pageChange('logicGates'); return false;", "Logic Gates"],
+    ["", "searchCombiVsSeq",    "pageChange('combiVsSeq'); return false;", "Combinational vs Sequential Logic"],
+    ["", "searchNot",           "pageChange('not'); return false;", "NOT Gate"],
+    ["", "searchAnd",           "pageChange('and'); return false;", "AND Gate"],
+    ["", "searchOr",            "pageChange('or'); return false;", "OR Gate"],
+    ["", "searchNand",          "pageChange('nand'); return false;", "NAND Gate"],
+    ["", "searchNor",           "pageChange('nor'); return false;", "NOR Gate"],
+    ["", "searchXor",           "pageChange('xor'); return false;", "XOR Gate"],
+    ["", "searchXnor",          "pageChange('xnor'); return false;", "XNOR Gate"],
+    ["", "searchAdders",        "pageChange('adders'); return false;", "Adders"],
+    ["", "searchMultiplexers",  "pageChange('multiplexers'); return false;", "Multiplexers"],
+    ["", "searchDecoders",      "pageChange('decoders'); return false;", "Decoders"],
+    ["", "searchFlipFlops",     "pageChange('flipFlops'); return false;", "Flip-Flops"],
+    ["", "searchCounters",      "pageChange('counters'); return false;", "Counters"],
+    ["", "searchLogicCalculator", "pageChange('logicCalculator'); return false;", "Logic Calculator"],
+    ["", "searchTruthTableGenerator", "pageChange('truthTableGenerator'); return false;", "Truth Table Generator"],
+    ["", "searchQuiz",          "pageChange('quiz'); return false;", "Quiz"],
+    ["", "searchHome",          "pageChange('home'); return false;", "Home"]
+];
+
+// Map searchList to each keyword for easier access
+const keywordMap = new Map([
+    // General Categories & Broad Terms
+    ["Gates", [1, 3, 4, 5, 6, 7, 8, 9]], 
+    ["Logic", [1, 2, 15]],
+    
+    // Specific Logic Gates
+    ["NOT", [3]], 
+    ["AND", [4]],
+    ["OR", [5]],
+    ["NAND", [6]],
+    ["NOR", [7]],
+    ["XOR", [8]],
+    ["XNOR", [9]],
+
+    // Combinational Logic & Related Circuits
+    ["Combinational", [2, 10, 11, 12]], // Added Adders, Mux, Decoders
+    ["Adders", [10]],
+    ["Multiplexers", [11]],
+    ["Decoders", [12]],
+
+    // Sequential Logic & Related Circuits
+    ["Sequential", [2, 13, 14]], // Added Flip-Flops and Counters
+    ["Flip", [13]],
+    ["Flops", [13]],
+    ["Counters", [14]],
+
+    // Tools & Utilities
+    ["Calculator", [15]],
+    ["Truth Table", [16]],
+    ["Generator", [16]],
+
+    // Misc
+    ["Home", [18]],
+    ["Quiz", [17]]
+]);
+
+// Search Keywords
+const keywords = [
+    "Gates", "AND", "OR", "NOT", "NAND", "NOR", "XNOR", "XOR", "Logic", 
+    "Combinational", "Sequential", "Adders", "Multiplexers", "Decoders",
+    "Flip", "Flops", "Counters", "Calculator", "Truth Table", "Generator",
+    "Quiz", "Home"
+];
+
+// Remove Currently Exisiting Items from List
+function clearList() {
+    document.getElementById("searchDropdownList").innerHTML = "";
+}
+
+// Function to filter out keywords based on the input text
+function searchItems(searchTerm) {
+    // Normalize Search Term (Convert to Lowercase, Remove Spaces)
+    searchTerm = searchTerm.toLowerCase().replace(/\s+/g, "");
+
+    // Return no keywords if text is empty
+    if (searchTerm == "") return [];
+
+    // Filter words that include the search term
+    return results = keywords.filter(
+        word => word.toLowerCase().replace(/\s+/g, "").includes(searchTerm)
+    );
+};
+
+// Get the indices for accessing 
+function getSearchList(filtKeywords) {
+    // Use Set to avoid adding duplicates
+    var results = new Set();
+
+    // For every keyword in the result, get searchList indices from keywordMap
+    filtKeywords.forEach(element => {
+        const idxs = keywordMap.get(element);
+        // Extract individual searchList and add to the results set
+        idxs.forEach(idx => {
+            results.add(idx);
+        });
+    });
+
+    
+    // If results is empty, add the index for "No Results Found"
+    if (results.size == 0) {
+        results.add(0);
+    }
+    
+    return results;
+}
+
+// Add newly searched items to the list
+function addToList(idxs) {
+    // Declare an Empty String
+    var htmlListString = "";
+
+    // Create HTML code for adding list
+    idxs.forEach(idx => {
+        var newItem = `<li><a class="dropdown-item item-search ${searchList[idx][0]}" href="#" id="${searchList[idx][1]}" onclick="${searchList[idx][2]}">${searchList[idx][3]}</a></li>` 
+        htmlListString = htmlListString.concat(newItem)
+    });
+
+    // Insert HTML code into the document and add the list
+    document.getElementById("searchDropdownList").innerHTML = htmlListString;
+}
+
+// Summary Function for updating search list
+function updateList() {
+    // Clear Current List
+    clearList();
+    // Get Keywords based on the typed text
+    const filteredKeywords = searchItems(document.getElementById("searchInput").value);
+    // Get idexes for search item look up table
+    const searchListIdx = getSearchList(filteredKeywords);
+    // Create new list
+    addToList(searchListIdx);
+    return searchListIdx;
+}
+
+// Go to first Page on the search list
+function search() {
+    searchList.forEach((value, index) => {
+        if (index > 0) {
+            const element = document.getElementById(value[1]);
+            if (element) {
+                // Hide Dropdown if Page Change
+                dropDown.hide();
+                // Reset Search Bar After Searching
+                document.getElementById("searchInput").value = "";
+                // Focus out of the search bar with successful search
+                srchListen.blur();
+                // Change the page
+                element.click();
+                return;
+            }
+        }
+    });
+}
+
 // Listener Variable
 var srchListen = document.getElementById("searchInput");
 
-// Event Listener
+// Get element to drop down 
+const dropDown = new bootstrap.Dropdown(document.getElementById("searchDropdownList"));
+
+// Event Listeners
+srchListen.addEventListener("input", function(event) {
+    // Update the current List
+    updateList();
+    // Show the dropdown menu
+    dropDown.show();
+});
+
 srchListen.addEventListener("keydown", function(event) {
     // If Enter on Keyboard is Pressed
     if (event.key === "Enter") {
@@ -67,12 +244,9 @@ srchListen.addEventListener("keydown", function(event) {
     }
 });
 
-function search() {
-    // Get Text (Add Regex based search w/ Dropdown)
-    const text = document.getElementById("searchInput").value;
-
-    
-}
+srchListen.addEventListener("focusout", function(event) {
+    dropDown.hide();
+});
 
 /***********************************************
 Logic Calculator Functionality
@@ -148,3 +322,8 @@ function calculate() {
     }
 
 }
+
+/***********************************************
+Startup Functions (Functions to Call on Load)
+***********************************************/
+pageChange("home");
