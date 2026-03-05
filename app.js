@@ -2,25 +2,19 @@
 Change Page Content
 ***********************************************/
 // Global Variable to Denote Document
-var innerDoc;
+const target = document.querySelector(".main-content");
 
-function changeContent(page) {
-    // Get Object Containing Where Page File is to Be Loaded to
-    const contentObject = document.getElementById("content");
-
-    // Action to Do Once Page is Loaded
-    contentObject.onload = function() {
-        if (page === "logicCalculator.html") {
-            innerDoc = contentObject.contentDocument;
-            attachLogicCalcListeners();
-        }
-    };
-    
-    // Load the Page
-    contentObject.data = page;
-    closeNav();
-    closeNavbar();
-}
+const changeContent = page => {
+    fetch(`./assets/pages/${page}`)
+        .then(res => {
+            if (res.ok) {
+                return res.text();
+            }
+        })
+        .then(content => {
+            target.innerHTML = content;
+    });
+};
 
 /***********************************************
 Search Functionality
