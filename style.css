@@ -1,4 +1,27 @@
 
+/* [DELETE ONCE DONE FOR REFERENCE ONLY] If you need OVERLAPPING contents
+
+.brandLogo {
+    height: 35px; /* Adjust accordingly 
+    width: auto;
+    object-fit: contain;
+    
+    /* To allow overlap  
+    margin-right: -15px; /* Negative margin pulls the brand leftwards over the image 
+    
+    position: relative;
+    z-index: 1; /* Lower number = back 
+    opacity: 0.8; /* Optional: slightly fade the logo so the text is easier to read 
+}
+
+
+.brandText {
+    position: relative;
+    z-index: 2; /* Higher number = forward
+}
+*/
+
+/*-------- START EDITING HERE -------*/
 
 /* Variables */
 
@@ -22,22 +45,11 @@ body {
     padding-top: 8vh;
 }
 
+
 .brandLogo {
-    height: 35px; /* Adjust accordingly */
+    height: 40px;
     width: auto;
     object-fit: contain;
-    
-    /* To allow overlap  */
-    margin-right: -15px; /* Negative margin pulls the brand leftwards over the image */
-    
-    position: relative;
-    z-index: 1; /* Lower number = back */
-    opacity: 0.8; /* Optional: slightly fade the logo so the text is easier to read */
-}
-
-.brandText {
-    position: relative;
-    z-index: 2; /* Higher number = forward */
 }
 
 /* Bootstrap Navbar */
@@ -49,6 +61,7 @@ body {
     box-shadow: 0 8px 16px rgba(46, 196, 182, 0.4);  /* Shadow below the navbar */
 }
 
+/* [!!!CAN DELETE since LOGO IS NOW AN IMAGE]
 #mainNavbar .navbar-brand {
     color: var(--white);
     font-weight: 700;
@@ -85,7 +98,7 @@ body {
     position: relative;
 }
 
-/* The small orange underline bar below the active link */
+/* The orange underline bar below the setActive link */
 #mainNavbar .nav-link.active-page::after {
     content: '';
     position: absolute;
@@ -96,6 +109,52 @@ body {
     height: 3px;
     background: var(--orange);
     border-radius: 2px;
+}
+
+/* Dropdown */
+#mainNavbar .dropdownMenu {
+    background-color: #1fa99d;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+    padding: 8px 6px;
+    margin-top: 6px;
+    min-width: 240px;
+    max-height: 70vh;
+    overflow-y: auto;
+}
+
+.dropdownHeaderLabel {
+    display: block;
+    color: var(--orange);
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 6px 14px 2px;
+}
+
+#mainNavbar .dropdown-item {
+    color: rgba(255, 255, 255, 0.85);
+    font-weight: 500;
+    font-size: 14px;
+    border-radius: 7px;
+    padding: 7px 14px;
+    transition: all 0.2s;
+}
+
+#mainNavbar .dropdown-item:hover {
+    background-color: var(--orange);
+    color: var(--white);
+}
+
+#mainNavbar .dropdown-divider {
+    border-color: rgba(255, 255, 255, 0.15);
+    margin: 4px 8px;
+}
+
+#mainNavbar .dropdown-toggle::after {
+    margin-left: 6px;
 }
 
 .searchBar {
@@ -113,6 +172,8 @@ body {
     border: 1.5px solid rgba(46, 196, 182, 0.35);
     backdrop-filter: blur(10px);
     transition: all 0.3s;
+
+    margin-right: 80px;
 }
 
 .searchBar span {
@@ -123,6 +184,17 @@ body {
 .searchBar button {
     background: none;
 }
+
+
+.searchIcon {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+    flex-shrink: 0;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
 
 .searchBar input {
     background: none;
@@ -145,3 +217,54 @@ body {
         margin: 8px 0;
     }
 }
+
+.userIcon {
+    width: 75px;
+    height: 75px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    cursor: pointer;
+    transition: background 0.3s;
+    border: 3px solid var(--orange);
+    flex-shrink: 0;
+
+    /*Floating behavior between the navbar and picture*/
+    position: fixed;
+    top: 30px;           
+    right: 16px;        
+    z-index: 1100;      /* Above the navbar, where navbar is 1000, so it always floats on top */
+
+    box-shadow: 0 4px 16px rgba(255, 159, 28, 0.45); /* Orange glow shadow */
+    transition: all 0.3s ease;
+}
+
+.userIcon:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+
+/* screen breakpoints */
+@media (max-width: 991px) {
+    .userIcon {
+        position: static;  
+        top: unset;
+        right: unset;
+        width: 44px;        
+        height: 44px;
+        font-size: 20px;
+        border-width: 2px;
+        box-shadow: none;
+        margin-left: 0px;  
+    }
+
+    .searchBar {
+        max-width: 80%;
+        margin-right: 0; 
+        margin: 8px 0;
+    }
+}
+

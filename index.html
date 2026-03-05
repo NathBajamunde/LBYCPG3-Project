@@ -11,15 +11,12 @@
 </head>
 
 <body>
+    
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNavbar">
         <div class="container-fluid px-3">
-
-            <button class="menu-toggle me-2" onclick="toggleNav()" aria-label="Toggle side menu">☰</button>
-
             <!-- Site logo / brand name -->
-            <a class="navbar-brand ms-1 fw-bold d-flex align-items-center gap-0.1" href="#">
-                <img src="assets/images/orlogo.png" alt="Logo" class="brandLogo"> 
-                <span>IGITAL LAB</span>
+            <a class="navbar-brand ms-1">
+                <img src="assets/images/logo.png" alt="Digital Lab Logo" class="brandLogo">
             </a>
             
             <!-- Navbar Toggling during mobile collapse -->
@@ -32,7 +29,8 @@
             <div class="collapse navbar-collapse" id="navbarContent">
 
                 <!-- Nav links --> 
-                <!-- !!!! Make setActive() to highlight it and have underline when active--> 
+                 
+                <!-- [!!!! Make setActive()] to highlight it and have underline when active--> 
                 <ul class="navbar-nav mx-auto align-items-center gap-1">
                     <li class="nav-item">
                         <a class="nav-link" href="#"
@@ -40,11 +38,52 @@
                             Home
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#"
-                            onclick="changeContent('logicGates.html'); setActive(this); return false;">
+
+                    <!-- bootstrap dropdown https://getbootstrap.com/docs/5.0/components/dropdowns/ -->
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="learnDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Learn
                         </a>
+
+                        <ul class="dropdown-menu dropdownMenu" aria-labelledby="learnDropdown">
+
+                            <li><span class="dropdownHeaderLabel">Introduction</span></li>
+                            <li><a class="dropdown-item" href="#" onclick="changeContent('logicGates.html'); setActive(this); return false;">Logic Gates</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="changeContent('combiVsSeq.html'); setActive(this); return false;">Combinational vs Sequential Logic</a></li>
+
+                            <li><hr class="dropdown-divider"></li>
+
+                            <li><span class="dropdownHeaderLabel">Basic Gates</span></li>
+                            <li><a class="dropdown-item" href="#" onclick="changeContent('not.html'); setActive(this); return false;">NOT Gate</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="changeContent('and.html'); setActive(this); return false;">AND Gate</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="changeContent('or.html'); setActive(this); return false;">OR Gate</a></li>
+
+                            <li><hr class="dropdown-divider"></li>
+
+                            <li><span class="dropdownHeaderLabel">Universal Gates</span></li>
+                            <li><a class="dropdown-item" href="#" onclick="changeContent('nand.html'); setActive(this); return false;">NAND Gate</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="changeContent('nor.html'); setActive(this); return false;">NOR Gate</a></li>
+
+                            <li><hr class="dropdown-divider"></li>
+
+                            <li><span class="dropdownHeaderLabel">Exclusive Gates</span></li>
+                            <li><a class="dropdown-item" href="#" onclick="changeContent('xor.html'); setActive(this); return false;">XOR Gate</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="changeContent('xnor.html'); setActive(this); return false;">XNOR Gate</a></li>
+
+                            <li><hr class="dropdown-divider"></li>
+
+                            <li><span class="dropdownHeaderLabel">Combinational Logic</span></li>
+                            <li><a class="dropdown-item" href="#" onclick="changeContent('adders.html'); setActive(this); return false;">Adders</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="changeContent('multiplexers.html'); setActive(this); return false;">Multiplexers</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="changeContent('decoders.html'); setActive(this); return false;">Decoders</a></li>
+
+                            <li><hr class="dropdown-divider"></li>
+
+                            <li><span class="dropdownHeaderLabel">Sequential Logic</span></li>
+                            <li><a class="dropdown-item" href="#" onclick="changeContent('flipFlops.html'); setActive(this); return false;">Flip-Flops</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="changeContent('counters.html'); setActive(this); return false;">Counters</a></li>
+                        </ul>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#"
@@ -67,12 +106,12 @@
                 </ul>
 
                 <!-- Search bar -->
-                <div class="searchBar me-3">
+                <div class="searchBar me-7">
                     <input id="searchInput" type="text" placeholder="Search...">
-                    <button id="srchBtn" onclick="search()" aria-label="Search">🔍</button>
+                    <img src="assets/images/search.png" alt="Search" class="searchIcon" onclick="search()">
                 </div>
 
-                <!-- User icon on the far right -->
+                <!-- User icon floating -->
                 <div class="userIcon" onclick="changeContent('account.html')" title="Account">👤</div>
 
             </div>
