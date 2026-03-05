@@ -47,7 +47,6 @@
                         </a>
 
                         <ul class="dropdown-menu dropdownMenu" aria-labelledby="learnDropdown">
-
                             <li><span class="dropdownHeaderLabel">Introduction</span></li>
                             <li><a class="dropdown-item" href="#" onclick="changeContent('logicGates.html'); setActive(this); return false;">Logic Gates</a></li>
                             <li><a class="dropdown-item" href="#" onclick="changeContent('combiVsSeq.html'); setActive(this); return false;">Combinational vs Sequential Logic</a></li>
@@ -85,18 +84,28 @@
                             <li><a class="dropdown-item" href="#" onclick="changeContent('counters.html'); setActive(this); return false;">Counters</a></li>
                         </ul>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#"
-                            onclick="changeContent('logicCalculator.html'); setActive(this); return false;">
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="interactDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Interact
                         </a>
+
+                        <ul class="dropdown-menu dropdownMenu" aria-labelledby="interactDropdown">
+                            <li><span class="dropdownHeaderLabel">Interactive Tools</span></li>
+                            <li><a class="dropdown-item" href="#" onclick="changeContent('logicCalculator.html'); setActive(this); return false;">Logic Calculator</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="changeContent('truthTableGenerator.html'); setActive(this); return false;">Truth Table</a></li>
+
+                            <li><hr class="dropdown-divider"></li>
+                        </ul>
                     </li>
+
                     <li class="nav-item">
                         <a class="nav-link" href="#"
                             onclick="changeContent('quiz.html'); setActive(this); return false;">
                             Quiz
                         </a>
                     </li>
+                    
                     <li class="nav-item">
                         <a class="nav-link" href="#"
                             onclick="changeContent('account.html'); setActive(this); return false;">
