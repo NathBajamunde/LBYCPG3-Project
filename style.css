@@ -232,7 +232,7 @@ body {
     flex-shrink: 0;
 
     /*Floating behavior between the navbar and picture*/
-    position: absolute;
+    position: fixed;
     top: 30px;           
     right: 16px;        
     z-index: 1100;      /* Above the navbar, where navbar is 1000, so it always floats on top */
