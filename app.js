@@ -1,21 +1,55 @@
 /***********************************************
 Change Page Content
 ***********************************************/
-// Global Variable to Denote Document
+// Global Variable to Denote Target Element for Content Change
 const target = document.querySelector(".main-content");
 
-const changeContent = page => {
+// Function to Change Content to Specified Page
+const changeContent = page => { 
     fetch(`./assets/pages/${page}`)
         .then(res => {
+            // Get Text from Fetched Page if Response is OK
             if (res.ok) {
                 return res.text();
             }
         })
         .then(content => {
+            // Swap Main Content with the New Page
             target.innerHTML = content;
     });
 };
 
+var navBarItem;
+var dropDownParent;
+
+// Function to Set Active Page in Navbar
+function setActive(id) {
+    // Remove Active Class from Previously Active Item
+
+    // Check if navBarItem is Defined and remove active class if true
+    if (navBarItem) { 
+        navBarItem.classList.remove("active");
+    }
+
+    // Check if dropDownParent is Defined and remove active class if true
+    if (dropDownParent) { 
+        dropDownParent.classList.remove("active");
+    }
+    
+    // Set New Active Item
+    navBarItem = document.getElementById(id);
+    navBarItem.classList.add("active");
+
+    // Set Dropdown Item Active if Applicable
+    if (navBarItem.classList.contains("item-learn")) {
+        dropDownParent = document.getElementById("learnDropdown");
+        dropDownParent.classList.add("active");
+    }
+    else if (navBarItem.classList.contains("item-interact")) {
+        dropDownParent = document.getElementById("interactDropdown");
+        dropDownParent.classList.add("active");
+    }
+}
 /***********************************************
 Search Functionality
 ***********************************************/

@@ -30,11 +30,10 @@
 
                 <!-- Nav links --> 
                  
-                <!-- [!!!! Make setActive()] to highlight it and have underline when active--> 
                 <ul class="navbar-nav mx-auto align-items-center gap-1">
                     <li class="nav-item">
-                        <a class="nav-link" href="#"
-                            onclick="changeContent('home.html'); setActive(this); return false;">
+                        <a class="nav-link" href="#" id="home"
+                            onclick="changeContent('home.html'); setActive('home'); return false;">
                             Home
                         </a>
                     </li>
@@ -48,40 +47,40 @@
 
                         <ul class="dropdown-menu dropdownMenu" aria-labelledby="learnDropdown">
                             <li><span class="dropdownHeaderLabel">Introduction</span></li>
-                            <li><a class="dropdown-item" href="#" onclick="changeContent('logicGates.html'); setActive(this); return false;">Logic Gates</a></li>
-                            <li><a class="dropdown-item" href="#" onclick="changeContent('combiVsSeq.html'); setActive(this); return false;">Combinational vs Sequential Logic</a></li>
+                            <li><a class="dropdown-item item-learn" href="#" id="logicGates" onclick="changeContent('logicGates.html'); setActive('logicGates'); return false;">Logic Gates</a></li>
+                            <li><a class="dropdown-item item-learn" href="#" id="combiVsSeq" onclick="changeContent('combiVsSeq.html'); setActive('combiVsSeq'); return false;">Combinational vs Sequential Logic</a></li>
 
                             <li><hr class="dropdown-divider"></li>
 
                             <li><span class="dropdownHeaderLabel">Basic Gates</span></li>
-                            <li><a class="dropdown-item" href="#" onclick="changeContent('not.html'); setActive(this); return false;">NOT Gate</a></li>
-                            <li><a class="dropdown-item" href="#" onclick="changeContent('and.html'); setActive(this); return false;">AND Gate</a></li>
-                            <li><a class="dropdown-item" href="#" onclick="changeContent('or.html'); setActive(this); return false;">OR Gate</a></li>
+                            <li><a class="dropdown-item item-learn" href="#" id="not" onclick="changeContent('not.html'); setActive('not'); return false;">NOT Gate</a></li>
+                            <li><a class="dropdown-item item-learn" href="#" id="and" onclick="changeContent('and.html'); setActive('and'); return false;">AND Gate</a></li>
+                            <li><a class="dropdown-item item-learn" href="#" id="or" onclick="changeContent('or.html'); setActive('or'); return false;">OR Gate</a></li>
 
                             <li><hr class="dropdown-divider"></li>
 
                             <li><span class="dropdownHeaderLabel">Universal Gates</span></li>
-                            <li><a class="dropdown-item" href="#" onclick="changeContent('nand.html'); setActive(this); return false;">NAND Gate</a></li>
-                            <li><a class="dropdown-item" href="#" onclick="changeContent('nor.html'); setActive(this); return false;">NOR Gate</a></li>
+                            <li><a class="dropdown-item item-learn" href="#" id="nand" onclick="changeContent('nand.html'); setActive('nand'); return false;">NAND Gate</a></li>
+                            <li><a class="dropdown-item item-learn" href="#" id="nor" onclick="changeContent('nor.html'); setActive('nor'); return false;">NOR Gate</a></li>
 
                             <li><hr class="dropdown-divider"></li>
 
                             <li><span class="dropdownHeaderLabel">Exclusive Gates</span></li>
-                            <li><a class="dropdown-item" href="#" onclick="changeContent('xor.html'); setActive(this); return false;">XOR Gate</a></li>
-                            <li><a class="dropdown-item" href="#" onclick="changeContent('xnor.html'); setActive(this); return false;">XNOR Gate</a></li>
+                            <li><a class="dropdown-item item-learn" href="#" id="xor" onclick="changeContent('xor.html'); setActive('xor'); return false;">XOR Gate</a></li>
+                            <li><a class="dropdown-item item-learn" href="#" id="xnor" onclick="changeContent('xnor.html'); setActive('xnor'); return false;">XNOR Gate</a></li>
 
                             <li><hr class="dropdown-divider"></li>
 
                             <li><span class="dropdownHeaderLabel">Combinational Logic</span></li>
-                            <li><a class="dropdown-item" href="#" onclick="changeContent('adders.html'); setActive(this); return false;">Adders</a></li>
-                            <li><a class="dropdown-item" href="#" onclick="changeContent('multiplexers.html'); setActive(this); return false;">Multiplexers</a></li>
-                            <li><a class="dropdown-item" href="#" onclick="changeContent('decoders.html'); setActive(this); return false;">Decoders</a></li>
+                            <li><a class="dropdown-item item-learn" href="#" id="adders" onclick="changeContent('adders.html'); setActive('adders'); return false;">Adders</a></li>
+                            <li><a class="dropdown-item item-learn" href="#" id="multiplexers" onclick="changeContent('multiplexers.html'); setActive('multiplexers'); return false;">Multiplexers</a></li>
+                            <li><a class="dropdown-item item-learn" href="#" id="decoders" onclick="changeContent('decoders.html'); setActive('decoders'); return false;">Decoders</a></li>
 
                             <li><hr class="dropdown-divider"></li>
 
                             <li><span class="dropdownHeaderLabel">Sequential Logic</span></li>
-                            <li><a class="dropdown-item" href="#" onclick="changeContent('flipFlops.html'); setActive(this); return false;">Flip-Flops</a></li>
-                            <li><a class="dropdown-item" href="#" onclick="changeContent('counters.html'); setActive(this); return false;">Counters</a></li>
+                            <li><a class="dropdown-item item-learn" href="#" id="flipFlops" onclick="changeContent('flipFlops.html'); setActive('flipFlops'); return false;">Flip-Flops</a></li>
+                            <li><a class="dropdown-item item-learn" href="#" id="counters" onclick="changeContent('counters.html'); setActive('counters'); return false;">Counters</a></li>
                         </ul>
                     </li>
 
@@ -92,23 +91,23 @@
 
                         <ul class="dropdown-menu dropdownMenu" aria-labelledby="interactDropdown">
                             <li><span class="dropdownHeaderLabel">Interactive Tools</span></li>
-                            <li><a class="dropdown-item" href="#" onclick="changeContent('logicCalculator.html'); setActive(this); return false;">Logic Calculator</a></li>
-                            <li><a class="dropdown-item" href="#" onclick="changeContent('truthTableGenerator.html'); setActive(this); return false;">Truth Table</a></li>
+                            <li><a class="dropdown-item item-interact" href="#" id="logicCalculator" onclick="changeContent('logicCalculator.html'); setActive('logicCalculator'); return false;">Logic Calculator</a></li>
+                            <li><a class="dropdown-item item-interact" href="#" id="truthTableGenerator" onclick="changeContent('truthTableGenerator.html'); setActive('truthTableGenerator'); return false;">Truth Table</a></li>
 
                             <li><hr class="dropdown-divider"></li>
                         </ul>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="#"
-                            onclick="changeContent('quiz.html'); setActive(this); return false;">
+                        <a class="nav-link" href="#" id="quiz"
+                            onclick="changeContent('quiz.html'); setActive('quiz'); return false;">
                             Quiz
                         </a>
                     </li>
                     
                     <li class="nav-item">
-                        <a class="nav-link" href="#"
-                            onclick="changeContent('account.html'); setActive(this); return false;">
+                        <a class="nav-link" href="#" id="account"
+                            onclick="changeContent('account.html'); setActive('account'); return false;">
                             Account
                         </a>
                     </li>
@@ -135,5 +134,6 @@
     <script>
         // Initialization
         changeContent("home.html");
+        setActive("home");
     </script>
 </body>
