@@ -79,55 +79,9 @@ const searchList = [
     ["", "searchDecoders",      "pageChange('decoders'); return false;", "Decoders"],
     ["", "searchFlipFlops",     "pageChange('flipFlops'); return false;", "Flip-Flops"],
     ["", "searchCounters",      "pageChange('counters'); return false;", "Counters"],
-    ["", "searchLogicCalculator", "pageChange('logicCalculator'); return false;", "Logic Calculator"],
-    ["", "searchTruthTableGenerator", "pageChange('truthTableGenerator'); return false;", "Truth Table Generator"],
+    ["", "searchLogicStudio",   "pageChange('logicStudio'); return false;", "Logic Studio"],
     ["", "searchQuiz",          "pageChange('quiz'); return false;", "Quiz"],
     ["", "searchHome",          "pageChange('home'); return false;", "Home"]
-];
-
-// Map searchList to each keyword for easier access
-const keywordMap = new Map([
-    // General Categories & Broad Terms
-    ["Gates", [1, 3, 4, 5, 6, 7, 8, 9]], 
-    ["Logic", [1, 2, 15]],
-    
-    // Specific Logic Gates
-    ["NOT", [3]], 
-    ["AND", [4]],
-    ["OR", [5]],
-    ["NAND", [6]],
-    ["NOR", [7]],
-    ["XOR", [8]],
-    ["XNOR", [9]],
-
-    // Combinational Logic & Related Circuits
-    ["Combinational", [2, 10, 11, 12]], // Added Adders, Mux, Decoders
-    ["Adders", [10]],
-    ["Multiplexers", [11]],
-    ["Decoders", [12]],
-
-    // Sequential Logic & Related Circuits
-    ["Sequential", [2, 13, 14]], // Added Flip-Flops and Counters
-    ["Flip", [13]],
-    ["Flops", [13]],
-    ["Counters", [14]],
-
-    // Tools & Utilities
-    ["Calculator", [15]],
-    ["Truth Table", [16]],
-    ["Generator", [16]],
-
-    // Misc
-    ["Home", [18]],
-    ["Quiz", [17]]
-]);
-
-// Search Keywords
-const keywords = [
-    "Gates", "AND", "OR", "NOT", "NAND", "NOR", "XNOR", "XOR", "Logic", 
-    "Combinational", "Sequential", "Adders", "Multiplexers", "Decoders",
-    "Flip", "Flops", "Counters", "Calculator", "Truth Table", "Generator",
-    "Quiz", "Home"
 ];
 
 // Remove Currently Exisiting Items from List
@@ -135,56 +89,41 @@ function clearList() {
     document.getElementById("searchDropdownList").innerHTML = "";
 }
 
-// Function to filter out keywords based on the input text
+// Function to filter out searchList based on the input search term
 function searchItems(searchTerm) {
-    // Normalize Search Term (Convert to Lowercase, Remove Spaces)
-    searchTerm = searchTerm.toLowerCase().replace(/\s+/g, "");
+    // Normalize Search Term (Convert to Lowercase, Remove Spaces, Remove Dashes)
+    searchTerm = searchTerm.toLowerCase().replace(/\s+/g, "").replace(/-/g, "");
 
-    // Return no keywords if text is empty
-    if (searchTerm == "") return [];
+    // Return No Results Found if Empty searchTerm
+    if (searchTerm == "") return [searchList[0]];
 
-    // Filter words that include the search term
-    return results = keywords.filter(
-        word => word.toLowerCase().replace(/\s+/g, "").includes(searchTerm)
+    // Filter searchList that includes the search term
+    return results = searchList.filter(
+        row => row[3].toLowerCase().replace(/\s+/g, "").replace(/-/g, "").includes(searchTerm)
     );
 };
 
-// Get the indices for accessing 
-function getSearchList(filtKeywords) {
-    // Use Set to avoid adding duplicates
-    var results = new Set();
-
-    // For every keyword in the result, get searchList indices from keywordMap
-    filtKeywords.forEach(element => {
-        const idxs = keywordMap.get(element);
-        // Extract individual searchList and add to the results set
-        idxs.forEach(idx => {
-            results.add(idx);
-        });
-    });
-
-    
-    // If results is empty, add the index for "No Results Found"
-    if (results.size == 0) {
-        results.add(0);
-    }
-    
-    return results;
-}
-
 // Add newly searched items to the list
-function addToList(idxs) {
+function addToList(filteredSearch) {
     // Declare an Empty String
     var htmlListString = "";
 
-    // Create HTML code for adding list
-    idxs.forEach(idx => {
-        var newItem = `<li><a class="dropdown-item item-search ${searchList[idx][0]}" href="#" id="${searchList[idx][1]}" onclick="${searchList[idx][2]}">${searchList[idx][3]}</a></li>` 
-        htmlListString = htmlListString.concat(newItem)
-    });
+    // No User
+    if (filteredSearch.length == 0) {
+        htmlListString = `<li><a class="dropdown-item item-search ${searchList[0][0]}" href="#" id="${searchList[0][1]}" onclick="${searchList[0][2]}">${searchList[0][3]}</a></li>`
+    }
+
+    // Create Search Dropdown using the Filtered Search Results
+    else {
+        // Create HTML code for adding list
+        filteredSearch.forEach(item => {
+            var newItem = `<li><a class="dropdown-item item-search ${item[0]}" href="#" id="${item[1]}" onclick="${item[2]}">${item[3]}</a></li>` 
+            htmlListString = htmlListString.concat(newItem)
+        });
+    }
 
     // Insert HTML code into the document and add the list
-    document.getElementById("searchDropdownList").innerHTML = htmlListString;
+     document.getElementById("searchDropdownList").innerHTML = htmlListString;
 }
 
 // Summary Function for updating search list
@@ -192,12 +131,9 @@ function updateList() {
     // Clear Current List
     clearList();
     // Get Keywords based on the typed text
-    const filteredKeywords = searchItems(document.getElementById("searchInput").value);
-    // Get idexes for search item look up table
-    const searchListIdx = getSearchList(filteredKeywords);
+    const filteredSearch = searchItems(document.getElementById("searchInput").value);
     // Create new list
-    addToList(searchListIdx);
-    return searchListIdx;
+    addToList(filteredSearch);
 }
 
 // Go to first Page on the search list
@@ -251,77 +187,7 @@ srchListen.addEventListener("focusout", function(event) {
 /***********************************************
 Logic Calculator Functionality
 ***********************************************/
-//Attach Logic Calculation Listeners
-function attachLogicCalcListeners() {
-    // Listener Variables
-    var in1Listener = innerDoc.getElementById("in1");
-    var in2Listener = innerDoc.getElementById("in2"); 
-    var gatesListener = innerDoc.getElementById("gates");
 
-    // Event Listeners
-    in1Listener.addEventListener("change", calculate);
-    in2Listener.addEventListener("change", calculate);
-    gatesListener.addEventListener("change", calculate);
-}
-
-// Logical Evaluation Function
-function calculate() {
-    // Get Inputs and Parse to Int for Safe Evaluation
-    const in1 = parseInt(innerDoc.getElementById("in1").value);
-    const in2 = parseInt(innerDoc.getElementById("in2").value);
-    const gates = innerDoc.getElementById("gates").value;
-    const img = innerDoc.getElementById("gateImg");
-    var outputColor = innerDoc.getElementById("output");
-    // Initialize Ouput Variable
-    var output = 0;
-
-    switch (gates) {
-        case "and":
-            // Bitwise AND
-            output = in1 & in2;
-            img.src = "images/and1.png";
-            break;
-        case "or":
-            // Bitwise OR
-            output = in1 | in2;
-            img.src = "images/or1.png";
-            break;
-        case "nand":
-            // Logical Not + Bitwise & Use Number to convert to 1 or 0
-            output = Number(!(in1 & in2));
-            img.src = "images/nand1.png";
-            break;
-            // Logical Not + Bitwise | Use Number to convert to 1 or 0
-        case "nor":
-            output = Number(!(in1 | in2));
-            img.src = "images/nor1.png";
-            break;
-            // Bitwise XOR
-        case "xor":
-            output = in1 ^ in2;
-            img.src = "images/xor1.png";
-            break;
-            // Logical Not + Bitwise XOR Use Number to convert to 1 or 0
-        case "xnor":
-            output = Number(!(in1 ^ in2));
-            img.src = "images/xnor1.png";
-            break;
-        default: 
-            output = 0;
-    }
-    // Change Output Text to New Output
-    innerDoc.getElementById("output").innerHTML = "<strong>Output:</strong> " + output;
-    
-    
-    outputColor.classList.remove("highOutput", "lowOutput");
-    if (output === 1) {
-        outputColor.classList.add("highOutput");
-    } 
-    else {
-        outputColor.classList.add("lowOutput");
-    }
-
-}
 
 /***********************************************
 Startup Functions (Functions to Call on Load)

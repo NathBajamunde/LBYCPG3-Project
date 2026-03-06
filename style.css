@@ -341,7 +341,7 @@ body {
 /* --- HOME SECTION --- */
 .home-intro {
     position: relative;
-    min-height: 80vh; 
+    min-height: 40vh; 
     width: 100%;
     background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url("assets/images/bgintro.jpg");
     background-size: cover;
@@ -354,7 +354,7 @@ body {
 
 .home-logicgates {
     position: relative;
-    min-height: 80vh; 
+    min-height: 40vh; 
     width: 100%;
     background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url("assets/images/bglogic.jpg");
     background-size: cover;
@@ -367,7 +367,7 @@ body {
 
 .home-quiz {
     position: relative;
-    min-height: 80vh; 
+    min-height: 40vh; 
     width: 100%;
     background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url("assets/images/bgquiz.jpg");
     background-size: cover;
@@ -380,7 +380,7 @@ body {
 
 .home-play {
     position: relative;
-    min-height: 80vh; 
+    min-height: 40vh; 
     width: 100%;
     background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url("assets/images/bgcalculator.jpg");
     background-size: cover;
