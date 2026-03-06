@@ -250,9 +250,9 @@ body {
     background: rgb(200, 200, 200);
 }
 
-/* -- TRUTH TABLE ---*/
+/* -- TRUTH TABLE ref: https://codepen.io/grahammtch/pen/reZpKv---*/
 .table {
-    color: rgba(0, 0, 0);             /* Dark text for readability */
+    color: rgba(0, 0, 0);
     border-collapse: collapse;
     width: 100%;
     margin-bottom: 20px;
@@ -267,7 +267,7 @@ body {
     border: 1px solid rgba(46, 196, 182, 0.4); /* Soft teal cell borders */
 }
 
-/* Header row — solid teal background with white text */
+/* Header row — blue background with white text */
 .table thead th {
     background-color: var(--blue);
     color: var(--white);
@@ -297,14 +297,14 @@ body {
 
 /* Links inside table cells */
 .table tbody td a {
-    color: var(--blue);         /* Teal link color */
+    color: var(--blue); 
     font-weight: 600;
     text-decoration: none;
     transition: color 0.2s ease;
 }
 
 .table tbody td a:hover {
-    color: var(--orange);       /* Turns orange on hover */
+    color: var(--orange); /* Turns orange on hover */
 }
 
 /* Section headings above each table (Basic Gates, Universal Gates, etc.) */
@@ -319,7 +319,7 @@ body {
     border-left: 4px solid var(--orange); /* Orange left bar accent */
 }
 
-/* The "what" and "types" sub-sections */
+/* what and types sub-sections */
 .what,.types,.truth-tables {
     margin-bottom: 40px;
 }
@@ -333,7 +333,7 @@ body {
 /* Scrollable wrapper for wide tables on small screens */
 .table-responsive {
     border-radius: 10px;
-    overflow: hidden;           /* Clips table to rounded corners */
+    overflow: hidden;  /* Clips table to rounded corners */
     box-shadow: 0 4px 16px rgba(13, 43, 54, 0.1);
 }
 
