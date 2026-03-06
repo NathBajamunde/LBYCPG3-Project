@@ -60,15 +60,6 @@ body {
     box-shadow: 0 8px 16px rgba(46, 196, 182, 0.4);  /* Shadow below the navbar */
 }
 
-/* [!!!CAN DELETE since LOGO IS NOW AN IMAGE]
-#mainNavbar .navbar-brand {
-    color: var(--white);
-    font-weight: 700;
-    font-size: 25px;
-    letter-spacing: 0.5px;
-}
-
-
 /* based on menuItem */
 #mainNavbar .nav-link {
     color: rgba(255, 255, 255, 0.8);
@@ -212,13 +203,6 @@ body {
     color: var(--blue);
 }
 
-/* Responsive where it will stack search bar on small screens */
-@media (max-width: 767px) {
-    .searchBar {
-        max-width: 100%;
-        margin: 8px 0;
-    }
-}
 
 /* Dropdown menu for search results */
 .search-dropdown {
@@ -266,30 +250,95 @@ body {
     background: rgb(200, 200, 200);
 }
 
-
-/* screen breakpoints */
-@media (max-width: 991px) {
-    .userIcon {
-        position: static;  
-        top: unset;
-        right: unset;
-        width: 44px;        
-        height: 44px;
-        font-size: 20px;
-        border-width: 2px;
-        box-shadow: none;
-        margin-left: 0px;  
-    }
-
-    .searchBar {
-        max-width: 80%;
-        margin-right: 0; 
-        margin: 8px 0;
-    }
+/* -- TRUTH TABLE ---*/
+.table {
+    color: rgba(0, 0, 0);             /* Dark text for readability */
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom: 20px;
 }
 
-/* --- HOME SECTION --- */
+/* Table with borders */
+.table-bordered {
+    border: 2px solid var(--blue); /* Teal outer border */
+}
 
+.table-bordered th, .table-bordered td {
+    border: 1px solid rgba(46, 196, 182, 0.4); /* Soft teal cell borders */
+}
+
+/* Header row — solid teal background with white text */
+.table thead th {
+    background-color: var(--blue);
+    color: var(--white);
+    font-weight: 700;
+    text-align: center;
+    padding: 12px 15px;
+    border: 1px solid rgba(46, 196, 182, 0.5);
+}
+
+/* Data cells */
+.table tbody td {
+    text-align: center;
+    padding: 10px 15px;
+    font-weight: 500;
+}
+
+/* Zebra striping — every second row gets a light teal tint */
+.table tbody tr:nth-child(even) td {
+    background-color: rgba(203, 243, 240, 0.4);
+}
+
+/* Row turns orange on hover */
+.table tbody tr:hover td {
+    background-color: rgba(255, 159, 28, 0.1);
+    transition: background 0.2s ease;
+}
+
+/* Links inside table cells */
+.table tbody td a {
+    color: var(--blue);         /* Teal link color */
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.table tbody td a:hover {
+    color: var(--orange);       /* Turns orange on hover */
+}
+
+/* Section headings above each table (Basic Gates, Universal Gates, etc.) */
+.info-section h4 {
+    color: var(--orange);
+    font-size: 1.1rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin: 30px 0 10px 0;
+    padding-left: 12px;
+    border-left: 4px solid var(--orange); /* Orange left bar accent */
+}
+
+/* The "what" and "types" sub-sections */
+.what,.types,.truth-tables {
+    margin-bottom: 40px;
+}
+
+.what h3,.types h3 {
+    color: #2c3e50;
+    font-size: 1.6rem;
+    margin-bottom: 12px;
+}
+
+/* Scrollable wrapper for wide tables on small screens */
+.table-responsive {
+    border-radius: 10px;
+    overflow: hidden;           /* Clips table to rounded corners */
+    box-shadow: 0 4px 16px rgba(13, 43, 54, 0.1);
+}
+
+
+/* --- HOME SECTION --- */
 .home-intro {
     position: relative;
     min-height: 80vh; 
@@ -375,8 +424,9 @@ body {
     height: auto;
     margin-left: -10px; 
 }
-/* --- INFO SECTION --- */
 
+
+/* --- INFO SECTION --- */
 .info-section {
     margin-top: 100px;
     padding: 60px 10%;
@@ -415,8 +465,13 @@ body {
     font-weight: 900;
 }
 
-/* Responsive Fixes */
+
+/* Responsive Fixes (screen breakpoints) */
 @media (max-width: 768px) {
+    .searchBar {
+        max-width: 100%;
+        margin: 8px 0;
+    }
     .welcome-box {
         padding: 30px;
         margin: 0 20px;
@@ -428,3 +483,24 @@ body {
         font-size: 35px;
     }
 }
+
+@media (max-width: 991px) {
+    .userIcon {
+        position: static;  
+        top: unset;
+        right: unset;
+        width: 44px;        
+        height: 44px;
+        font-size: 20px;
+        border-width: 2px;
+        box-shadow: none;
+        margin-left: 0px;  
+    }
+
+    .searchBar {
+        max-width: 80%;
+        margin-right: 0; 
+        margin: 8px 0;
+    }
+}
+
