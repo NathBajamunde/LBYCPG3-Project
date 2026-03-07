@@ -219,6 +219,7 @@ var calcIdx = 0;
 function rstCalc() {
     maxCalcIdx = 0;
     calcIdx = 0;
+    varsCurrent = new Set();
 }
 
 // Delete the character before the caret in the calculator
@@ -241,6 +242,9 @@ function delCalc() {
     // Set focus to expression input (Make caret appear)
     calcInput.focus();
     calcInput.setSelectionRange(calcIdx, calcIdx);
+
+    // Manually Trigger Input Event
+    calcInput.dispatchEvent(new Event('input'));
 }
 
 // Remove all text from the calculator
@@ -259,6 +263,9 @@ function clrCalc() {
 
     // Make Caret Visible
     calcInput.setSelectionRange(0,0);
+
+    // Manually Trigger Input Event
+    calcInput.dispatchEvent(new Event('input'));
 }
 
 // Add new character to the expression at the caret location
@@ -278,6 +285,9 @@ function inputCalc(char) {
     // Set focus to expression input (Make caret appear)
     calcInput.focus();
     calcInput.setSelectionRange(calcIdx, calcIdx);
+
+    // Manually Trigger Input Event
+    calcInput.dispatchEvent(new Event('input'));
 }
 
 // Move the caret to the left
@@ -340,6 +350,8 @@ function addCalcListener() {
         else if (/^[a-z]$/.test(event.key)) {
             event.preventDefault();
             inputCalc(event.key.toUpperCase());
+            // Manually Trigger Input Event
+            calcInput.dispatchEvent(new Event('input'));
         }
 
         // Accept 0 and 1 Inputs 
@@ -370,6 +382,8 @@ function addCalcListener() {
         else if (event.key == "Delete") {
             event.preventDefault();
             delCalc();
+            // Manually Trigger Input Event
+            calcInput.dispatchEvent(new Event('input'));
         }
 
         // Move caret left on key press
@@ -389,14 +403,99 @@ function addCalcListener() {
             event.preventDefault();
         }
     });
+
+    // Input-based Listener for obtaining latest expression
+    calcInput.addEventListener('input', event => {
+        const variables = getExpVars();
+        updateVarInTable(variables);
+        calculateLogic();
+    }); 
 }
 
 /***********************************************
 Logic Calculator Operation Functions
 ***********************************************/
 
+// Get Variables from Expression
+function getExpVars() {
+    // Get Expression
+    var calcExpression = document.getElementById("calculatorInput").value;
+    console.log(calcExpression);
+    // Use Set to store variables found to avoid duplicates
+    var variables = new Set();
+
+    // Extract Remove All Non-Alpha In Input
+    calcExpression = calcExpression.replace(/[^A-Z]/gi, '')
+
+    // Extract Unique Variables from Expression
+    Array.from(calcExpression).forEach(letter => {
+        variables.add(letter);
+    });
+    
+    return variables;
+}
+
+var varsCurrent = new Set();
+
+// Update the Variable Input Table
+function updateVarInTable(variables) {
+    // Update Variable Table with New Variables
+    if (variables.size > 0) {
+        // Remove No Variable Message if it exists
+        var noVarMsg = document.getElementById("vars-None");
+        if (noVarMsg) noVarMsg.remove();
+
+        // Remove All Variables in the Table Currently Not In The Expression
+        varsCurrent.forEach(vari => {
+            if (!variables.has(vari)) {
+                document.getElementById(`vars-${vari}`).remove();
+                varsCurrent.delete(vari);
+            }
+        });
+
+        // Add New Variables
+        variables.forEach(vari => {
+            if (!varsCurrent.has(vari)) {
+                varsCurrent.add(vari);
+                var newVar = `
+                    <tr id="vars-${vari}">
+                        <td class="var-name">${vari}</td>
+                        <td>
+                            <select class="form-select" id="${vari}-value" aria-label="${vari}-value" onclick="test()">
+                                <option value="0">0</option>
+                                <option value="1">1</option>
+                            </select> 
+                        </td>
+                    </tr>`;
+                document.getElementById("calcVarContainer").innerHTML += newVar;
+            }
+        });
+    }
+
+    // Add No Variable Message
+    else {
+        varsCurrent = new Set();
+        document.getElementById("calcVarContainer").innerHTML = `
+            <tr id="vars-None">
+                <td colspan="2">Add Variables in the Logic Calculator First!</td>
+            </tr>`;
+    }
+}
+
+function calculateLogic() {
+
+}
+
+/***********************************************
+Miscellaneous / Testing Functions
+***********************************************/
+// Testing Function
+function test() {
+    console.log("Success");
+}
 
 /***********************************************
 Startup Functions (Functions to Call on Load)
 ***********************************************/
 pageChange("logicStudio");
+

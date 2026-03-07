@@ -40,10 +40,39 @@ TO DOs:
             
             <!-- UPDATE BASED ON FINAL CREATED PROGRAM -->
             <ol type="1">
-                <li>Select the type of gate via the dropdown menu.</li>
-                <li>Select the number of inputs for the chosen gate.</li>
-                <li>Provide your input signals (1 or 0).</li>
-                <li>The output will automatically change with the input signal.</li>
+                <li>Use the keyboard or the on-screen keys to type the expression in the Logic Calculator.</li>
+                <li>In addition to W, X, Y, and Z—all alphabetic characters are usable as variables. (Ex: A, B, C)</li>
+                <li>
+                    Use the following symbols for the operations: 
+                    <ul>
+                        <li>OR  (+)</li>
+                        <li>AND (&)</li>
+                        <li>NOT (!)</li>
+                        <li>XOR (^)</li>
+                        <li>Ex 1: W+X (W OR X)</li>
+                        <li>Ex 2: Y&Z (W AND Z)</li>
+                    </ul>
+                </li>
+                <li>1 and 0 can be used to represent constant logic in the expression.</li>
+                <li>
+                    String together multiple expressions using parentheses (), brackets [], and braces {}.
+                    <ul>
+                        <li>Ex 1: ![(A+B)+(W&X)]</li>
+                        <li>Ex 2: !{![C^D]&[!Y+Z]}</li>
+                    </ul>
+                </li>
+                <li>The left and right arrow keys can be used to choose where the symbol is inserted.</li>
+                <li>The DEL on-screen button as well as the Delete and Backspace key can be used to remove the symbol before the caret.</li>
+                <li>The CLR on-screen button can be used to instantly clear the expression input</li>
+                <li>The Truth Table for the expression is automatically generated once a valid expression is detected.</li>
+                <li>
+                    Logic calculations for specific inputs can be done via the Variable Input table.
+                    <ol type="a">
+                        <li>It is dynamically updated with each new variable in the expression.</li>
+                        <li>Choose from the dropdown the logic to assign the variable.</li>
+                        <li>The output is automatically shown when a valid expression is found and all variables have values assigned</li>
+                    </ol>
+                </li>
                 <li>Enjoy and Have Fun!</li>
             </ol>
         </section>
@@ -98,8 +127,26 @@ TO DOs:
                 </div>
 
                 <!-- Variable Input Column -->
-                <div class="col-md-4">
-                    <p> test </p>
+                <div class="col-md-4" >
+                    <table class="table table-bordered text-center">
+                        <thead>
+                            <tr>
+                                <th colspan="2">Variable Input</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th class="vt-equal-col">Variable</th>
+                                <th class="vt-equal-col">Value (0 or 1)</th>
+                            </tr>
+                        </tbody>
+                        <!-- Container for Variable Input -->
+                        <tbody id="calcVarContainer">
+                            <tr id="vars-None">
+                                <td colspan="2">Add Variables in the Logic Calculator First!</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
              </div>
         </div>
