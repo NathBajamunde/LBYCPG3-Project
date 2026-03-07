@@ -5,17 +5,34 @@ Change Page Content
 const target = document.querySelector(".main-content");
 
 // Function to Change Content to Specified Page
-function changeContent(page) { 
-    fetch(`./assets/pages/${page}.html`)
-        .then(res => {
-            // Get Text from Fetched Page if Response is OK
-            if (res.ok) {
-                return res.text();
-            }
-        })
-        .then(content => {
-            // Swap Main Content with the New Page
-            target.innerHTML = content;
+async function changeContent(page) {
+    // Promise based system to be able to call listener attachment functions
+    return new Promise((resolve, reject) => {
+        try {
+            fetch(`./assets/pages/${page}.html`)
+                .then(res => {
+                    // Get Text from Fetched Page if Response is OK
+                    if (res.ok) {
+                        return res.text();
+                    }
+                    else {
+                        reject("Error: Page Not Found")
+                    }
+                })
+                .then(content => {
+                    // Swap Main Content with the New Page and fulfill promise
+                    if (target) {
+                        target.innerHTML = content;
+                        resolve();
+                    }
+                    else {
+                        reject("Error: Container to Place Page Not Found");
+                    }
+            });
+        }
+        catch (error) {
+            reject(error);
+        }
     });
 }
 
@@ -52,11 +69,18 @@ function setActive(id) {
 }
 
 // Function to make calling page change functions simpler
-function pageChange(page) {
-    changeContent(page);
+async function pageChange(page) {
+    // General Calls
+    await changeContent(page);
     setActive(page);
     clearList();
     addToList([0]);
+    rstCalc();
+
+    // Page Specific Calls
+    if (page == "logicStudio") {
+        addCalcListener();
+    }
 }
 
 /***********************************************
@@ -185,24 +209,194 @@ srchListen.addEventListener("focusout", function(event) {
 });
 
 /***********************************************
-Logic Calculator Functionality
+Logic Calculator Input Functions
 ***********************************************/
-function input(operation) {
-    const inputField = document.getElementById("calculatorInput");
-    var expression = inputField.value;
-    switch (operation) {
-        case "DEL":
-            break;
-        case "CLR":
-            expression = ""
-            break;
-        default:
-            expression = expression.concat(operation);
-    }
-    inputField.value = expression;
+
+var maxCalcIdx = 0;
+var calcIdx = 0;
+
+// Reset Calculator When Moving to Another Page
+function rstCalc() {
+    maxCalcIdx = 0;
+    calcIdx = 0;
 }
+
+// Delete the character before the caret in the calculator
+function delCalc() {
+    const calcInput = document.getElementById("calculatorInput");
+
+    // Delete only if the caret is not befor the first character
+    if (calcIdx > 0) {
+        // Get current expression in the input box at where caret is
+        var calcExpression = calcInput.value;
+
+        // Delete the character before the caret
+        calcInput.value = calcExpression.slice(0, calcIdx-1) + calcExpression.slice(calcIdx);
+
+        // Decrement indicators
+        calcIdx--;
+        maxCalcIdx--;
+    }
+
+    // Set focus to expression input (Make caret appear)
+    calcInput.focus();
+    calcInput.setSelectionRange(calcIdx, calcIdx);
+}
+
+// Remove all text from the calculator
+function clrCalc() {
+    const calcInput = document.getElementById("calculatorInput");
+
+    // Clear Text
+    calcInput.value = "";
+
+    // Reset Caret Index Tracker
+    calcIdx = 0;
+    maxCalcIdx = 0;
+
+    // Focus on the Expression Input
+    calcInput.focus();
+
+    // Make Caret Visible
+    calcInput.setSelectionRange(0,0);
+}
+
+// Add new character to the expression at the caret location
+function inputCalc(char) {
+    const calcInput = document.getElementById("calculatorInput");
+
+    // Get current expression in the input box at where caret is
+    var calcExpression = calcInput.value;
+
+    // Insert the new character in the caret position
+    calcInput.value = calcExpression.slice(0, calcIdx) + char + calcExpression.slice(calcIdx);
+
+    // Increment position indicators
+    calcIdx++;
+    maxCalcIdx++;
+
+    // Set focus to expression input (Make caret appear)
+    calcInput.focus();
+    calcInput.setSelectionRange(calcIdx, calcIdx);
+}
+
+// Move the caret to the left
+function leftCalc() {
+    const calcInput = document.getElementById("calculatorInput");
+
+    // Focus on Expression Input (Make Caret Visible)
+    calcInput.focus();
+
+    // Remain at First Index if Cursor Already There
+    if (calcIdx == 0) {
+        calcInput.setSelectionRange(0, 0);
+    }
+
+    // Move The Caret Left
+    else {
+        calcIdx--;
+        calcInput.setSelectionRange(calcIdx, calcIdx);
+    }
+}
+
+// Move the caret to the right
+function rightCalc() {
+    const calcInput = document.getElementById("calculatorInput");
+
+    // Focus on Expression Input (Make Caret Visible)
+    calcInput.focus();
+
+    // Remain at Max Index if Cursor Already There
+    if (calcIdx == maxCalcIdx) {
+        calcInput.setSelectionRange(maxCalcIdx, maxCalcIdx);
+    }
+
+    // Move The Caret Right
+    else {
+        calcIdx++;
+        calcInput.setSelectionRange(calcIdx, calcIdx);
+    }
+}
+
+// Misc Accepted Keyboard Keys (Modify as needed)
+const calcAcc = [
+    "(", ")", "[", "]", "{", "}", "&", "+", "!", "^"
+];
+
+// Listener for keyboard based expression input
+function addCalcListener() {
+    const calcInput = document.getElementById("calculatorInput");
+
+    // Add Listeners based on keyboard press
+    calcInput.addEventListener('keydown', (event) => {
+
+        // Accept Uppercase Letters and Adjust Button-Based Input Indices
+        if (/^[A-Z]$/.test(event.key)) {
+            calcIdx++;
+            maxCalcIdx++;
+        }
+
+        // Convert Lowercase to Upper-Case Letters to Add
+        else if (/^[a-z]$/.test(event.key)) {
+            event.preventDefault();
+            inputCalc(event.key.toUpperCase());
+        }
+
+        // Accept 0 and 1 Inputs 
+        else if (/^[0-1]$/.test(event.key)) {
+            calcIdx++;
+            maxCalcIdx++;
+        }
+
+        // Accepted Misc Keys
+        else if (calcAcc.includes(event.key)) {
+            calcIdx++;
+            maxCalcIdx++;
+        }
+
+        // Keyboard Clear All Typed text 
+        else if ((event.ctrlKey || event.metaKey) && event.key == "Backspace") {
+            maxCalcIdx -= calcIdx;
+            calcIdx = 0;
+        }
+
+        // Accept Backspace and adjust Button-Based Input Indices
+        else if (event.key == "Backspace") {
+            calcIdx--;
+            maxCalcIdx--;
+        }
+
+        // Accept Delete but treat it as Backspace
+        else if (event.key == "Delete") {
+            event.preventDefault();
+            delCalc();
+        }
+
+        // Move caret left on key press
+        else if (event.key == "ArrowLeft") {
+            event.preventDefault();
+            leftCalc();
+        }
+
+        // Move caret right on key press
+        else if (event.key == "ArrowRight") {
+            event.preventDefault();
+            rightCalc();
+        }
+
+        // Reject All Other Keys
+        else {
+            event.preventDefault();
+        }
+    });
+}
+
+/***********************************************
+Logic Calculator Operation Functions
+***********************************************/
+
 
 /***********************************************
 Startup Functions (Functions to Call on Load)
 ***********************************************/
-pageChange("home");
+pageChange("logicStudio");

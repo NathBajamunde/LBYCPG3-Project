@@ -57,39 +57,41 @@ TO DOs:
                     <table class="table table-bordered text-center">
                         <thead>
                             <tr>
-                                <th colspan="4">Expression </th>
+                                <th colspan="4">Logic Calculator </th>
                             </tr>
                         </thead>
                         <tbody>
                             <!-- Expression Field -->
                             <tr>
-                                <td colspan="4"><input class="calculator-input" id="calculatorInput" type="text" placeholder="Enter Expression Here..."></td>
+                                <td colspan="4">
+                                    <input class="calculator-input" id="calculatorInput" type="text" 
+                                    autocomplete="off" placeholder="Enter Expression Here...">
+                                </td>
                             </tr>
                             <!-- Button Inputs -->
                             <tr>
-                                <td class="lc-equal-col"><button>W</button></td>
-                                <td class="lc-equal-col"><button>AND</button></td>
-                                <td class="lc-equal-col"><button>NOT</button></td>
-                                <td class="lc-equal-col"><button>OR</button></td>
+                                <td class="lc-equal-col"><button onclick="inputCalc('W')">W</button></td>
+                                <td class="lc-equal-col"><button onclick="inputCalc('&')">AND</button></td>
+                                <td class="lc-equal-col"><button onclick="inputCalc('!')">NOT</button></td>
+                                <td class="lc-equal-col"><button onclick="delCalc()">DEL</button></td>
                             </tr>
                             <tr>
-                                <td class="lc-equal-col"><button>X</button></td>
-                                <td class="lc-equal-col"><button>XOR</button></td>
-                                <td class="lc-equal-col"><button>XNOR</button></td>
-                                <td class="lc-equal-col"><button>DEL</button></td>
+                                <td class="lc-equal-col"><button onclick="inputCalc('X')">X</button></td>
+                                <td class="lc-equal-col"><button onclick="inputCalc('+')">OR</button></td>
+                                <td class="lc-equal-col"><button onclick="inputCalc('^')">XOR</button></td>
+                                <td class="lc-equal-col"><button onclick="clrCalc()">CLR</button></td>
                             </tr>
                             <tr>
-                                <td class="lc-equal-col"><button>Y</button></td>
-                                <td class="lc-equal-col"><button>(</button></td>
-                                <td class="lc-equal-col"><button>)</button></td>
-                                <td class="lc-equal-col"><button>CLR</button></td>
+                                <td class="lc-equal-col"><button onclick="inputCalc('Y')">Y</button></td>
+                                <td class="lc-equal-col"><button onclick="inputCalc('(')">(</button></td>
+                                <td class="lc-equal-col"><button onclick="inputCalc(')')">)</button></td>
+                                <td class="lc-equal-col"><button onclick="leftCalc()">←</button></td>                                
                             </tr>
                             <tr>
-                                <td class="lc-equal-col"><button>Z</button></td>
-                                <td class="lc-equal-col"><button>←</button></td>
-                                <td class="lc-equal-col"><button>→</button></td>
-                                <!-- REMOVE GEN IF TABLE IS DYNAMICALLY GENERATED -->
-                                <td class="lc-equal-col"><button>GEN</button></td>
+                                <td class="lc-equal-col"><button onclick="inputCalc('Z')">Z</button></td>
+                                <td class="lc-equal-col"><button onclick="inputCalc('0')">0</button></td>
+                                <td class="lc-equal-col"><button onclick="inputCalc('1')">1</button></td> 
+                                <td class="lc-equal-col"><button onclick="rightCalc()">→</button></td>
                             </tr>
                         </tbody>
                     </table>
