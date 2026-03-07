@@ -187,7 +187,20 @@ srchListen.addEventListener("focusout", function(event) {
 /***********************************************
 Logic Calculator Functionality
 ***********************************************/
-
+function input(operation) {
+    const inputField = document.getElementById("calculatorInput");
+    var expression = inputField.value;
+    switch (operation) {
+        case "DEL":
+            break;
+        case "CLR":
+            expression = ""
+            break;
+        default:
+            expression = expression.concat(operation);
+    }
+    inputField.value = expression;
+}
 
 /***********************************************
 Startup Functions (Functions to Call on Load)

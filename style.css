@@ -452,13 +452,13 @@ body {
 
 /* --- BOTTOM GRAY SECTION --- */
 
-.bottom-section {
+.section-two {
     background-color: #e0e0e0; 
     border-top: 2px solid #ccc;
     color: #000;
 }
 
-.bottom-title {
+.section-two-title {
     font-family: 'Arial Black', sans-serif;
     font-size: 35px;
     line-height: 1.1;
@@ -504,3 +504,35 @@ body {
     }
 }
 
+/********************************************
+Logic Studio Classes
+********************************************/
+.calculator-input {
+    background: none;
+    border: none;
+    color: rgba(0, 0, 0);
+    outline: none;
+    width: 100%;
+    font-size: 16px;
+    font-family: inherit;
+    font-weight: bold;
+}
+
+.calculator-input::placeholder {
+    color: rgb(105, 105, 105);
+}
+
+.lc-equal-col {
+    width: 25%;
+    padding: 0;
+}
+
+.lc-equal-col button {
+    font-family: inherit;
+    height: 100%;
+    width: 100%;
+    border: none;
+    padding: 0;
+    margin: 0;
+    background: none;
+}
