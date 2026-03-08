@@ -405,10 +405,16 @@ function addCalcListener() {
     });
 
     // Input-based Listener for obtaining latest expression
-    calcInput.addEventListener('input', event => {
+    calcInputListers(calcInput);
+}
+
+function calcInputListers(element) {
+    element.addEventListener('input', event => {
+        // Extract Variables from the Input Expression
         const variables = getExpVars();
+        
+        // Update The Variables Input Table
         updateVarInTable(variables);
-        calculateLogic();
     }); 
 }
 
@@ -420,7 +426,7 @@ Logic Calculator Operation Functions
 function getExpVars() {
     // Get Expression
     var calcExpression = document.getElementById("calculatorInput").value;
-    console.log(calcExpression);
+    
     // Use Set to store variables found to avoid duplicates
     var variables = new Set();
 
@@ -461,20 +467,60 @@ function updateVarInTable(variables) {
                     <tr id="vars-${vari}">
                         <td class="var-name">${vari}</td>
                         <td>
-                            <select class="form-select" id="${vari}-value" aria-label="${vari}-value" onclick="test()">
+                            <select class="form-select" id="${vari}-value" aria-label="${vari}-value">
                                 <option value="0">0</option>
                                 <option value="1">1</option>
                             </select> 
                         </td>
                     </tr>`;
-                document.getElementById("calcVarContainer").innerHTML += newVar;
+                document.getElementById("calcVarContainer").insertAdjacentHTML('beforeend',  newVar);
+                calcInputListers(document.getElementById(`${vari}-value`));
             }
         });
+
+        // Get Expression Input
+        const calcExpression = document.getElementById("calculatorInput").value;
+
+        // Get Valus for Each Variable
+        const varVal = getVarVal();
+
+        // Calculate the Output of the Calculator
+        const output = calculateLogic(calcExpression, varVal);
+
+        // Get Output Container
+        var outContainer = document.getElementById("vars-Output");
+        
+        // Create Output Container if it does not exist
+        if (outContainer == null) {
+            document.getElementById("outputContainer").innerHTML = `
+                <tr id="vars-Output">
+                    <th>Output</th>
+                    <th id="outVal"></th>
+                </tr>`;
+        }
+
+        // Invalid Expression Message if Invalid Output
+        if (output == -1) {
+            document.getElementById("outVal").innerHTML = `Invalid Expression!`;
+        }
+        
+        // Output if Valid Expression
+        else {
+            document.getElementById("outVal").innerHTML = `${output ? 1 : 0}`;
+        }
     }
 
     // Add No Variable Message
     else {
+        // Clear the current variables
         varsCurrent = new Set();
+
+        // Delete Output Container if not yet deleted
+        const toDel = document.getElementById("vars-Output");
+        if (toDel) toDel.remove();
+        
+
+        // Overwrite variables in table with No Variables Message
         document.getElementById("calcVarContainer").innerHTML = `
             <tr id="vars-None">
                 <td colspan="2">Add Variables in the Logic Calculator First!</td>
@@ -482,8 +528,49 @@ function updateVarInTable(variables) {
     }
 }
 
-function calculateLogic() {
+// Get the Assigned Logic Level / Value for each for variable
+function getVarVal() {
+    // Use a Map to Store Variables as Key-Value Pairs
+    var varVal = new Map();
+    varsCurrent.forEach(vari => {
+        // Add to the map the variable and its obtained value
+        varVal.set(vari, parseInt(document.getElementById(`${vari}-value`).value));
+    });
+    return varVal;
+}
 
+// Translate Expression to be compatible with math.js evaluate()
+function translateExp(expr) {
+    // Convert & to and, + to or, ! to not, ^ to xor
+    return expr.replace(/&/g, " and ").replace(/\+/g, " or ").replace(/!/g, "not ").replace(/\^/g, " xor ");
+}
+
+// Evaluate the Given Expression as to Whether it is Valid or Not
+function calculateLogic(calcExpression, valMap) {
+    // Translate Expression Input to math.evaluate() compatible
+    calcExpression = translateExp(calcExpression);
+
+    // Replace Variables with their corresponding value
+    varsCurrent.forEach(vari => {
+        const regex = new RegExp(vari, 'g');
+        calcExpression = calcExpression.replace(regex, valMap.get(vari));
+    });
+
+    // Check if the expression has variables and constants directly after each other
+    if (/00/.test(calcExpression) || /01/.test(calcExpression) || 
+        /10/.test(calcExpression) || /11/.test(calcExpression)) {
+        // Flag as Invalid Expression in this case
+        return -1;
+    }
+
+    // Evaluate the Expression
+    try {
+        return math.evaluate(calcExpression);
+    }
+    // Return -1 to Flag as Invalid Expression
+    catch (error) {
+       return -1; 
+    }
 }
 
 /***********************************************
