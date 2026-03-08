@@ -562,6 +562,12 @@ Logic Studio Classes
     vertical-align: middle;
 }
 
+/* Orange text on hover */
+.calculator-section .table tbody td button:hover {
+    color: var(--orange);
+    transition: color 0.2s ease;
+}
+
 .hidden {
     display: none;
 }

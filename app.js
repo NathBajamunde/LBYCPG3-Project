@@ -419,7 +419,10 @@ function calcInputListers(element) {
         const variables = getExpVars();
         
         // Update The Variables Input Table
-        updateVarInTable(variables);
+        const status = updateVarInTable(variables);
+        
+        // Update The Truth Table
+        updateTruthTable(status, variables);
     }); 
 }
 
@@ -507,11 +510,13 @@ function updateVarInTable(variables) {
         // Invalid Expression Message if Invalid Output
         if (output == -1) {
             document.getElementById("outVal").innerHTML = `Invalid Expression!`;
+            return false;
         }
         
         // Output if Valid Expression
         else {
             document.getElementById("outVal").innerHTML = `${output ? 1 : 0}`;
+            return true;
         }
     }
 
@@ -530,6 +535,7 @@ function updateVarInTable(variables) {
             <tr id="vars-None">
                 <td colspan="2">Add Variables in the Logic Calculator First!</td>
             </tr>`;
+        return false;
     }
 }
 
@@ -581,6 +587,19 @@ function calculateLogic(calcExpression, valMap) {
 /***********************************************
 Truth Table Generation Functions
 ***********************************************/
+
+// Primary Function for Updating the Truth Table
+function updateTruthTable(status, variables) {
+    // Hide the Truth Table if No or Invalid Expression
+    if (!status) {
+        document.getElementById("ttSection").classList.add("hidden");
+    }
+
+    // Make Truth Table Visible if Valid Expression and Update It
+    else {
+        document.getElementById("ttSection").classList.remove("hidden");
+    }
+}
 
 /***********************************************
 Miscellaneous / Testing Functions
