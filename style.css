@@ -561,3 +561,7 @@ Logic Studio Classes
 .var-name {
     vertical-align: middle;
 }
+
+.hidden {
+    display: none;
+}

@@ -406,6 +406,11 @@ function addCalcListener() {
 
     // Input-based Listener for obtaining latest expression
     calcInputListers(calcInput);
+
+    calcInput.addEventListener('click', event => {
+        calcIdx = event.target.selectionStart
+        console.log(calcIdx);
+    });
 }
 
 function calcInputListers(element) {
@@ -572,6 +577,10 @@ function calculateLogic(calcExpression, valMap) {
        return -1; 
     }
 }
+
+/***********************************************
+Truth Table Generation Functions
+***********************************************/
 
 /***********************************************
 Miscellaneous / Testing Functions
