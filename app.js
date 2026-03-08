@@ -598,7 +598,71 @@ function updateTruthTable(status, variables) {
     // Make Truth Table Visible if Valid Expression and Update It
     else {
         document.getElementById("ttSection").classList.remove("hidden");
+        setupTT();
+        assignVarVals();
     }
+}
+
+// Setup up columns and headers of the truth table
+function setupTT() {
+    // Get Number of Variables in the system
+    const n = varsCurrent.size;
+
+    // Adjust length of table name header to number of variables + the output
+    document.getElementById("ttHeader").innerHTML = `<th colspan="${n + 1}">Truth Table</th>`;
+ 
+    // Empty the table of variables
+    document.getElementById("ttBodyVars").innerHTML = "";
+    
+    // Get Variable Header Container
+    const varHeader = document.getElementById("ttVarHeader");
+
+    // Empty Variable Header
+    document.getElementById("ttVarHeader").innerHTML = "";
+    
+    // Add Each Variable as a Header
+    varsCurrent.forEach(vari =>{
+        varHeader.innerHTML += `<th>${vari}</th>`;
+    }); 
+
+    varHeader.innerHTML += `<th>Output</th>`
+}
+
+// Generate All Variable Value Combinations for the Truth Table
+function assignVarVals() {
+    const n = varsCurrent.size;
+
+    // Loop through the number of combinations
+    for (var i = 0; i < 2 ** n; i++) {
+        // Store variables and values as key-value pairs
+        var varVal = new Map();
+        var j = 0;
+        varsCurrent.forEach(vari => {
+            // Shift by J Positions to the right to extract bit
+            varVal.set(vari, ((i >> j) & 1));
+            j++;
+        });
+        addToTT(varVal, i);
+    }
+}
+
+// Add a new row to the truth table
+function addToTT(varVal, index) {
+    // Create new variable value row
+    document.getElementById("ttBodyVars").innerHTML += `<tr id="var-row-${index}"></tr>`
+
+    // Get newly created row element
+    const varRow = document.getElementById(`var-row-${index}`);
+
+    // Add variable values to the row
+    varsCurrent.forEach(vari => {
+        varRow.innerHTML += `<td>${varVal.get(vari)}</td>`;
+    });
+
+    // Calculate the output
+    const output = calculateLogic(document.getElementById("calculatorInput").value, varVal); 
+    // Add the output
+    varRow.innerHTML += `<td>${output ? 1 : 0}</td>`
 }
 
 /***********************************************
