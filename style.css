@@ -586,3 +586,8 @@ footer {
 .social-icons a {
     font-size: 1.25rem;
 }
+
+.symbol {
+    object-fit: contain;
+    width: 40cqw;
+}
