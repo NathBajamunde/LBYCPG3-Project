@@ -676,5 +676,5 @@ function test() {
 /***********************************************
 Startup Functions (Functions to Call on Load)
 ***********************************************/
-pageChange("logicStudio");
+pageChange("home");
 
