@@ -81,6 +81,9 @@ async function pageChange(page) {
     if (page == "logicStudio") {
         addCalcListener();
     }
+    if (page == "quiz") {
+        initQuiz(); 
+    }
 }
 
 /***********************************************
@@ -709,3 +712,238 @@ Startup Functions (Functions to Call on Load)
 ***********************************************/
 pageChange("home");
 
+/***********************************************
+Quiz Functionality
+***********************************************/
+function initQuiz() {
+    // QUESTION BANKS 
+    const baseImgPath = 'assets/images/';  // Updated to match your directory
+
+    const easyBank = [
+        { question: "What is the output of a 2-input AND gate when A=1, B=1?", options: ["0", "1", "undefined", "floating"], correct: 1, img: null },
+        { question: "Which gate is also called an inverter?", options: ["AND", "OR", "NOT", "NAND"], correct: 2, img: null },
+        { question: "Identify this gate:", options: ["AND", "OR", "XOR", "NOT"], correct: 3, img: "not1.png" },
+        { question: "A 2-input OR gate gives output 1 when:", options: ["both inputs 0", "at least one input 1", "both inputs 1", "inputs are equal"], correct: 1, img: null },
+        { question: "What is the Boolean expression for a 2-input AND gate?", options: ["X = A+B", "X = A·B", "X = A⊕B", "X = A'B"], correct: 1, img: null },
+        { question: "Name this universal gate:", options: ["NOR", "NAND", "XOR", "AND"], correct: 1, img: "nand1.png" },
+        { question: "How many inputs does a NOT gate have?", options: ["1", "2", "3", "depends"], correct: 0, img: null },
+        { question: "Which gate outputs 1 only when all inputs are 1?", options: ["OR", "NAND", "AND", "NOR"], correct: 2, img: null },
+        { question: "Identify the gate from symbol:", options: ["OR", "AND", "NOR", "XNOR"], correct: 0, img: "or1.png" },
+        { question: "The output of a 2-input NOR gate is 1 when:", options: ["A=0,B=0", "A=0,B=1", "A=1,B=0", "A=1,B=1"], correct: 0, img: null },
+        { question: "What does the bubble on a gate output represent?", options: ["inversion", "buffer", "clock", "ground"], correct: 0, img: null },
+        { question: "This is the symbol for _____ gate:", options: ["XOR", "XNOR", "NOR", "NAND"], correct: 0, img: "xor1.png" },
+        { question: "Which gate is known as 'exclusive OR'?", options: ["XOR", "XNOR", "OR", "NOR"], correct: 0, img: null },
+        { question: "How many possible input combinations for a 3-input AND gate?", options: ["4", "6", "8", "16"], correct: 2, img: null },
+        { question: "The ____ gate can be made by connecting a NOT to an AND.", options: ["NAND", "NOR", "XOR", "OR"], correct: 0, img: null }
+    ];
+
+    const moderateBank = [
+        { question: "Which of these is a universal gate?", options: ["AND", "OR", "XOR", "NAND"], correct: 3, img: null },
+        { question: "The sum output of a half adder is given by:", options: ["A·B", "A⊕B", "A+B", "(A·B)'"], correct: 1, img: null },
+        { question: "Identify this combinational circuit:", options: ["half adder", "full adder", "2x1 MUX", "decoder"], correct: 0, img: "halfadder.png" },
+        { question: "A full adder has how many inputs?", options: ["2", "3", "4", "5"], correct: 1, img: null },
+        { question: "The carry output of a half adder is:", options: ["A AND B", "A OR B", "A XOR B", "A NAND B"], correct: 0, img: null },
+        { question: "This is a _____ multiplexer.", options: ["2-to-1", "4-to-1", "8-to-1", "1-to-2"], correct: 1, img: "mux4to1.png" },
+        { question: "How many select lines does a 4-to-1 multiplexer have?", options: ["1", "2", "3", "4"], correct: 1, img: null },
+        { question: "A decoder with 3 inputs has _____ outputs.", options: ["4", "6", "8", "16"], correct: 2, img: null },
+        { question: "Identify this circuit:", options: ["ripple counter", "synchronous counter", "Johnson counter", "ring counter"], correct: 0, img: "ripplecounter.png" },
+        { question: "The phenomenon of accumulated delay in ripple counters is called?", options: ["setup time", "propagation delay", "hold time", "clock skew"], correct: 1, img: null },
+        { question: "A D flip-flop stores:", options: ["one bit", "two bits", "four bits", "byte"], correct: 0, img: null },
+        { question: "Which flip-flop has a toggle mode when J=K=1?", options: ["SR", "JK", "D", "T"], correct: 1, img: null },
+        { question: "This is the symbol for a _____ flip-flop.", options: ["SR", "JK", "D", "T"], correct: 2, img: "dff.png" },
+        { question: "The Boolean expression for 2-input XOR is:", options: ["A·B + A'·B'", "(A+B)'", "A'·B + A·B'", "A·B"], correct: 2, img: null },
+        { question: "A 3-input NAND gate output is 0 only when:", options: ["all inputs 1", "all inputs 0", "at least one 1", "odd number of 1s"], correct: 0, img: null }
+    ];
+
+    const hardBank = [
+        { question: "Which circuit generates a carry lookahead to speed up addition?", options: ["ripple adder", "carry lookahead adder", "serial adder", "half adder"], correct: 1, img: null },
+        { question: "Identify this advanced counter type:", options: ["ring counter", "Johnson counter", "ripple counter", "MOD-10 counter"], correct: 1, img: "modcounter.png" },
+        { question: "A MOD-16 counter requires how many flip-flops?", options: ["2", "3", "4", "5"], correct: 2, img: null },
+        { question: "The number of output lines in a 4-to-16 decoder is:", options: ["4", "8", "16", "32"], correct: 2, img: null },
+        { question: "This is an implementation of _____ using NAND gates.", options: ["XOR", "XNOR", "AND", "OR"], correct: 1, img: "xnor3.png" },
+        { question: "How many NAND gates are needed to realize a 2-input XOR?", options: ["3", "4", "5", "6"], correct: 2, img: null },
+        { question: "The setup time of a flip-flop refers to:", options: ["time before clock edge data must be stable", "time after clock edge data held", "propagation clock to output", "minimum pulse width"], correct: 0, img: null },
+        { question: "A sequential circuit's output depends on:", options: ["only current input", "past and present inputs", "only clock", "only previous output"], correct: 1, img: null },
+        { question: "Identify this circuit (universal gate implementation):", options: ["NOR as AND", "NAND as OR", "NOR as OR", "NAND as XOR"], correct: 0, img: "nor5.png" },
+        { question: "A 16-to-1 multiplexer requires how many select lines?", options: ["2", "3", "4", "5"], correct: 3, img: null },
+        { question: "The Boolean expression Y = (A⊕B)' represents:", options: ["AND", "OR", "XNOR", "NOR"], correct: 2, img: null },
+        { question: "This figure shows a _____ using NOR gates.", options: ["SR latch", "clocked D latch", "master-slave FF", "T flip-flop"], correct: 0, img: "nor4.png" },
+        { question: "Which adder has the fastest carry propagation?", options: ["ripple carry", "carry lookahead", "carry select", "serial"], correct: 1, img: null },
+        { question: "How many full adders are needed for a 4-bit ripple adder?", options: ["2", "3", "4", "8"], correct: 2, img: null },
+        { question: "The propagation delay in a 4-bit ripple adder is mainly due to:", options: ["sum logic", "carry chain", "clock", "power supply"], correct: 1, img: null }
+    ];
+
+    // PICK QUESTIONS
+    function pickRandomQuestions(bank, count = 8) {
+        if (bank.length <= count) return bank.slice();
+        const shuffled = [...bank];
+        for (let i = shuffled.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+        }
+        return shuffled.slice(0, count);
+    }
+
+    // STATE MANAGER
+    class QuizController {
+        constructor() {
+            this.currentDifficulty = '';
+            this.questions = [];
+            this.currentIndex = 0;
+            this.score = 0;
+            this.selectedOptionIdx = null;
+            this.answerSubmitted = false;
+            this.totalQuestions = 8;
+
+            this.mainMenu = document.getElementById('mainMenu');
+            this.quizContainer = document.getElementById('quizContainer');
+            this.quizArea = document.getElementById('quizArea');
+            this.navigationRow = document.getElementById('navigationRow');
+            this.scoreDisplay = document.getElementById('scoreDisplay');
+            this.qCount = document.getElementById('qCount');
+            this.backBtn = document.getElementById('backToMenuBtn');
+
+            this.startQuiz = this.startQuiz.bind(this);
+            this.render = this.render.bind(this);
+            this.updateHeader = this.updateHeader.bind(this);
+            this.goToMenu = this.goToMenu.bind(this);
+        }
+
+        startQuiz(difficulty) {
+            this.currentDifficulty = difficulty;
+            let bank;
+            if (difficulty === 'easy') bank = easyBank;
+            else if (difficulty === 'moderate') bank = moderateBank;
+            else bank = hardBank;
+
+            this.questions = pickRandomQuestions(bank, 8);
+            this.totalQuestions = this.questions.length;
+            this.currentIndex = 0;
+            this.score = 0;
+            this.selectedOptionIdx = null;
+            this.answerSubmitted = false;
+
+            this.mainMenu.classList.add('hidden');
+            this.quizContainer.classList.remove('hidden');
+            this.render();
+        }
+
+        render() {
+            if (!this.questions.length || this.currentIndex >= this.questions.length) {
+                // show result summary
+                this.quizArea.innerHTML = `
+                    <div class="result-summary">
+                        <h2 class="heading-secondary">✅ Quiz Completed</h2>
+                        <div class="final-score">${this.score} / ${this.totalQuestions}</div>
+                        <p class="info-text">Difficulty: ${this.currentDifficulty.toUpperCase()}</p>
+                    </div>
+                `;
+                this.navigationRow.innerHTML = `<button class="quiz-btn" id="restartSameDiff">🔄 Try Again (Same Level)</button>`;
+                document.getElementById('restartSameDiff')?.addEventListener('click', () => {
+                    this.startQuiz(this.currentDifficulty);
+                });
+                this.updateHeader();
+                return;
+            }
+
+            const q = this.questions[this.currentIndex];
+            const imgHtml = q.img ? `<img class="circuit-img" src="${baseImgPath}${q.img}" alt="circuit" onerror="this.style.display='none';">` : '';
+
+            let optsHtml = '';
+            q.options.forEach((opt, idx) => {
+                let btnClass = 'option-btn';
+                if (this.answerSubmitted) {
+                    if (idx === q.correct) btnClass += ' selected-correct';
+                    else if (idx === this.selectedOptionIdx && idx !== q.correct) btnClass += ' selected-wrong';
+                }
+                optsHtml += `<div class="${btnClass}" data-opt-index="${idx}">${opt}</div>`;
+            });
+
+            const feedback = this.answerSubmitted ?
+                (this.selectedOptionIdx === q.correct ? '<span style="color: green;">✅ Correct!</span>' : `<span style="color: red;">❌ Wrong. Correct: ${q.options[q.correct]}</span>`) : '';
+
+            this.quizArea.innerHTML = `
+                <div class="question-card">
+                    <div class="question-text">${this.currentIndex + 1}. ${q.question}</div>
+                    ${imgHtml}
+                    <div class="options-grid">${optsHtml}</div>
+                    <div class="feedback-msg">${feedback}</div>
+                </div>
+            `;
+
+            // attach option listeners
+            document.querySelectorAll('.option-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    if (this.answerSubmitted) return;
+                    const idx = parseInt(btn.dataset.optIndex, 10);
+                    if (isNaN(idx)) return;
+                    this.selectedOptionIdx = idx;
+                    this.answerSubmitted = true;
+                    if (idx === q.correct) this.score += 1;
+                    this.render();
+                    this.updateHeader();
+                });
+            });
+
+            // next button if answered
+            if (this.answerSubmitted) {
+                const nextBtn = document.createElement('button');
+                nextBtn.id = 'nextQuestionBtn';
+                nextBtn.className = 'quiz-btn';
+                nextBtn.textContent = (this.currentIndex === this.totalQuestions - 1) ? '⏩ Finish' : 'Next →';
+                this.navigationRow.innerHTML = '';
+                this.navigationRow.appendChild(nextBtn);
+                document.getElementById('nextQuestionBtn').addEventListener('click', () => {
+                    if (this.currentIndex < this.totalQuestions - 1) {
+                        this.currentIndex++;
+                        this.selectedOptionIdx = null;
+                        this.answerSubmitted = false;
+                        this.render();
+                        this.updateHeader();
+                    } else {
+                        // move to result
+                        this.currentIndex = this.totalQuestions;
+                        this.render();
+                        this.updateHeader();
+                    }
+                });
+            } else {
+                this.navigationRow.innerHTML = '';
+            }
+
+            this.updateHeader();
+        }
+
+        updateHeader() {
+            this.scoreDisplay.textContent = `🏆 ${this.score}`;
+            const displayedIndex = Math.min(this.currentIndex, this.totalQuestions);
+            this.qCount.textContent = `${displayedIndex} / ${this.totalQuestions}`;
+        }
+
+        goToMenu() {
+            this.quizContainer.classList.add('hidden');
+            this.mainMenu.classList.remove('hidden');
+            
+            // reset quiz
+            this.currentIndex = 0;
+            this.score = 0;
+            this.questions = [];
+        }
+    }
+
+    // Initialize Quiz Only if Elements Exist
+    if(document.getElementById('mainMenu')) {
+        const quiz = new QuizController();
+
+        document.querySelectorAll('.difficulty-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const diff = e.target.dataset.diff;
+                quiz.startQuiz(diff);
+            });
+        });
+
+        quiz.backBtn.addEventListener('click', () => {
+            quiz.goToMenu();
+        });
+    }
+}

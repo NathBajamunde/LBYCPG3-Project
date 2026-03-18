@@ -1,0 +1,42 @@
+<section class="home-play">
+    <div class="welcome-box">
+        <img src="assets/images/logo.png" alt="Digital Lab Logo" class="home-logo">
+        <h1 class="page-title">Assessment</h1>
+    </div>
+</section>
+
+<section class="info-section py-5" style="min-height: 80vh;">
+    
+    <div id="mainMenu" class="quiz-wrapper text-center">
+        <h1 class="heading-primary">LogicLab Quiz</h1>
+        <p class="info-text mb-4">Select your difficulty level to begin the test.</p>
+        
+        <div class="difficulty-panel">
+            <button class="difficulty-btn" data-diff="easy">EASY</button>
+            <button class="difficulty-btn" data-diff="moderate">MODERATE</button>
+            <button class="difficulty-btn" data-diff="hard">HARD</button>
+        </div>
+        
+        <div class="info-card fw-bold">
+            ⚡ 8 random questions out of 15
+        </div>
+    </div>
+
+    <div id="quizContainer" class="quiz-wrapper hidden">
+        
+        <div id="quizHeader" class="quiz-header">
+            <span class="score-box" id="scoreDisplay">Score: 0</span>
+            <span class="question-counter" id="qCount">0 / 8</span>
+        </div>
+        
+        <div id="quizArea"></div>
+        
+        <div id="navigationRow" class="action-row"></div>
+        
+        <div class="text-center mt-4">
+            <button id="backToMenuBtn" class="quiz-btn" style="background: var(--blue); box-shadow: 0 4px 0 #1b857b;">← Main Menu</button>
+        </div>
+        
+    </div>
+
+</section>

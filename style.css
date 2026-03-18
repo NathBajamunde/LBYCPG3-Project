@@ -1,4 +1,3 @@
-
 /* [DELETE ONCE DONE FOR REFERENCE ONLY] If you need OVERLAPPING contents
 
 .brandLogo {
@@ -14,7 +13,6 @@
     opacity: 0.8; /* Optional: slightly fade the logo so the text is easier to read 
 }
 
-
 .brandText {
     position: relative;
     z-index: 2; /* Higher number = forward
@@ -24,13 +22,12 @@
 /*-------- START EDITING HERE -------*/
 
 /* Variables */
-
 :root {
-    --orange:#ff9f1c;
-    --lightorange:#ffbf69;
-    --white:#ffffff;
-    --lightblue:#cbf3f0;
-    --blue:#2ec4b6;
+    --orange: #ff9f1c;
+    --lightorange: #ffbf69;
+    --white: #ffffff;
+    --lightblue: #cbf3f0;
+    --blue: #2ec4b6;
 }
 
 * {
@@ -43,7 +40,6 @@ body {
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif, monospace;
     background-color: var(--white);
 }
-
 
 .brandLogo {
     height: 40px;
@@ -150,19 +146,15 @@ body {
 .searchBar {
     flex: 1;
     max-width: 300px;
-    
     background: rgba(255, 255, 255, 0.8);
     padding: 10px 20px;
     border-radius: 25px;
-
     display: flex;
     align-items: center;
     gap: 10px;
-
     border: 1.5px solid rgba(46, 196, 182, 0.35);
     backdrop-filter: blur(10px);
     transition: all 0.3s;
-
     margin-right: 80px;
 }
 
@@ -188,7 +180,6 @@ body {
     opacity: 0.7;
 }
 
-
 .searchBar input {
     background: none;
     border: none;
@@ -202,7 +193,6 @@ body {
 .searchBar input::placeholder {
     color: var(--blue);
 }
-
 
 /* Dropdown menu for search results */
 .search-dropdown {
@@ -452,7 +442,6 @@ body {
 }
 
 /* --- BOTTOM GRAY SECTION --- */
-
 .section-two {
     background-color: #e0e0e0; 
     border-top: 2px solid #ccc;
@@ -465,7 +454,6 @@ body {
     line-height: 1.1;
     font-weight: 900;
 }
-
 
 /* Responsive Fixes (screen breakpoints) */
 @media (max-width: 768px) {
@@ -569,7 +557,7 @@ Logic Studio Classes
 }
 
 .hidden {
-    display: none;
+    display: none !important;
 }
 
 .calc-truth-table {
@@ -581,7 +569,7 @@ footer {
     background-color: #343a40;
     color: #fff;
     padding: 3rem 0;
-  }
+}
 
 .social-icons a {
     font-size: 1.25rem;
@@ -590,4 +578,214 @@ footer {
 .symbol {
     object-fit: contain;
     width: 40cqw;
+}
+
+/********************************************
+Quiz Specific Classes
+********************************************/
+.quiz-wrapper {
+    max-width: 900px;
+    width: 100%;
+    background: var(--white);
+    border-radius: 2rem;
+    padding: 2rem 1.5rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    border: 2px solid var(--blue);
+    margin: 0 auto;
+}
+
+.heading-primary {
+    color: var(--blue);
+    font-size: 2.5rem;
+    margin-bottom: 1.2rem;
+    font-weight: bold;
+}
+
+.heading-secondary {
+    color: var(--blue);
+    font-size: 2rem;
+    border-bottom: 2px dashed var(--lightblue);
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.2rem;
+}
+
+/* Difficulty Menu */
+.difficulty-panel {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    justify-content: center;
+    margin: 2.5rem 0;
+}
+
+.difficulty-btn {
+    background: var(--blue);
+    border: none;
+    padding: 1.2rem 2.5rem;
+    border-radius: 4rem;
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+    box-shadow: 0 6px 0 #1b857b;
+    min-width: 200px;
+}
+
+.difficulty-btn:hover {
+    background: #25a195;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 0 #1b857b;
+}
+
+.difficulty-btn:active {
+    transform: translateY(4px);
+    box-shadow: 0 2px 0 #1b857b;
+}
+
+.info-card {
+    margin-top: 2rem;
+    font-size: 1.2rem;
+    background: var(--lightblue);
+    color: #111;
+    border-radius: 2rem;
+    padding: 1rem;
+    display: inline-block;
+}
+
+/* Quiz Header */
+.quiz-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--white);
+    padding: 0.8rem 2rem;
+    border-radius: 50px;
+    margin-bottom: 2rem;
+    font-weight: bold;
+    color: var(--blue);
+    border: 2px solid var(--lightblue);
+}
+
+.score-box { 
+    font-size: 1.5rem; 
+}
+
+.question-counter {
+    font-size: 1.2rem;
+    background: var(--orange);
+    color: white;
+    padding: 0.4rem 1.5rem;
+    border-radius: 40px;
+}
+
+/* Question Card */
+.question-card {
+    background: var(--white);
+    border-radius: 1.5rem;
+    padding: 2rem;
+    margin: 2rem 0;
+    border: 2px solid var(--lightblue);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+.question-text {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 1.8rem;
+    font-weight: 600;
+}
+
+.circuit-img {
+    max-width: 280px;
+    margin: 0.5rem auto 1.5rem;
+    display: block;
+    border-radius: 10px;
+}
+
+/* Options Grid */
+.options-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin: 2rem 0 1rem;
+}
+
+.option-btn {
+    background: var(--white);
+    border: 2px solid var(--blue);
+    padding: 1rem 0.5rem;
+    border-radius: 60px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--blue);
+    cursor: pointer;
+    transition: 0.2s;
+    text-align: center;
+}
+
+.option-btn:hover:not(:disabled) {
+    background: var(--blue);
+    color: white;
+}
+
+.option-btn.selected-correct {
+    background: #2e7d32;
+    color: white;
+    border-color: #1b5e20;
+}
+
+.option-btn.selected-wrong {
+    background: #b71c1c;
+    color: white;
+    border-color: #8b0000;
+}
+
+.option-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.feedback-msg {
+    font-size: 1.3rem;
+    text-align: center;
+    margin: 1rem 0;
+    font-weight: bold;
+}
+
+/* Actions & Results */
+.action-row {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+.quiz-btn {
+    background: var(--orange);
+    border: none;
+    font-size: 1.3rem;
+    padding: 0.8rem 2.5rem;
+    border-radius: 60px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 0 #cc7e14;
+    transition: 0.1s;
+}
+
+.quiz-btn:active {
+    transform: translateY(4px);
+    box-shadow: 0 0px 0 #cc7e14;
+}
+
+.result-summary {
+    text-align: center;
+    padding: 2rem;
+}
+
+.final-score {
+    font-size: 4rem;
+    color: var(--orange);
+    margin: 1rem 0;
+    font-weight: bold;
 }
