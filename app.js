@@ -160,24 +160,55 @@ function updateList() {
     addToList(filteredSearch);
 }
 
-// Go to first Page on the search list
+// Search Function
 function search() {
-    searchList.forEach((value, index) => {
-        if (index > 0) {
-            const element = document.getElementById(value[1]);
-            if (element) {
-                // Hide Dropdown if Page Change
-                dropDown.hide();
-                // Reset Search Bar After Searching
-                document.getElementById("searchInput").value = "";
-                // Focus out of the search bar with successful search
-                srchListen.blur();
-                // Change the page
-                element.click();
-                return;
-            }
-        }
-    });
+    // Get the search term, convert to lowercase, and remove extra spaces
+    let input = document.getElementById('searchInput').value.toLowerCase().trim();
+
+    // If the search bar is empty, do nothing
+    if (input === "") return;
+
+    //database of searchable pages (Removed .html because changeContent adds it automatically)
+    const pages = [
+        { name: "and gate", file: "and" },
+        { name: "or gate", file: "or" },
+        { name: "not gate", file: "not" },
+        { name: "nand gate", file: "nand" },
+        { name: "nor gate", file: "nor" },
+        { name: "xor gate", file: "xor" },
+        { name: "xnor gate", file: "xnor" },
+        { name: "combinational circuits", file: "combiVsSeq" },
+        { name: "sequential circuits", file: "combiVsSeq" },
+        { name: "adders", file: "adders" },
+        { name: "multiplexers", file: "multiplexers" },
+        { name: "decoders", file: "decoders" },
+        { name: "flip-flops", file: "flipFlops" },
+        { name: "counters", file: "counters" },
+        { name: "logic studio", file: "logicStudio" },
+        { name: "quiz", file: "quiz" }
+    ];
+
+    // Strict Word Boundary Match
+    let exactWordRegex = new RegExp("\\b" + input + "\\b", "i");
+    let exactMatch = pages.find(p => exactWordRegex.test(p.name));
+
+    if (exactMatch) {
+        pageChange(exactMatch.file); 
+        document.getElementById('searchInput').value = ""; // Clear the search bar
+        return;
+    }
+
+    // Partial Match Fallback
+    let partialMatch = pages.find(p => p.name.includes(input));
+    
+    if (partialMatch) {
+        pageChange(partialMatch.file); 
+        document.getElementById('searchInput').value = ""; // Clear the search bar
+        return;
+    }
+
+    // If nothing matches at all
+    alert("No results found for: " + input);
 }
 
 // Listener Variable
