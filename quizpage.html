@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>logicLab · quiz (CSS classes)</title>
+    <style>
+        /* ---------- global / reset ---------- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        }
+        body {
+            background-color: #eed9cf;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem 1rem;
+        }
+
+        /* ---------- shared layout classes ---------- */
+        .quiz-wrapper {
+            max-width: 900px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(4px);
+            border-radius: 2rem;
+            padding: 2rem 1.5rem;
+            box-shadow: 0 20px 30px rgba(18, 60, 105, 0.2);
+            border: 1px solid #123C69;
+        }
+        .hidden {
+            display: none !important;
+        }
+        .text-center {
+            text-align: center;
+        }
+        .heading-primary {
+            color: #123C69;
+            font-size: 2.5rem;
+            margin-bottom: 1.2rem;
+            text-align: center;
+        }
+        .heading-secondary {
+            color: #123C69;
+            font-size: 2rem;
+            border-bottom: 2px dashed #123C69;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.2rem;
+            text-align: center;
+        }
+
+        /* ---------- difficulty menu ---------- */
+        .difficulty-panel {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            justify-content: center;
+            margin: 2.5rem 0;
+        }
+        .difficulty-btn {
+            background: #123C69;
+            border: none;
+            padding: 1.2rem 2.5rem;
+            border-radius: 4rem;
+            color: white;
+            font-size: 1.8rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+            box-shadow: 0 8px 0 #0a2640;
+            min-width: 200px;
+        }
+        .difficulty-btn:hover {
+            background: #1f5182;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 0 #0a2640;
+        }
+        .difficulty-btn:active {
+            transform: translateY(5px);
+            box-shadow: 0 3px 0 #0a2640;
+        }
+        .info-card {
+            margin-top: 2rem;
+            font-size: 1.2rem;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 2rem;
+            padding: 1rem;
+            border: 1px solid #123C69;
+        }
+
+        /* ---------- quiz header ---------- */
+        .quiz-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            margin-bottom: 2rem;
+            font-weight: bold;
+            color: #123C69;
+            border: 1px solid #123C69;
+        }
+        .score-box {
+            font-size: 1.7rem;
+        }
+        .question-counter {
+            font-size: 1.4rem;
+            background: #123C69;
+            color: white;
+            padding: 0.4rem 1.5rem;
+            border-radius: 40px;
+        }
+
+        /* ---------- question card ---------- */
+        .question-card {
+            background: white;
+            border-radius: 2rem;
+            padding: 2rem 2rem 1.5rem;
+            margin: 2rem 0;
+            border: 3px solid #123C69;
+        }
+        .question-text {
+            font-size: 1.7rem;
+            color: #2c3e50;
+            margin-bottom: 1.8rem;
+            font-weight: 600;
+        }
+        .circuit-img {
+            max-width: 280px;
+            margin: 0.5rem auto 1.5rem;
+            display: block;
+            border: 2px solid #123C69;
+            border-radius: 30px;
+            padding: 10px;
+            background: #f9f3ef;
+        }
+
+        /* ---------- options grid ---------- */
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0 1rem;
+        }
+        .option-btn {
+            background: #bab2b5;
+            border: 2px solid #123C69;
+            padding: 1rem 0.5rem;
+            border-radius: 60px;
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #123C69;
+            cursor: pointer;
+            transition: 0.1s;
+            text-align: center;
+        }
+        .option-btn:hover:not(:disabled) {
+            background: #a89e9e;
+            color: white;
+        }
+        .option-btn.selected-correct {
+            background: #2e7d32;
+            color: white;
+            border-color: #1b5e20;
+        }
+        .option-btn.selected-wrong {
+            background: #b71c1c;
+            color: white;
+            border-color: #8b0000;
+        }
+        .option-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        /* ---------- feedback & messages ---------- */
+        .feedback-msg {
+            font-size: 1.5rem;
+            text-align: center;
+            margin: 1rem 0;
+            font-weight: bold;
+        }
+
+        /* ---------- action row & buttons ---------- */
+        .action-row {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+        .btn {
+            background: #123C69;
+            border: none;
+            font-size: 1.8rem;
+            padding: 0.8rem 2.5rem;
+            border-radius: 60px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 5px 0 #0a2640;
+            transition: 0.1s;
+            display: inline-block;
+            margin: 0.5rem;
+        }
+        .btn:active {
+            transform: translateY(4px);
+            box-shadow: 0 1px 0 #0a2640;
+        }
+        .btn:disabled {
+            opacity: 0.3;
+            transform: none;
+            box-shadow: 0 5px 0 #0a2640;
+            pointer-events: none;
+        }
+        .back-btn {
+            background: #123C69;
+        }
+
+        /* ---------- result summary ---------- */
+        .result-summary {
+            background: white;
+            border-radius: 2rem;
+            padding: 2rem;
+            text-align: center;
+            border: 4px solid #123C69;
+        }
+        .final-score {
+            font-size: 3rem;
+            color: #123C69;
+            margin: 1rem 0;
+        }
+
+        /* fallback for missing images */
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <!-- main menu (difficulty selection) -->
+    <div id="mainMenu" class="quiz-wrapper text-center">
+        <h1 class="heading-primary">🔌 logicLab · quiz</h1>
+        <p style="font-size:1.4rem; color:#2c3e50;">select difficulty</p>
+        <div class="difficulty-panel">
+            <button class="difficulty-btn" data-diff="easy">EASY</button>
+            <button class="difficulty-btn" data-diff="moderate">MODERATE</button>
+            <button class="difficulty-btn" data-diff="hard">HARD</button>
+        </div>
+        <div class="info-card">
+            ⚡ 8 random questions · 15 question bank per level<br>uses images from the original site
+        </div>
+    </div>
+
+    <!-- quiz container (hidden initially) -->
+    <div id="quizContainer" class="quiz-wrapper hidden">
+        <div id="quizHeader" class="quiz-header">
+            <span class="score-box" id="scoreDisplay">Score: 0</span>
+            <span class="question-counter" id="qCount">0 / 8</span>
+        </div>
+        <div id="quizArea"></div>
+        <div id="navigationRow" class="action-row"></div>
+        <button id="backToMenuBtn" class="btn back-btn" style="margin-top:1rem;">← main menu</button>
+    </div>
+
+    <script>
+        (function() {
+            // ---------- QUESTION BANKS (using class structure for bank, but keep as plain objects for simplicity) ----------
+            const baseImgPath = 'images/';  // will be used for questions that need circuit images
+
+            // --- easyBank (15) ---
+            const easyBank = [
+                { question: "What is the output of a 2-input AND gate when A=1, B=1?", options: ["0", "1", "undefined", "floating"], correct: 1, img: null },
+                { question: "Which gate is also called an inverter?", options: ["AND", "OR", "NOT", "NAND"], correct: 2, img: null },
+                { question: "Identify this gate:", options: ["AND", "OR", "XOR", "NOT"], correct: 3, img: "not1.png" },
+                { question: "A 2-input OR gate gives output 1 when:", options: ["both inputs 0", "at least one input 1", "both inputs 1", "inputs are equal"], correct: 1, img: null },
+                { question: "What is the Boolean expression for a 2-input AND gate?", options: ["X = A+B", "X = A·B", "X = A⊕B", "X = A'B"], correct: 1, img: null },
+                { question: "Name this universal gate:", options: ["NOR", "NAND", "XOR", "AND"], correct: 1, img: "nand1.png" },
+                { question: "How many inputs does a NOT gate have?", options: ["1", "2", "3", "depends"], correct: 0, img: null },
+                { question: "Which gate outputs 1 only when all inputs are 1?", options: ["OR", "NAND", "AND", "NOR"], correct: 2, img: null },
+                { question: "Identify the gate from symbol:", options: ["OR", "AND", "NOR", "XNOR"], correct: 0, img: "or1.png" },
+                { question: "The output of a 2-input NOR gate is 1 when:", options: ["A=0,B=0", "A=0,B=1", "A=1,B=0", "A=1,B=1"], correct: 0, img: null },
+                { question: "What does the bubble on a gate output represent?", options: ["inversion", "buffer", "clock", "ground"], correct: 0, img: null },
+                { question: "This is the symbol for _____ gate:", options: ["XOR", "XNOR", "NOR", "NAND"], correct: 0, img: "xor1.png" },
+                { question: "Which gate is known as 'exclusive OR'?", options: ["XOR", "XNOR", "OR", "NOR"], correct: 0, img: null },
+                { question: "How many possible input combinations for a 3-input AND gate?", options: ["4", "6", "8", "16"], correct: 2, img: null },
+                { question: "The ____ gate can be made by connecting a NOT to an AND.", options: ["NAND", "NOR", "XOR", "OR"], correct: 0, img: null }
+            ];
+
+            // --- moderateBank (15) ---
+            const moderateBank = [
+                { question: "Which of these is a universal gate?", options: ["AND", "OR", "XOR", "NAND"], correct: 3, img: null },
+                { question: "The sum output of a half adder is given by:", options: ["A·B", "A⊕B", "A+B", "(A·B)'"], correct: 1, img: null },
+                { question: "Identify this combinational circuit:", options: ["half adder", "full adder", "2x1 MUX", "decoder"], correct: 0, img: "halfadder.png" },
+                { question: "A full adder has how many inputs?", options: ["2", "3", "4", "5"], correct: 1, img: null },
+                { question: "The carry output of a half adder is:", options: ["A AND B", "A OR B", "A XOR B", "A NAND B"], correct: 0, img: null },
+                { question: "This is a _____ multiplexer.", options: ["2-to-1", "4-to-1", "8-to-1", "1-to-2"], correct: 1, img: "mux4to1.png" },
+                { question: "How many select lines does a 4-to-1 multiplexer have?", options: ["1", "2", "3", "4"], correct: 1, img: null },
+                { question: "A decoder with 3 inputs has _____ outputs.", options: ["4", "6", "8", "16"], correct: 2, img: null },
+                { question: "Identify this circuit:", options: ["ripple counter", "synchronous counter", "Johnson counter", "ring counter"], correct: 0, img: "ripplecounter.png" },
+                { question: "The phenomenon of accumulated delay in ripple counters is called?", options: ["setup time", "propagation delay", "hold time", "clock skew"], correct: 1, img: null },
+                { question: "A D flip-flop stores:", options: ["one bit", "two bits", "four bits", "byte"], correct: 0, img: null },
+                { question: "Which flip-flop has a toggle mode when J=K=1?", options: ["SR", "JK", "D", "T"], correct: 1, img: null },
+                { question: "This is the symbol for a _____ flip-flop.", options: ["SR", "JK", "D", "T"], correct: 2, img: "dff.png" },
+                { question: "The Boolean expression for 2-input XOR is:", options: ["A·B + A'·B'", "(A+B)'", "A'·B + A·B'", "A·B"], correct: 2, img: null },
+                { question: "A 3-input NAND gate output is 0 only when:", options: ["all inputs 1", "all inputs 0", "at least one 1", "odd number of 1s"], correct: 0, img: null }
+            ];
+
+            // --- hardBank (15) ---
+            const hardBank = [
+                { question: "Which circuit generates a carry lookahead to speed up addition?", options: ["ripple adder", "carry lookahead adder", "serial adder", "half adder"], correct: 1, img: null },
+                { question: "Identify this advanced counter type:", options: ["ring counter", "Johnson counter", "ripple counter", "MOD-10 counter"], correct: 1, img: "modcounter.png" },
+                { question: "A MOD-16 counter requires how many flip-flops?", options: ["2", "3", "4", "5"], correct: 2, img: null },
+                { question: "The number of output lines in a 4-to-16 decoder is:", options: ["4", "8", "16", "32"], correct: 2, img: null },
+                { question: "This is an implementation of _____ using NAND gates.", options: ["XOR", "XNOR", "AND", "OR"], correct: 1, img: "xnor3.png" },
+                { question: "How many NAND gates are needed to realize a 2-input XOR?", options: ["3", "4", "5", "6"], correct: 2, img: null },
+                { question: "The setup time of a flip-flop refers to:", options: ["time before clock edge data must be stable", "time after clock edge data held", "propagation clock to output", "minimum pulse width"], correct: 0, img: null },
+                { question: "A sequential circuit's output depends on:", options: ["only current input", "past and present inputs", "only clock", "only previous output"], correct: 1, img: null },
+                { question: "Identify this circuit (universal gate implementation):", options: ["NOR as AND", "NAND as OR", "NOR as OR", "NAND as XOR"], correct: 0, img: "nor5.png" },
+                { question: "A 16-to-1 multiplexer requires how many select lines?", options: ["2", "3", "4", "5"], correct: 3, img: null },
+                { question: "The Boolean expression Y = (A⊕B)' represents:", options: ["AND", "OR", "XNOR", "NOR"], correct: 2, img: null },
+                { question: "This figure shows a _____ using NOR gates.", options: ["SR latch", "clocked D latch", "master-slave FF", "T flip-flop"], correct: 0, img: "nor4.png" },
+                { question: "Which adder has the fastest carry propagation?", options: ["ripple carry", "carry lookahead", "carry select", "serial"], correct: 1, img: null },
+                { question: "How many full adders are needed for a 4-bit ripple adder?", options: ["2", "3", "4", "8"], correct: 2, img: null },
+                { question: "The propagation delay in a 4-bit ripple adder is mainly due to:", options: ["sum logic", "carry chain", "clock", "power supply"], correct: 1, img: null }
+            ];
+
+            // --- helper: pick random 8 from bank ---
+            function pickRandomQuestions(bank, count = 8) {
+                if (bank.length <= count) return bank.slice();
+                const shuffled = [...bank];
+                for (let i = shuffled.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+                }
+                return shuffled.slice(0, count);
+            }
+
+            // ---------- Quiz Class (manages state & UI) ----------
+            class QuizController {
+                constructor() {
+                    this.currentDifficulty = '';
+                    this.questions = [];          // selected 8 question objects
+                    this.currentIndex = 0;
+                    this.score = 0;
+                    this.selectedOptionIdx = null;
+                    this.answerSubmitted = false;
+                    this.totalQuestions = 8;
+
+                    // DOM elements
+                    this.mainMenu = document.getElementById('mainMenu');
+                    this.quizContainer = document.getElementById('quizContainer');
+                    this.quizArea = document.getElementById('quizArea');
+                    this.navigationRow = document.getElementById('navigationRow');
+                    this.scoreDisplay = document.getElementById('scoreDisplay');
+                    this.qCount = document.getElementById('qCount');
+                    this.backBtn = document.getElementById('backToMenuBtn');
+
+                    // bind methods
+                    this.startQuiz = this.startQuiz.bind(this);
+                    this.render = this.render.bind(this);
+                    this.updateHeader = this.updateHeader.bind(this);
+                    this.goToMenu = this.goToMenu.bind(this);
+                }
+
+                startQuiz(difficulty) {
+                    this.currentDifficulty = difficulty;
+                    let bank;
+                    if (difficulty === 'easy') bank = easyBank;
+                    else if (difficulty === 'moderate') bank = moderateBank;
+                    else bank = hardBank;
+
+                    this.questions = pickRandomQuestions(bank, 8);
+                    this.totalQuestions = this.questions.length;
+                    this.currentIndex = 0;
+                    this.score = 0;
+                    this.selectedOptionIdx = null;
+                    this.answerSubmitted = false;
+
+                    this.mainMenu.classList.add('hidden');
+                    this.quizContainer.classList.remove('hidden');
+                    this.render();
+                }
+
+                render() {
+                    if (!this.questions.length || this.currentIndex >= this.questions.length) {
+                        // show result summary
+                        this.quizArea.innerHTML = `
+                            <div class="result-summary">
+                                <h2 class="heading-secondary">✅ quiz completed</h2>
+                                <div class="final-score">${this.score} / ${this.totalQuestions}</div>
+                                <p style="font-size:1.4rem;">difficulty: ${this.currentDifficulty}</p>
+                            </div>
+                        `;
+                        this.navigationRow.innerHTML = `<button class="btn" id="restartSameDiff">🔄 try again (same level)</button>`;
+                        document.getElementById('restartSameDiff')?.addEventListener('click', () => {
+                            this.startQuiz(this.currentDifficulty);
+                        });
+                        this.updateHeader();
+                        return;
+                    }
+
+                    const q = this.questions[this.currentIndex];
+                    const imgHtml = q.img ? `<img class="circuit-img" src="${baseImgPath}${q.img}" alt="circuit" onerror="this.style.opacity=0.5;">` : '';
+
+                    let optsHtml = '';
+                    q.options.forEach((opt, idx) => {
+                        let btnClass = 'option-btn';
+                        if (this.answerSubmitted) {
+                            if (idx === q.correct) btnClass += ' selected-correct';
+                            else if (idx === this.selectedOptionIdx && idx !== q.correct) btnClass += ' selected-wrong';
+                        }
+                        optsHtml += `<div class="${btnClass}" data-opt-index="${idx}">${opt}</div>`;
+                    });
+
+                    const feedback = this.answerSubmitted ?
+                        (this.selectedOptionIdx === q.correct ? '✅ correct!' : `❌ wrong. correct: ${q.options[q.correct]}`) : '';
+
+                    this.quizArea.innerHTML = `
+                        <div class="question-card">
+                            <div class="question-text">${this.currentIndex+1}. ${q.question}</div>
+                            ${imgHtml}
+                            <div class="options-grid">${optsHtml}</div>
+                            <div class="feedback-msg">${feedback}</div>
+                        </div>
+                    `;
+
+                    // attach option listeners
+                    document.querySelectorAll('.option-btn').forEach(btn => {
+                        btn.addEventListener('click', (e) => {
+                            if (this.answerSubmitted) return;
+                            const idx = parseInt(btn.dataset.optIndex, 10);
+                            if (isNaN(idx)) return;
+                            this.selectedOptionIdx = idx;
+                            this.answerSubmitted = true;
+                            if (idx === q.correct) this.score += 1;
+                            this.render();  // re-render with feedback
+                            this.updateHeader();
+                        });
+                    });
+
+                    // next button if answered
+                    if (this.answerSubmitted) {
+                        const nextBtn = document.createElement('button');
+                        nextBtn.id = 'nextQuestionBtn';
+                        nextBtn.className = 'btn';
+                        nextBtn.textContent = (this.currentIndex === this.totalQuestions - 1) ? '⏩ finish' : 'next →';
+                        this.navigationRow.innerHTML = '';
+                        this.navigationRow.appendChild(nextBtn);
+                        document.getElementById('nextQuestionBtn').addEventListener('click', () => {
+                            if (this.currentIndex < this.totalQuestions - 1) {
+                                this.currentIndex++;
+                                this.selectedOptionIdx = null;
+                                this.answerSubmitted = false;
+                                this.render();
+                                this.updateHeader();
+                            } else {
+                                // move to result
+                                this.currentIndex = this.totalQuestions; // out of range
+                                this.render();
+                                this.updateHeader();
+                            }
+                        });
+                    } else {
+                        this.navigationRow.innerHTML = '';
+                    }
+
+                    this.updateHeader();
+                }
+
+                updateHeader() {
+                    this.scoreDisplay.textContent = `🏆 ${this.score}`;
+                    const displayedIndex = Math.min(this.currentIndex, this.totalQuestions);
+                    this.qCount.textContent = `${displayedIndex} / ${this.totalQuestions}`;
+                }
+
+                goToMenu() {
+                    this.quizContainer.classList.add('hidden');
+                    this.mainMenu.classList.remove('hidden');
+                    // reset internal state
+                    this.currentIndex = 0;
+                    this.score = 0;
+                    this.questions = [];
+                }
+            }
+
+            // ---------- instantiate and attach listeners ----------
+            const quiz = new QuizController();
+
+            // difficulty buttons
+            document.querySelectorAll('.difficulty-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const diff = e.target.dataset.diff;
+                    quiz.startQuiz(diff);
+                });
+            });
+
+            // back to menu
+            quiz.backBtn.addEventListener('click', () => {
+                quiz.goToMenu();
+            });
+
+            // fallback for missing images
+            window.addEventListener('error', (e) => {
+                if (e.target.tagName === 'IMG') e.target.style.display = 'none';
+            }, true);
+        })();
+    </script>
+</body>
+</html>
