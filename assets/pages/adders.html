@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Logic Gates</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="assets/images/fulladder.png">
+</head>
+
+<body>
+    <section class="home-play">
+        <div class="welcome-box">
+            <img src="assets/images/logo.png" alt="Digital Lab Logo" class="home-logo">
+            <h1 class="page-title">Learn</h1>
+        </div>
+    </section>
+
+    <section class="info-section">
+
+        <h2 class="titlepage">Adders</h2>
+
+        <section class="what">
+            <h3>What is an Adder?</h3>
+            <p class="info-text">
+                An Adder is a combinational logic circuit used to perform the arithmetic 
+                operation of addition. It takes binary inputs and produces a binary sum 
+                along with a carry output. Adders are fundamental components in digital 
+                systems and are widely used in processors, calculators, and digital signal 
+                processing units. By combining basic logic gates, adders enable computers 
+                to perform numerical computations efficiently.
+            </p>
+        </section>
+    </section>
+
+    <section class="truth-tables section-two py-5">
+        <div class="container-fluid px-5">
+            <div class="text-center mb-5">
+                <h2 class="section-two-title">Types of Adders</h2>
+                <p class="info-text mt-3">
+                    Adders can be classified based on the number of bits they add and how they 
+                    handle carry inputs. This section discusses the most common types of adders 
+                    used in digital circuits.
+                </p>
+            </div>
+
+            <div class="row g-4 mb-5 align-items-center">
+                <div class="col-md-7 table-responsive">
+                    <h3>Half Adder</h3>
+                    <p class="info-text">
+                        A Half Adder is a simple adder circuit that adds two single-bit binary 
+                        inputs. It produces two outputs: a Sum and a Carry. However, it does 
+                        not account for any carry input from a previous stage, which limits 
+                        its use in multi-bit addition.
+                    </p>
+                    <table class="table table-bordered text-center mt-3">
+                        <thead>
+                            <tr>
+                                <th>A</th>
+                                <th>B</th>
+                                <th>Sum (A ⊕ B)</th>
+                                <th>Carry (AB)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+                            <tr><td>0</td><td>1</td><td>1</td><td>0</td></tr>
+                            <tr><td>1</td><td>0</td><td>1</td><td>0</td></tr>
+                            <tr><td>1</td><td>1</td><td>0</td><td>1</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-md-5 text-center">
+                    <h2>Circuit diagram</h2>
+                    <img src="assets/images/halfadder.png" class="symbol img-fluid mt-3" alt="Half Adder Circuit">
+                </div>
+            </div>
+
+            <hr style="border-color: rgba(46, 196, 182, 0.4); margin: 40px 0;">
+
+            <div class="row g-4 mb-5 align-items-center">
+                <div class="col-md-7 table-responsive">
+                    <h3>Full Adder</h3>
+                    <p class="info-text">
+                        A Full Adder extends the functionality of a Half Adder by including 
+                        a carry input. It adds three single-bit inputs—A, B, and Carry-In— 
+                        and produces a Sum and a Carry-Out. Full Adders are the building 
+                        blocks of multi-bit adders.
+                    </p>
+                    <table class="table table-bordered text-center mt-3">
+                        <thead>
+                            <tr>
+                                <th>A</th>
+                                <th>B</th>
+                                <th>Cin</th>
+                                <th>Sum</th>
+                                <th>Cout</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+                            <tr><td>0</td><td>0</td><td>1</td><td>1</td><td>0</td></tr>
+                            <tr><td>0</td><td>1</td><td>0</td><td>1</td><td>0</td></tr>
+                            <tr><td>0</td><td>1</td><td>1</td><td>0</td><td>1</td></tr>
+                            <tr><td>1</td><td>0</td><td>0</td><td>1</td><td>0</td></tr>
+                            <tr><td>1</td><td>0</td><td>1</td><td>0</td><td>1</td></tr>
+                            <tr><td>1</td><td>1</td><td>0</td><td>0</td><td>1</td></tr>
+                            <tr><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-md-5 text-center">
+                    <h2>Circuit diagram</h2>
+                    <img src="assets/images/fulladder.png" class="symbol img-fluid mt-3" alt="Full Adder Circuit">
+                </div>
+            </div>
+
+            <hr style="border-color: rgba(46, 196, 182, 0.4); margin: 40px 0;">
+
+            <div class="row g-4 align-items-center">
+                <div class="col-md-7">
+                    <h3>Ripple Carry Adder</h3>
+                    <p class="info-text">
+                        A Ripple Carry Adder is formed by cascading multiple Full Adders. 
+                        The carry output of each Full Adder is connected to the carry input 
+                        of the next stage. While simple to implement, this design suffers 
+                        from propagation delay as each carry must ripple through the circuit 
+                        before the final sum can be computed.
+                    </p>
+                </div>
+                <div class="col-md-5 text-center">
+                    <h2>Block diagram</h2>
+                    <img src="assets/images/rippleadder.png" class="symbol img-fluid mt-3" alt="Ripple Carry Adder">
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="info-section py-5">
+        <h2 class="titlepage text-center mb-5">Trade-offs of Adders</h2>
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-md-6">
+                    <h3 style="color: var(--orange); border-bottom: 2px solid var(--orange); padding-bottom: 10px;">Advantages</h3>
+                    <ul class="info-text mt-3" style="line-height: 1.8;">
+                        <li>Adders are essential components in arithmetic and logic units.</li>
+                        <li>Adders enable binary arithmetic operations in digital systems.</li>
+                        <li>Adder circuits are scalable for multi-bit operations.</li>
+                        <li>Adders can be optimized for speed or area based on design needs.</li>
+                        <li>Adders form the basis for more complex arithmetic circuits.</li>
+                    </ul>
+                </div> 
+
+                <div class="col-md-6">
+                    <h3 style="color: var(--blue); border-bottom: 2px solid var(--blue); padding-bottom: 10px;">Disadvantages</h3>
+                    <ul class="info-text mt-3" style="line-height: 1.8;">
+                        <li>Simple adder designs may suffer from propagation delays.</li>
+                        <li>High-speed adders require more complex circuitry.</li>
+                        <li>Adder circuits consume power, especially in large bit-width designs.</li>
+                        <li>Design complexity increases with performance optimization.</li>
+                    </ul>
+                </div> 
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Logic Gates</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="assets/images/decoder2to4.png">
+</head>
+
+<body>
+    <section class="home-play">
+        <div class="welcome-box">
+            <img src="assets/images/logo.png" alt="Digital Lab Logo" class="home-logo">
+            <h1 class="page-title">Learn</h1>
+        </div>
+    </section>
+
+    <section class="info-section">
+
+        <h2 class="titlepage">Decoders</h2>
+
+        <section class="what">
+            <h3>What is a Decoder?</h3>
+            <p class="info-text">
+                A Decoder is a combinational logic circuit that converts binary input data 
+                into a one-hot output format. For a given binary input combination, only 
+                one of the output lines is activated while the others remain inactive. 
+                Decoders are widely used in memory addressing, data routing, and instruction 
+                decoding in digital systems.
+            </p>
+        </section>
+    </section>
+
+    <section class="truth-tables section-two py-5">
+        <div class="container-fluid px-5">
+            <div class="text-center mb-5">
+                <h2 class="section-two-title">Types of Decoders</h2>
+                <p class="info-text mt-3">
+                    Decoders are classified based on the number of input lines and the number 
+                    of corresponding output lines. This section presents common decoder 
+                    configurations used in digital circuits.
+                </p>
+            </div>
+
+            <div class="row g-4 mb-5 align-items-center">
+                <div class="col-md-7 table-responsive">
+                    <h3>2-to-4 Decoder</h3>
+                    <p class="info-text">
+                        A 2-to-4 Decoder has two input lines and four output lines. Each 
+                        output corresponds to one possible binary combination of the 
+                        inputs. At any given time, only one output is asserted high.
+                    </p>
+                    <table class="table table-bordered text-center mt-3">
+                        <thead>
+                            <tr>
+                                <th>A</th>
+                                <th>B</th>
+                                <th>Y0</th>
+                                <th>Y1</th>
+                                <th>Y2</th>
+                                <th>Y3</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td></tr>
+                            <tr><td>0</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0</td></tr>
+                            <tr><td>1</td><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td></tr>
+                            <tr><td>1</td><td>1</td><td>0</td><td>0</td><td>0</td><td>1</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-md-5 text-center">
+                    <h2>Block diagram</h2>
+                    <img src="assets/images/decoder2to4.png" class="symbol img-fluid mt-3" alt="2-to-4 Decoder">
+                </div>
+            </div>
+
+            <hr style="border-color: rgba(46, 196, 182, 0.4); margin: 40px 0;">
+
+            <div class="row g-4 mb-5 align-items-center">
+                <div class="col-md-7 table-responsive">
+                    <h3>3-to-8 Decoder</h3>
+                    <p class="info-text">
+                        A 3-to-8 Decoder expands three input lines into eight unique output 
+                        lines. Each output represents one of the eight possible binary 
+                        combinations of the inputs, making it suitable for larger memory 
+                        and addressing applications.
+                    </p>
+                    <table class="table table-bordered text-center mt-3">
+                        <thead>
+                            <tr>
+                                <th>A</th>
+                                <th>B</th>
+                                <th>C</th>
+                                <th>Active Output</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>0</td><td>0</td><td>0</td><td>Y0</td></tr>
+                            <tr><td>0</td><td>0</td><td>1</td><td>Y1</td></tr>
+                            <tr><td>0</td><td>1</td><td>0</td><td>Y2</td></tr>
+                            <tr><td>0</td><td>1</td><td>1</td><td>Y3</td></tr>
+                            <tr><td>1</td><td>0</td><td>0</td><td>Y4</td></tr>
+                            <tr><td>1</td><td>0</td><td>1</td><td>Y5</td></tr>
+                            <tr><td>1</td><td>1</td><td>0</td><td>Y6</td></tr>
+                            <tr><td>1</td><td>1</td><td>1</td><td>Y7</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-md-5 text-center">
+                    <h2>Block diagram</h2>
+                    <img src="assets/images/decoder3to8.png" class="symbol img-fluid mt-3" alt="3-to-8 Decoder">
+                </div>
+            </div>
+
+            <hr style="border-color: rgba(46, 196, 182, 0.4); margin: 40px 0;">
+
+            <div class="row g-4 align-items-center">
+                <div class="col-md-7">
+                    <h3>Decoder Using Basic Logic Gates</h3>
+                    <p class="info-text">
+                        A Decoder can be implemented using basic logic gates such as AND 
+                        and NOT Gates. Each output is generated by an AND gate that 
+                        corresponds to a unique combination of the input variables and 
+                        their complements.
+                    </p>
+                </div>
+                <div class="col-md-5 text-center">
+                    <h2>Circuit diagram</h2>
+                    <img src="assets/images/decoder_basic.png" class="symbol img-fluid mt-3" alt="Decoder using AND and NOT Gates">
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="info-section py-5">
+        <h2 class="titlepage text-center mb-5">Trade-offs of Decoders</h2>
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-md-6">
+                    <h3 style="color: var(--orange); border-bottom: 2px solid var(--orange); padding-bottom: 10px;">Advantages</h3>
+                    <ul class="info-text mt-3" style="line-height: 1.8;">
+                        <li>Decoders simplify memory and I/O addressing.</li>
+                        <li>Decoders provide a clear one-hot output representation.</li>
+                        <li>Decoders reduce the need for complex control logic.</li>
+                        <li>Decoders are essential in instruction decoding.</li>
+                        <li>Decoders improve system organization and efficiency.</li>
+                    </ul>
+                </div> 
+
+                <div class="col-md-6">
+                    <h3 style="color: var(--blue); border-bottom: 2px solid var(--blue); padding-bottom: 10px;">Disadvantages</h3>
+                    <ul class="info-text mt-3" style="line-height: 1.8;">
+                        <li>The number of output lines grows exponentially with inputs.</li>
+                        <li>Large decoders require more hardware resources.</li>
+                        <li>Propagation delay increases with decoder size.</li>
+                        <li>Unused outputs may lead to inefficiencies.</li>
+                    </ul>
+                </div> 
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>

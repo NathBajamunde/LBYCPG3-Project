@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Logic Gates</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="assets/images/or1.png">
+</head>
+
+<body>
+    <section class="home-play">
+        <div class="welcome-box">
+            <img src="assets/images/logo.png" alt="Digital Lab Logo" class="home-logo">
+            <h1 class="page-title">Learn</h1>
+        </div>
+    </section>
+
+    <section class="info-section">
+
+        <h2 class="titlepage">OR Gates</h2>
+
+        <section class="what">
+            <h3>What is an OR Gate?</h3>
+            <p class="info-text">
+                The OR Gate is the most widely used digital logic circuit and is 
+                a primitive building block of digital logic. The gate’s output 
+                state becomes high (1) if at least one of its input states is also 
+                high (1). Otherwise, the output state will be low (0). The Boolean 
+                Expression or logic for the OR Gate is the logical addition of its 
+                inputs. It is denoted by the plus sign (+), as in X = A + B.
+            </p>
+        </section>
+    </section>
+
+    <section class="truth-tables section-two py-5">
+        <div class="container-fluid px-5">
+            <div class="text-center mb-5">
+                <h2 class="section-two-title">Types of OR Gates</h2>
+                <p class="info-text mt-3">
+                    The OR Gate can be categorized into three basic types, which include the following:
+                </p>
+            </div>
+
+            <div class="row g-4 mb-5 align-items-center">
+                <div class="col-md-7 table-responsive">
+                    <h3>2-Input OR Gate</h3>
+                    <p class="info-text">
+                        The 2-Input OR Gate is the simplest form an OR Gate can take. 
+                        It has exactly two inputs that produce a singular output. 
+                        This type of OR Gate has four possible input combinations. 
+                        Its Boolean Expression can be written as X = A + B.
+                    </p>
+                    <table class="table table-bordered text-center mt-3">
+                        <thead>
+                            <tr>
+                                <th>A (Input 1)</th>
+                                <th>B (Input 2)</th>
+                                <th>X = A + B</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>0</td><td>0</td><td>0</td></tr>
+                            <tr><td>0</td><td>1</td><td>1</td></tr>
+                            <tr><td>1</td><td>0</td><td>1</td></tr>
+                            <tr><td>1</td><td>1</td><td>1</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-md-5 text-center">
+                    <h2>Symbol</h2>
+                    <img src="assets/images/or1.png" class="symbol img-fluid mt-3" alt="2-Input OR Gate">
+                </div>
+            </div>
+
+            <hr style="border-color: rgba(46, 196, 182, 0.4); margin: 40px 0;">
+
+            <div class="row g-4 mb-5 align-items-center">
+                <div class="col-md-7 table-responsive">
+                    <h3>3-Input OR Gate</h3>
+                    <p class="info-text">
+                        An OR Gate can have any number of individual inputs or be connected to 
+                        handle a greater number of inputs. This type of OR Gate, specifically, 
+                        has three inputs. This leads to eight possible input combinations. Its 
+                        inner workings are operationally identical to those of a 2-Input OR Gate, 
+                        requiring at least one input to be high to produce a high output. It can 
+                        be expressed using the X = A + B + C Boolean Expression.
+                    </p>
+                    <table class="table table-bordered text-center mt-3">
+                        <thead>
+                            <tr>
+                                <th>A (Input 1)</th>
+                                <th>B (Input 2)</th>
+                                <th>C (Input 3)</th>
+                                <th>X = A + B + C</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+                            <tr><td>0</td><td>0</td><td>1</td><td>1</td></tr>
+                            <tr><td>0</td><td>1</td><td>0</td><td>1</td></tr>
+                            <tr><td>0</td><td>1</td><td>1</td><td>1</td></tr>
+                            <tr><td>1</td><td>0</td><td>0</td><td>1</td></tr>
+                            <tr><td>1</td><td>0</td><td>1</td><td>1</td></tr>
+                            <tr><td>1</td><td>1</td><td>0</td><td>1</td></tr>
+                            <tr><td>1</td><td>1</td><td>1</td><td>1</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-md-5 text-center">
+                    <h2>Symbol</h2>
+                    <img src="assets/images/or2.png" class="symbol img-fluid mt-3" alt="3-Input OR Gate">
+                </div>
+            </div>
+
+            <hr style="border-color: rgba(46, 196, 182, 0.4); margin: 40px 0;">
+
+            <div class="row g-4 align-items-center">
+                <div class="col-md-7 table-responsive">
+                    <h3>Multi-Input OR Gate</h3>
+                    <p class="info-text">
+                        A Multi-Input OR Gate is simply an OR Gate with more than three inputs. 
+                        With an n-input OR Gate, (n/2) + 1 2-Input OR Gates can be utilized to 
+                        compose it. The total number of input combinations can be calculated 
+                        using 2<sup>n</sup>. For the 6-Input OR Gate example used, its Boolean Expression 
+                        can be expressed as Y = (A + B) + (C + D) + (E + F).
+                    </p>
+                    <table class="table table-bordered text-center mt-3">
+                        <thead>
+                            <tr>
+                                <th colspan="6">Input</th>
+                                <th>Output</th>
+                            </tr>
+                            <tr>
+                                <th>A</th><th>B</th><th>C</th><th>D</th><th>E</th><th>F</th><th>Y</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+                            <tr><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td><td>1</td></tr>
+                            <tr><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td><td>1</td></tr>
+                            <tr><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td><td>1</td><td>1</td></tr>
+                            <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+                            <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+                            <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+                            <tr><td>1</td><td>1</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1</td></tr>
+                            <tr><td>1</td><td>1</td><td>1</td><td>1</td><td>0</td><td>1</td><td>1</td></tr>
+                            <tr><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td><td>0</td><td>1</td></tr>
+                            <tr><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-md-5 text-center">
+                    <h2>Symbol</h2>
+                    <img src="assets/images/or3.png" class="symbol img-fluid mt-3" alt="Multi-Input OR Gate">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="info-section">
+        <h2 class="titlepage text-center mb-5">Trade-offs of an OR Gate</h2>
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-md-6">
+                    <h3 style="color: var(--orange); border-bottom: 2px solid var(--orange); padding-bottom: 10px;">Advantages</h3>
+                    <ul class="info-text mt-3" style="line-height: 1.8;">
+                        <li>OR Gates are simple and easy-to-use logic gates.</li>
+                        <li>Its design is also simple to understand.</li>
+                        <li>OR Gates are very flexible to use, as they can handle multiple inputs, increasing their potential applications and digital use.</li>
+                        <li>OR Gates are considered fundamental building blocks in Digital Electronics, serving as a base for more complex ICs.</li>
+                        <li>The formation of other logic gates, such as the NAND, NOR, and XOR gates, is possible using OR Gates.</li>
+                    </ul>
+                </div> 
+
+                <div class="col-md-6">
+                    <h3 style="color: var(--blue); border-bottom: 2px solid var(--blue); padding-bottom: 10px;">Disadvantages</h3>
+                    <ul class="info-text mt-3" style="line-height: 1.8;">
+                        <li>An OR Gate can lead to a loss of information, as it can only indicate that a high output means at least one of the inputs is high, but not which one.</li>
+                        <li>It may not be suitable for precise decision-making applications as it can only produce a binary output.</li>
+                        <li>The OR Gate is not invertible, meaning that its output is always high when at least one of its inputs is also high, and it cannot produce a low output for any other combination except for all low inputs.</li>
+                        <li>OR Gates require more power in complex circuits than the NOT and AND gates due to their use of more transistors.</li>
+                    </ul>
+                </div> 
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>

@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Logic Gates</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="assets/images/xnor1.png">
+</head>
+
+<body>
+    <section class="home-play">
+        <div class="welcome-box">
+            <img src="assets/images/logo.png" alt="Digital Lab Logo" class="home-logo">
+            <h1 class="page-title">Learn</h1>
+        </div>
+    </section>
+
+    <section class="info-section">
+
+        <h2 class="titlepage">XNOR Gates</h2>
+
+        <section class="what">
+            <h3>What is an XNOR Gate?</h3>
+            <p class="info-text">
+                The XNOR Gate is a logic gate that performs the Exclusive NOR operation. 
+                Specifically, it outputs a logic high when there are an even number of high 
+                inputs and a logic low when there are an odd number of high inputs. Another 
+                way of looking at it is that different inputs produce a logic low, while 
+                equivalent inputs produce a logic high. Hence, it is also known as the material 
+                biconditional and is applied in circuits such as the implement similarity 
+                checker circuit. This logic gate can be denoted by the ⊙ symbol, e.g., Y = A ⊙ B.
+            </p>
+        </section>
+    </section>
+
+    <section class="truth-tables section-two py-5">
+        <div class="container-fluid px-5">
+            <div class="text-center mb-5">
+                <h2 class="section-two-title">Implementations of XNOR Gates</h2>
+                <p class="info-text mt-3">
+                    The XNOR Gate can be implemented in several ways, ranging from simple to complex. 
+                    This section discusses some methods for implementing XNOR Gates in digital circuits.
+                </p>
+            </div>
+
+            <div class="row g-4 mb-5 align-items-center">
+                <div class="col-md-7 table-responsive">
+                    <h3>XNOR Gate Symbol</h3>
+                    <p class="info-text">
+                        The XNOR Gate, as its name suggests, is a combination of the XOR and NOT 
+                        Gates. For that reason, its symbol is the XOR symbol with a complement 
+                        bubble.
+                    </p>
+                    <table class="table table-bordered text-center mt-3">
+                        <thead>
+                            <tr>
+                                <th>A (Input 1)</th>
+                                <th>B (Input 2)</th>
+                                <th>Y = AB + A’B’</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>0</td><td>0</td><td>1</td></tr>
+                            <tr><td>0</td><td>1</td><td>0</td></tr>
+                            <tr><td>1</td><td>0</td><td>0</td></tr>
+                            <tr><td>1</td><td>1</td><td>1</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-md-5 text-center">
+                    <h2>Symbol</h2>
+                    <img src="assets/images/xnor1.png" class="symbol img-fluid mt-3" alt="XNOR Gate Symbol">
+                </div>
+            </div>
+
+            <hr style="border-color: rgba(46, 196, 182, 0.4); margin: 40px 0;">
+
+            <div class="row g-4 mb-5 align-items-center">
+                <div class="col-md-7 table-responsive">
+                    <h3>XNOR Gate Using Basic Logic Gates</h3>
+                    <p class="info-text">
+                        The Boolean Expression of the XNOR Gate, Y = A ⊙ B, can be expanded to 
+                        be an expression of the basic logic gates—the NOT, AND, as well as 
+                        OR Gates. This results in the expression Y = AB + A’B’. Hence, it can be 
+                        implemented with the basic logic gates corresponding to that expanded 
+                        expression.
+                    </p>
+                    <table class="table table-bordered text-center mt-3">
+                        <thead>
+                            <tr>
+                                <th>A (Input 1)</th>
+                                <th>B (Input 2)</th>
+                                <th>AB</th>
+                                <th>A’B’</th>
+                                <th>AB + A’B’</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>0</td><td>0</td><td>0</td><td>1</td><td>1</td></tr>
+                            <tr><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td></tr>
+                            <tr><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+                            <tr><td>1</td><td>1</td><td>1</td><td>0</td><td>1</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-md-5 text-center">
+                    <h2>Circuit diagram</h2>
+                    <img src="assets/images/xnor2.png" class="symbol img-fluid mt-3" alt="XNOR via AND, NOT, OR">
+                </div>
+            </div>
+
+            <hr style="border-color: rgba(46, 196, 182, 0.4); margin: 40px 0;">
+
+            <div class="row g-4 mb-5 align-items-center">
+                <div class="col-md-7 table-responsive">
+                    <h3>XNOR Gates Using NAND Gates</h3>
+                    <p class="info-text">
+                        Because NAND Gates are Universal Gates, they can also be used to implement 
+                        an XNOR Gate. Specifically, it uses five NAND Gates arranged as shown.
+                    </p>
+                    <table class="table table-bordered text-center mt-3">
+                        <thead>
+                            <tr>
+                                <th>A (Input 1)</th>
+                                <th>B (Input 2)</th>
+                                <th>C = (AB)’</th>
+                                <th>D = (AC)’</th>
+                                <th>E = (BC)’</th>
+                                <th>F = (DE)’</th>
+                                <th>Y = F’</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>0</td><td>0</td><td>1</td><td>1</td><td>1</td><td>0</td><td>1</td></tr>
+                            <tr><td>0</td><td>1</td><td>1</td><td>1</td><td>0</td><td>1</td><td>0</td></tr>
+                            <tr><td>1</td><td>0</td><td>1</td><td>0</td><td>1</td><td>1</td><td>0</td></tr>
+                            <tr><td>1</td><td>1</td><td>0</td><td>1</td><td>1</td><td>0</td><td>1</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-md-5 text-center">
+                    <h2>Circuit diagram</h2>
+                    <img src="assets/images/xnor3.png" class="symbol img-fluid mt-3" alt="XNOR via NAND">
+                </div>
+            </div>
+
+            <hr style="border-color: rgba(46, 196, 182, 0.4); margin: 40px 0;">
+
+            <div class="row g-4 align-items-center">
+                <div class="col-md-7 table-responsive">
+                    <h3>XNOR Gates Using NOR Gates</h3>
+                    <p class="info-text">
+                        NOR Gates can also replicate any logic gate. Hence, an XNOR Gate 
+                        can also be implemented using only them. In particular, five NOR 
+                        Gates are used and combined as illustrated.
+                    </p>
+                    <table class="table table-bordered text-center mt-3">
+                        <thead>
+                            <tr>
+                                <th>A (Input 1)</th>
+                                <th>B (Input 2)</th>
+                                <th>A’</th>
+                                <th>B’</th>
+                                <th>C = (A’+B)’</th>
+                                <th>D = (A+B’)’</th>
+                                <th>F = (C+D)’</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>0</td><td>0</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1</td></tr>
+                            <tr><td>0</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1</td><td>0</td></tr>
+                            <tr><td>1</td><td>0</td><td>0</td><td>1</td><td>1</td><td>0</td><td>0</td></tr>
+                            <tr><td>1</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-md-5 text-center">
+                    <h2>Circuit diagram</h2>
+                    <img src="assets/images/xnor4.png" class="symbol img-fluid mt-3" alt="XNOR via NOR">
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="info-section py-5">
+        <h2 class="titlepage text-center mb-5">Trade-offs of an XNOR Gate</h2>
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-md-6">
+                    <h3 style="color: var(--orange); border-bottom: 2px solid var(--orange); padding-bottom: 10px;">Advantages</h3>
+                    <ul class="info-text mt-3" style="line-height: 1.8;">
+                        <li>XNOR Gates are known for their straightforward implementation.</li>
+                        <li>XNOR Gates are purpose-built for equality testing.</li>
+                        <li>XNOR Gates offer complementary output signals.</li>
+                        <li>XNOR Gates simplify circuit designs that involve comparisons.</li>
+                        <li>XNOR Gates play a crucial role in memory storage, improving data integrity and reliability.</li>
+                    </ul>
+                </div> 
+
+                <div class="col-md-6">
+                    <h3 style="color: var(--blue); border-bottom: 2px solid var(--blue); padding-bottom: 10px;">Disadvantages</h3>
+                    <ul class="info-text mt-3" style="line-height: 1.8;">
+                        <li>XNOR Gates are limited to equality comparisons and lack versatility for more complex logic operations.</li>
+                        <li>Using XNOR Gates exclusively to construct complex circuits can be challenging and less efficient.</li>
+                        <li>XNOR Gates require an even number of inputs, limiting their flexibility in various applications.</li>
+                        <li>XNOR Gates are not well-suited for arithmetic operations.</li>
+                    </ul>
+                </div> 
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>

@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Logic Gates</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="assets/images/orlogo.png">
+</head>
+
+<body>
+    <section class="home-play">
+        <div class="welcome-box">
+            <img src="assets/images/logo.png" alt="Digital Lab Logo" class="home-logo">
+            <h1 class="page-title">Learn</h1>
+        </div>
+    </section>
+
+    <section class="info-section">
+        <h2 class="titlepage text-center mb-5">Combinational Circuits</h2>
+
+        <div class="container-fluid px-4">
+            <div class="row g-5 align-items-center mb-5">
+                <div class="col-md-7">
+                    <h3>What are Combinational Circuits?</h3>
+                    <p class="info-text mt-3">
+                        Combinational Circuits are digital circuits that provide an output instantaneously 
+                        based on the current input. Specifically, they listen for input signals and produce 
+                        an output without regard for the previous state of the inputs or outputs. They are 
+                        designed using multiple logic gates in a way that creates a lack of feedback or memory 
+                        components.
+                    </p>
+                </div>
+                <div class="col-md-5 text-center">
+                    <img src="assets/images/combi1.png" class="img-fluid symbol rounded shadow-sm" alt="Combinational Circuit">
+                </div>
+            </div>
+
+            <hr style="border-color: rgba(46, 196, 182, 0.4); margin: 40px 0;">
+
+            <div class="row g-5 align-items-center">
+                <div class="col-md-7">
+                    <h3>Classification of Combinational Circuits</h3>
+                    <p class="info-text mb-4">
+                        Combinational Circuits can generally be classified into three different categories based 
+                        on the functions they exhibit. This includes the following:
+                    </p>
+
+                    <h4 style="color: var(--orange);">Arithmetic and Logical Functions</h4>
+                    <p class="info-text mb-4">
+                        These circuits are capable of handling mathematical and logical operations, such 
+                        as addition, subtraction, and comparison of binary numbers.
+                    </p>
+
+                    <h4 style="color: var(--orange);">Data Transmission</h4>
+                    <p class="info-text mb-4">
+                        These circuits manage data flow within a system by directing and controlling data 
+                        transfer between components.
+                    </p>
+
+                    <h4 style="color: var(--orange);">Code Converters</h4>
+                    <p class="info-text">
+                        These circuits are responsible for converting information from one code or number 
+                        system to another, such as converting binary values to decimal or other formats.
+                    </p>
+                </div>
+                <div class="col-md-5 text-center">
+                    <img src="assets/images/combi2.png" class="img-fluid symbol rounded shadow-sm" alt="Combinational Gate Classification">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-two py-5">
+        <div class="container-fluid px-5">
+            <h2 class="section-two-title text-center mb-5">Sequential Circuits</h2>
+            
+            <div class="row g-5 align-items-center mb-5">
+                <div class="col-md-7">
+                    <h3>What are Sequential Circuits?</h3>
+                    <p class="info-text mt-3">
+                        Sequential circuits are digital circuits that store and use previous state 
+                        information to determine their next state. This means that it uses both 
+                        current input and previous output variables to determine the next output. 
+                        It accomplishes this with the help of memory elements capable of storing 
+                        binary information, such as latches or flip-flops. They are also created 
+                        using logic gates.
+                    </p>
+                </div>
+                <div class="col-md-5 text-center">
+                    <img src="assets/images/seq1.png" class="img-fluid symbol rounded shadow-sm" alt="Sequential Circuit">
+                </div>
+            </div>
+
+            <div class="text-center mb-4 mt-5">
+                <h3 class="mb-3">Classification of Sequential Circuits</h3>
+                <p class="info-text">
+                    Sequential Circuits can be classified into two categories based on how they get 
+                    their clock signal. This includes the following:
+                </p>
+            </div>
+
+            <div class="row g-5 align-items-center mb-5">
+                <div class="col-md-7">
+                    <h4 style="color: var(--blue);">Asynchronous Sequential Circuits</h4>
+                    <p class="info-text mt-2">
+                        Asynchronous Sequential Circuits do not have a global clock signal. 
+                        Instead, they use the input pulses. Specifically, the output’s state 
+                        immediately changes as a result of a clock pulse and a change in the 
+                        input signal. These circuits are faster than their synchronous counterpart. 
+                        For that reason, they are utilized when the speed of operation is emphasized.
+                    </p>
+                </div>
+                <div class="col-md-5 text-center">
+                    <img src="assets/images/seq2.png" class="img-fluid symbol rounded shadow-sm" alt="Asynchronous Sequential">
+                </div>
+            </div>
+
+            <div class="row g-5 align-items-center">
+                <div class="col-md-7">
+                    <h4 style="color: var(--blue);">Synchronous Sequential Circuits</h4>
+                    <p class="info-text mt-2">
+                        Synchronous Sequential Circuits utilize a global clock signal to synchronize 
+                        state transitions. The inputs can either be level-triggered or pulsed. In a 
+                        clocked system, the pulse typically aligns with the clock pulse. Because 
+                        operations are reliant on the clock’s frequency, they are generally slower 
+                        than their asynchronous counterpart. They have to wait for the next active 
+                        clock edge. However, the output state remains locked until triggered by the 
+                        next clock or input pulse.
+                    </p>
+                </div>
+                <div class="col-md-5 text-center">
+                    <img src="assets/images/seq3.png" class="img-fluid symbol rounded shadow-sm" alt="Synchronous Sequential">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="info-section">
+        <h2 class="titlepage text-center mb-5">Clock Signal and Triggering</h2>
+        
+        <div class="container-fluid px-4">
+            <div class="row justify-content-center mb-5">
+                <div class="col-md-10 text-center">
+                    <h3>Clock Signal</h3>
+                    <p class="info-text mt-3">
+                        In the previous sections, it was mentioned that Sequential Circuits are reliant 
+                        on a Clock Signal. A Clock Signal is a type of control signal that allows for the 
+                        elements of synchronous circuits to be in phase. It is derived from a square wave 
+                        that has clearly defined high and low levels.
+                    </p>
+                </div>
+            </div>
+
+            <hr style="border-color: rgba(46, 196, 182, 0.4); margin: 40px 0;">
+
+            <div class="text-center mb-5">
+                <h3>Triggering</h3>
+                <p class="info-text mt-3">
+                    The change of state in a circuit occurs at a specific point during the square wave. 
+                    Triggering is the term used to refer to this specific point or time. It can be categorized 
+                    into two types:
+                </p>
+            </div>
+
+            <div class="row g-5 align-items-center mb-5">
+                <div class="col-md-6 text-center order-md-2">
+                    <img src="assets/images/trig1.png" class="img-fluid rounded shadow-sm" alt="Level Triggering" style="max-height: 250px;">
+                </div>
+                <div class="col-md-6 order-md-1">
+                    <h4 style="color: var(--orange);">Level Triggering</h4>
+                    <p class="info-text mt-2">
+                        In Level Triggering, the change of state occurs when a circuit is at a specific 
+                        state, either high or low. Since the clock signal can take two possible states, 
+                        there are also two types of Level Triggering. Positive Level Triggering is 
+                        defined with the change in state occurring at the high time in the clock cycle, 
+                        while Negative Level Triggering is referred to when the change in state is in 
+                        the low state of the clock signal.
+                    </p>
+                </div>
+            </div>
+
+            <div class="row g-5 align-items-center">
+                <div class="col-md-6 text-center order-md-2">
+                    <img src="assets/images/trig2.png" class="img-fluid rounded shadow-sm" alt="Edge Triggering" style="max-height: 250px;">
+                </div>
+                <div class="col-md-6 order-md-1">
+                    <h4 style="color: var(--orange);">Edge Triggering</h4>
+                    <p class="info-text mt-2">
+                        Edge Triggering occurs when the change in state occurs during a transition of 
+                        the clock signal. A transition, in this case, is a change from a low to a high 
+                        state, or vice versa, of the clock signal. There are also two kinds of Edge 
+                        Triggering. Positive Edge Triggering occurs at the rising edge, when the clock 
+                        signal transitions from low to high. In contrast, Negative Edge Triggering is 
+                        the opposite, in which the change occurs on the falling edge, or the high-to-low 
+                        transition.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-two py-5">
+        <div class="container">
+            <h2 class="section-two-title text-center mb-5">Summary</h2>
+            <div class="table-responsive bg-white p-4 rounded shadow-sm">
+                <table class="table table-bordered table-hover text-center mb-0">
+                    <thead style="background-color: var(--blue); color: white;">
+                        <tr>
+                            <th style="padding: 15px; font-size: 1.1rem;">Combinational Circuit</th>
+                            <th style="padding: 15px; font-size: 1.1rem;">Sequential Circuit</th>
+                        </tr>
+                    </thead>
+                    <tbody class="info-text">
+                        <tr>
+                            <td class="p-3">Immediate output based on the input</td>
+                            <td class="p-3">Output is synchronized to a clock signal</td>
+                        </tr>
+                        <tr>
+                            <td class="p-3">Output is independent of previous states</td>
+                            <td class="p-3">The previous output state is taken into consideration</td>
+                        </tr>
+                        <tr>
+                            <td class="p-3">No clock pulse needed</td>
+                            <td class="p-3">A clock pulse is required</td>
+                        </tr>
+                        <tr>
+                            <td class="p-3">Does not store previous values or states</td>
+                            <td class="p-3">Uses flip-flops or latches to store previous states</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>

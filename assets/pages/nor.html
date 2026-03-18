@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Logic Gates</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="assets/images/nor1.png">
+</head>
+
+<body>
+    <section class="home-play">
+        <div class="welcome-box">
+            <img src="assets/images/logo.png" alt="Digital Lab Logo" class="home-logo">
+            <h1 class="page-title">Learn</h1>
+        </div>
+    </section>
+
+    <section class="info-section">
+
+        <h2 class="titlepage">NOR Gates</h2>
+
+        <section class="what">
+            <h3>What is a NOR Gate?</h3>
+            <p class="info-text">
+                The NOR Gate is one of two special gates known as Universal Gates. 
+                It is a combination of the OR Gate and NOT Gate. Specifically, the 
+                combination is achieved by using the NOT Gate to invert the OR Gate's 
+                output. As a result, the high (1) output is only obtained when all input 
+                signals are low (0). The Boolean Expression of the NOR Gate can be denoted 
+                using a combination of the plus sign of logical addition and the apostrophe 
+                of the complement operation, resulting in something like O = (A + B)’.
+            </p>
+        </section>
+    </section>
+
+    <section class="truth-tables section-two py-5">
+        <div class="container-fluid px-5">
+            <div class="text-center mb-5">
+                <h2 class="section-two-title">Types of NOR Gates</h2>
+                <p class="info-text mt-3">
+                    Similar to the basic gates, the NOR gate can also be classified into three types 
+                    based on the number of inputs it takes. This includes the following:
+                </p>
+            </div>
+
+            <div class="row g-4 mb-5 align-items-center">
+                <div class="col-md-7 table-responsive">
+                    <h3>2-Input NOR Gate</h3>
+                    <p class="info-text">
+                        The 2-Input NOR Gate is the simplest form of the NOR Gate, with only 
+                        two inputs and one output. This yields four possible input combinations. 
+                        It can be written down as a Boolean Expression using O = (A + B)’.
+                    </p>
+                    <table class="table table-bordered text-center mt-3">
+                        <thead>
+                            <tr>
+                                <th>A (Input 1)</th>
+                                <th>B (Input 2)</th>
+                                <th>O = (A + B)’</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>0</td><td>0</td><td>1</td></tr>
+                            <tr><td>0</td><td>1</td><td>0</td></tr>
+                            <tr><td>1</td><td>0</td><td>0</td></tr>
+                            <tr><td>1</td><td>1</td><td>0</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-md-5 text-center">
+                    <h2>Symbol</h2>
+                    <img src="assets/images/nor1.png" class="symbol img-fluid mt-3" alt="2-Input NOR Gate">
+                </div>
+            </div>
+
+            <hr style="border-color: rgba(46, 196, 182, 0.4); margin: 40px 0;">
+
+            <div class="row g-4 mb-5 align-items-center">
+                <div class="col-md-7 table-responsive">
+                    <h3>3-Input NOR Gate</h3>
+                    <p class="info-text">
+                        The 3-Input NOR Gate has three inputs, as indicated by its name, and one output. 
+                        This type of NOR Gate can be formed by joining together multiple 2-Input NOR Gates. 
+                        A total of eight input combinations can be formed. The Boolean Expression for this 
+                        type of NOR Gate can be expressed using X = (A + B + C)’.
+                    </p>
+                    <table class="table table-bordered text-center mt-3">
+                        <thead>
+                            <tr>
+                                <th>A (Input 1)</th>
+                                <th>B (Input 2)</th>
+                                <th>C (Input 3)</th>
+                                <th>X = (A + B + C)’</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>0</td><td>0</td><td>0</td><td>1</td></tr>
+                            <tr><td>0</td><td>0</td><td>1</td><td>0</td></tr>
+                            <tr><td>0</td><td>1</td><td>0</td><td>0</td></tr>
+                            <tr><td>0</td><td>1</td><td>1</td><td>0</td></tr>
+                            <tr><td>1</td><td>0</td><td>0</td><td>0</td></tr>
+                            <tr><td>1</td><td>0</td><td>1</td><td>0</td></tr>
+                            <tr><td>1</td><td>1</td><td>0</td><td>0</td></tr>
+                            <tr><td>1</td><td>1</td><td>1</td><td>0</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-md-5 text-center">
+                    <h2>Symbol</h2>
+                    <img src="assets/images/nor2.png" class="symbol img-fluid mt-3" alt="3-Input NOR Gate">
+                </div>
+            </div>
+
+            <hr style="border-color: rgba(46, 196, 182, 0.4); margin: 40px 0;">
+
+            <div class="row g-4 align-items-center">
+                <div class="col-md-7 table-responsive">
+                    <h3>Multi-Input NOR Gate</h3>
+                    <p class="info-text">
+                        As mentioned with the 3-Input NOR Gate, multiple 2-Input NOR Gates can be 
+                        cascaded together to form an n-Input NOR Gate. It is still operationally 
+                        the same as the other types of NOR Gates, with how at least one high (1) 
+                        input will cause the output to automatically be low (0). The expression, 
+                        2<sup>n</sup>, can be used to find the total number of input combinations. 
+                    </p>
+                    <table class="table table-bordered text-center mt-3">
+                        <thead>
+                            <tr>
+                                <th colspan="4">Input</th>
+                                <th>Output</th>
+                            </tr>
+                            <tr>
+                                <th>A</th><th>B</th><th>C</th><th>D</th><th>Y</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td></tr>
+                            <tr><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td></tr>
+                            <tr><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td></tr>
+                            <tr><td>0</td><td>0</td><td>1</td><td>1</td><td>0</td></tr>
+                            <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+                            <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+                            <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+                            <tr><td>1</td><td>1</td><td>0</td><td>0</td><td>0</td></tr>
+                            <tr><td>1</td><td>1</td><td>0</td><td>1</td><td>0</td></tr>
+                            <tr><td>1</td><td>1</td><td>1</td><td>0</td><td>0</td></tr>
+                            <tr><td>1</td><td>1</td><td>1</td><td>1</td><td>0</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-md-5 text-center">
+                    <h2>Symbol</h2>
+                    <img src="assets/images/nor3.png" class="symbol img-fluid mt-3" alt="Multi-Input NOR Gate">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="info-section py-5">
+        <div class="container-fluid px-5">
+            <div class="text-center mb-5">
+                <h2 class="titlepage">Fabrication of Basic Gates Using NOR Gates</h2>
+                <p class="info-text mt-3">
+                    As Universal Gates, NOR Gates can be used to implement other logic gates. 
+                    By demonstrating their ability to implement basic logic gates, they illustrate 
+                    their ability to build the remaining gates, which are constructed from combinations 
+                    of these basic gates.
+                </p>
+            </div>
+
+            <div class="row g-4 mb-5 align-items-center">
+                <div class="col-md-7 table-responsive">
+                    <h3>NOT Gate</h3>
+                    <p class="info-text">
+                        By combining the input signal at the two terminals of the NOR Gate, 
+                        the NOT Gate function can be achieved.
+                    </p>
+                    <table class="table table-bordered text-center mt-3">
+                        <thead>
+                            <tr>
+                                <th>X (Input 1)</th>
+                                <th>X (Input 2)</th>
+                                <th>F = (A + A)’ = A’</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>0</td><td>0</td><td>1</td></tr>
+                            <tr><td>1</td><td>1</td><td>0</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-md-5 text-center">
+                    <img src="assets/images/nor4.png" class="symbol img-fluid mt-3" alt="Implementing NOT using NOR">
+                </div>
+            </div>
+
+            <div class="row g-4 mb-5 align-items-center">
+                <div class="col-md-7 table-responsive">
+                    <h3>AND Gate</h3>
+                    <p class="info-text">
+                        Three NOR Gates can be utilized to implement an AND Gate. 
+                        The first two NOR Gates are utilized to invert the initial 
+                        input signals. The third NOR Gate is then used to NOR the output, 
+                        completing the NOR Gate implementation of an AND Gate. 
+                    </p>
+                    <table class="table table-bordered text-center mt-3">
+                        <thead>
+                            <tr>
+                                <th>X (In 1)</th>
+                                <th>Y (In 2)</th>
+                                <th>A (Out Gate 1)</th>
+                                <th>B (Out Gate 2)</th>
+                                <th>F (Out Gate 3)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>0</td><td>0</td><td>1</td><td>1</td><td>0</td></tr>
+                            <tr><td>0</td><td>1</td><td>1</td><td>0</td><td>0</td></tr>
+                            <tr><td>1</td><td>0</td><td>0</td><td>1</td><td>0</td></tr>
+                            <tr><td>1</td><td>1</td><td>0</td><td>0</td><td>1</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-md-5 text-center">
+                    <img src="assets/images/nor5.png" class="symbol img-fluid mt-3" alt="Implementing AND using NOR">
+                </div>
+            </div>
+
+            <div class="row g-4 align-items-center">
+                <div class="col-md-7 table-responsive">
+                    <h3>OR Gate</h3>
+                    <p class="info-text">
+                        An OR Gate can be implemented using two NOR Gates. 
+                        The first gate serves to NOR the two input signals. 
+                        The second gate then acts as an inverter, cancelling 
+                        the negation of the initial NOR Gate, which completes 
+                        the OR function.
+                    </p>
+                    <table class="table table-bordered text-center mt-3">
+                        <thead>
+                            <tr>
+                                <th>X (In 1)</th>
+                                <th>Y (In 2)</th>
+                                <th>Z (Out Gate 1)</th>
+                                <th>F (Out Gate 2)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>0</td><td>0</td><td>1</td><td>0</td></tr>
+                            <tr><td>0</td><td>1</td><td>0</td><td>1</td></tr>
+                            <tr><td>1</td><td>0</td><td>0</td><td>1</td></tr>
+                            <tr><td>1</td><td>1</td><td>0</td><td>1</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-md-5 text-center">
+                    <img src="assets/images/nor6.png" class="symbol img-fluid mt-3" alt="Implementing OR using NOR">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-two py-5">
+        <h2 class="section-two-title text-center mb-5">Trade-offs of a NOR Gate</h2>
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-md-6">
+                    <h3 style="color: var(--orange); border-bottom: 2px solid var(--orange); padding-bottom: 10px;">Advantages</h3>
+                    <ul class="info-text mt-3" style="line-height: 1.8;">
+                        <li>NOR Gates can serve as Universal Gates, meaning they can be used to implement other logic gates.</li>
+                        <li>NOR Gates offer a straightforward design and ease of comprehension.</li>
+                        <li>NOR Gates generally have lower power requirements than other gate types.</li>
+                        <li>Troubleshooting NOR Gates is straightforward because they are simple.</li>
+                        <li>NOR Gates exhibit good noise tolerance, reducing susceptibility to signal interference.</li>
+                        <li>NOR Gates are economical to produce and utilize in electronic applications.</li>
+                    </ul>
+                </div> 
+
+                <div class="col-md-6">
+                    <h3 style="color: var(--blue); border-bottom: 2px solid var(--blue); padding-bottom: 10px;">Disadvantages</h3>
+                    <ul class="info-text mt-3" style="line-height: 1.8;">
+                        <li>NOR Gates cannot efficiently implement all logic functions on their own.</li>
+                        <li>NOR Gates can become intricate when used for certain logic functions compared to alternative gates.</li>
+                        <li>NOR Gates may exhibit propagation delays under certain conditions.</li>
+                    </ul>
+                </div> 
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>

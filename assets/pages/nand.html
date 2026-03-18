@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Logic Gates</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="assets/images/nand1.png">
+</head>
+
+<body>
+    <section class="home-play">
+        <div class="welcome-box">
+            <img src="assets/images/logo.png" alt="Digital Lab Logo" class="home-logo">
+            <h1 class="page-title">Learn</h1>
+        </div>
+    </section>
+
+    <section class="info-section">
+
+        <h2 class="titlepage">NAND Gates</h2>
+
+        <section class="what">
+            <h3>What is a NAND Gate?</h3>
+            <p class="info-text">
+                The NAND Gate is one of the two special logic gates known as Universal Gates. 
+                It is a combination of the NOT and AND Gates. Specifically, it is a gate that 
+                is designed to invert the output of the AND Gate. This means that it gives a 
+                low (0) output only when all its inputs are high (1). The Boolean Expression 
+                for a NAND Gate is denoted using a combination of both the single dot of logical 
+                multiplication and the apostrophe of the complement operation, such as in X = (A ⋅ B)’.
+            </p>
+        </section>
+    </section>
+
+    <section class="truth-tables section-two py-5">
+        <div class="container-fluid px-5">
+            <div class="text-center mb-5">
+                <h2 class="section-two-title">Types of NAND Gates</h2>
+                <p class="info-text mt-3">
+                    Similar to the basic gates, the NAND gate can also be classified into three types 
+                    based on the number of inputs it takes. This includes the following:
+                </p>
+            </div>
+
+            <div class="row g-4 mb-5 align-items-center">
+                <div class="col-md-7 table-responsive">
+                    <h3>2-Input NAND Gate</h3>
+                    <p class="info-text">
+                        The 2-Input NAND Gate is the simple form of a NAND Gate. In this type, 
+                        it is comprised of only two input values and a single output value. For 
+                        that reason, it has four possible input combinations. Its Boolean 
+                        Expression can be written as X = (A ⋅ B)’.
+                    </p>
+                    <table class="table table-bordered text-center mt-3">
+                        <thead>
+                            <tr>
+                                <th>A (Input 1)</th>
+                                <th>B (Input 2)</th>
+                                <th>X = (A ⋅ B)’</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>0</td><td>0</td><td>1</td></tr>
+                            <tr><td>0</td><td>1</td><td>1</td></tr>
+                            <tr><td>1</td><td>0</td><td>1</td></tr>
+                            <tr><td>1</td><td>1</td><td>0</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-md-5 text-center">
+                    <h2>Symbol</h2>
+                    <img src="assets/images/nand1.png" class="symbol img-fluid mt-3" alt="2-Input NAND Gate">
+                </div>
+            </div>
+
+            <hr style="border-color: rgba(46, 196, 182, 0.4); margin: 40px 0;">
+
+            <div class="row g-4 mb-5 align-items-center">
+                <div class="col-md-7 table-responsive">
+                    <h3>3-Input NAND Gate</h3>
+                    <p class="info-text">
+                        The 3-Input NAND Gate, as its name suggests, has three input lines and a 
+                        single output. This can be formed by cascading together multiple 2-Input 
+                        NAND Gates. As this type has three inputs, a total of eight combinations 
+                        of inputs can be made. X = (A ⋅ B ⋅ C)’ can be used to express its Boolean Expression.
+                    </p>
+                    <table class="table table-bordered text-center mt-3">
+                        <thead>
+                            <tr>
+                                <th>A (Input 1)</th>
+                                <th>B (Input 2)</th>
+                                <th>C (Input 3)</th>
+                                <th>X = (A ⋅ B ⋅ C)’</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>0</td><td>0</td><td>0</td><td>1</td></tr>
+                            <tr><td>0</td><td>0</td><td>1</td><td>1</td></tr>
+                            <tr><td>0</td><td>1</td><td>0</td><td>1</td></tr>
+                            <tr><td>0</td><td>1</td><td>1</td><td>1</td></tr>
+                            <tr><td>1</td><td>0</td><td>0</td><td>1</td></tr>
+                            <tr><td>1</td><td>0</td><td>1</td><td>1</td></tr>
+                            <tr><td>1</td><td>1</td><td>0</td><td>1</td></tr>
+                            <tr><td>1</td><td>1</td><td>1</td><td>0</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-md-5 text-center">
+                    <h2>Symbol</h2>
+                    <img src="assets/images/nand2.png" class="symbol img-fluid mt-3" alt="3-Input NAND Gate">
+                </div>
+            </div>
+
+            <hr style="border-color: rgba(46, 196, 182, 0.4); margin: 40px 0;">
+
+            <div class="row g-4 align-items-center">
+                <div class="col-md-7 table-responsive">
+                    <h3>Multi-Input NAND Gate</h3>
+                    <p class="info-text">
+                        As mentioned with the 3-Input NAND Gate, multiple 2-Input NAND Gates 
+                        can be interconnected to form an n-Input NAND Gate. It is also 
+                        operationally the same as the other types, with a low (0) output that 
+                        can only be achieved when all its inputs are high. The total number of 
+                        input combinations can be determined using the expression 2<sup>n</sup>.
+                    </p>
+                    <table class="table table-bordered text-center mt-3">
+                        <thead>
+                            <tr>
+                                <th colspan="4">Input</th>
+                                <th>Output</th>
+                            </tr>
+                            <tr>
+                                <th>A</th><th>B</th><th>C</th><th>D</th><th>Y</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td></tr>
+                            <tr><td>0</td><td>0</td><td>0</td><td>1</td><td>1</td></tr>
+                            <tr><td>0</td><td>0</td><td>1</td><td>0</td><td>1</td></tr>
+                            <tr><td>0</td><td>0</td><td>1</td><td>1</td><td>1</td></tr>
+                            <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+                            <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+                            <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+                            <tr><td>1</td><td>1</td><td>0</td><td>0</td><td>1</td></tr>
+                            <tr><td>1</td><td>1</td><td>0</td><td>1</td><td>1</td></tr>
+                            <tr><td>1</td><td>1</td><td>1</td><td>0</td><td>1</td></tr>
+                            <tr><td>1</td><td>1</td><td>1</td><td>1</td><td>0</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-md-5 text-center">
+                    <h2>Symbol</h2>
+                    <img src="assets/images/nand3.png" class="symbol img-fluid mt-3" alt="Multi-Input NAND Gate">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="info-section py-5">
+        <div class="container-fluid px-5">
+            <div class="text-center mb-5">
+                <h2 class="titlepage">Fabrication of Basic Gates Using NAND Gates</h2>
+                <p class="info-text mt-3">
+                    As Universal Gates, NAND Gates can be used to implement other logic gates. 
+                    By demonstrating their ability to implement basic logic gates, they illustrate 
+                    their ability to build the remaining gates, which are constructed from combinations 
+                    of these basic gates.
+                </p>
+            </div>
+
+            <div class="row g-4 mb-5 align-items-center">
+                <div class="col-md-7 table-responsive">
+                    <h3>NOT Gate</h3>
+                    <p class="info-text">
+                        This is accomplished by connecting both inputs of a NAND Gate to the same input 
+                        signal. Because it is just the same signal being NAND-ed, the input signal is 
+                        inverted.
+                    </p>
+                    <table class="table table-bordered text-center mt-3">
+                        <thead>
+                            <tr>
+                                <th>A (Input 1)</th>
+                                <th>A (Input 2)</th>
+                                <th>X = (A ⋅ A)’ = A’</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>0</td><td>0</td><td>1</td></tr>
+                            <tr><td>1</td><td>1</td><td>0</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-md-5 text-center">
+                    <img src="assets/images/nand4.png" class="symbol img-fluid mt-3" alt="Implementing NOT using NAND">
+                </div>
+            </div>
+
+            <div class="row g-4 mb-5 align-items-center">
+                <div class="col-md-7 table-responsive">
+                    <h3>AND Gate</h3>
+                    <p class="info-text">
+                        The circuit is formed by connecting the output of the first NAND Gate 
+                        as the two inputs of the second NAND Gate. The first NAND Gate performs 
+                        the standard NAND operation. With the second NAND gate’s two inputs being 
+                        comprised of the output of the first, it effectively negates the initial 
+                        negation of the NAND operation. This means that it behaves similarly to 
+                        the AND Gate.
+                    </p>
+                    <table class="table table-bordered text-center mt-3">
+                        <thead>
+                            <tr>
+                                <th>A (In 1)</th>
+                                <th>B (In 2)</th>
+                                <th>Y (Out Gate 1)</th>
+                                <th>Z (Out Gate 2)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>0</td><td>0</td><td>1</td><td>0</td></tr>
+                            <tr><td>0</td><td>1</td><td>1</td><td>0</td></tr>
+                            <tr><td>1</td><td>0</td><td>1</td><td>0</td></tr>
+                            <tr><td>1</td><td>1</td><td>0</td><td>1</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-md-5 text-center">
+                    <img src="assets/images/nand5.png" class="symbol img-fluid mt-3" alt="Implementing AND using NAND">
+                </div>
+            </div>
+
+            <div class="row g-4 align-items-center">
+                <div class="col-md-7 table-responsive">
+                    <h3>OR Gate</h3>
+                    <p class="info-text">
+                        The circuit is made by connecting three NAND Gates. The first two gates 
+                        act as inverters for their corresponding input signals. The last NAND 
+                        Gate effectively operates on the inverted signals to give the required 
+                        OR Gate function.
+                    </p>
+                    <table class="table table-bordered text-center mt-3">
+                        <thead>
+                            <tr>
+                                <th>X (In 1)</th>
+                                <th>Y (In 2)</th>
+                                <th>A (Out Gate 1)</th>
+                                <th>B (Out Gate 2)</th>
+                                <th>F (Out Gate 3)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>0</td><td>0</td><td>1</td><td>1</td><td>0</td></tr>
+                            <tr><td>0</td><td>1</td><td>1</td><td>0</td><td>1</td></tr>
+                            <tr><td>1</td><td>0</td><td>0</td><td>1</td><td>1</td></tr>
+                            <tr><td>1</td><td>1</td><td>0</td><td>0</td><td>1</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-md-5 text-center">
+                    <img src="assets/images/nand6.png" class="symbol img-fluid mt-3" alt="Implementing OR using NAND">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-two py-5">
+        <h2 class="section-two-title text-center mb-5">Trade-offs of a NAND Gate</h2>
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-md-6">
+                    <h3 style="color: var(--orange); border-bottom: 2px solid var(--orange); padding-bottom: 10px;">Advantages</h3>
+                    <ul class="info-text mt-3" style="line-height: 1.8;">
+                        <li>It is a Universal Gate, meaning it can be used to construct any basic logic gate without the use of any other logic gates.</li>
+                        <li>The NAND Gate, by itself, can be used to simplify any complex logical circuits and represent them in a simpler manner.</li>
+                        <li>Implementing logical functions using a NAND gate consumes way less power than other gates.</li>
+                    </ul>
+                </div> 
+
+                <div class="col-md-6">
+                    <h3 style="color: var(--blue); border-bottom: 2px solid var(--blue); padding-bottom: 10px;">Disadvantages</h3>
+                    <ul class="info-text mt-3" style="line-height: 1.8;">
+                        <li>Using only NAND Gates to implement all logic circuits may not yield the most optimized results.</li>
+                        <li>NAND gates may cause propagation delays.</li>
+                    </ul>
+                </div> 
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>

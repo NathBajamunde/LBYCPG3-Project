@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Logic Gates</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="assets/images/mux2to1.png">
+</head>
+
+<body>
+    <section class="home-play">
+        <div class="welcome-box">
+            <img src="assets/images/logo.png" alt="Digital Lab Logo" class="home-logo">
+            <h1 class="page-title">Learn</h1>
+        </div>
+    </section>
+
+    <section class="info-section">
+
+        <h2 class="titlepage">Multiplexers</h2>
+
+        <section class="what">
+            <h3>What is a Multiplexer?</h3>
+            <p class="info-text">
+                A Multiplexer (MUX) is a combinational logic circuit that selects one of 
+                several input signals and forwards the selected input to a single output 
+                line. The selection of the input is controlled by one or more select lines. 
+                Multiplexers are widely used in digital systems to reduce the number of 
+                data lines, enable data routing, and optimize hardware usage.
+            </p>
+        </section>
+    </section>
+
+    <section class="truth-tables section-two py-5">
+        <div class="container-fluid px-5">
+            <div class="text-center mb-5">
+                <h2 class="section-two-title">Types of Multiplexers</h2>
+                <p class="info-text mt-3">
+                    Multiplexers are classified based on the number of inputs they can select 
+                    from. This section discusses commonly used multiplexers and their operation 
+                    in digital circuits.
+                </p>
+            </div>
+
+            <div class="row g-4 mb-5 align-items-center">
+                <div class="col-md-7 table-responsive">
+                    <h3>2-to-1 Multiplexer</h3>
+                    <p class="info-text">
+                        A 2-to-1 Multiplexer selects one of two input lines based on the 
+                        value of a single select line. When the select line is low, the 
+                        first input is passed to the output; when it is high, the second 
+                        input is selected.
+                    </p>
+                    <table class="table table-bordered text-center mt-3">
+                        <thead>
+                            <tr>
+                                <th>S</th>
+                                <th>I0</th>
+                                <th>I1</th>
+                                <th>Y</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+                            <tr><td>0</td><td>0</td><td>1</td><td>0</td></tr>
+                            <tr><td>0</td><td>1</td><td>0</td><td>1</td></tr>
+                            <tr><td>0</td><td>1</td><td>1</td><td>1</td></tr>
+                            <tr><td>1</td><td>0</td><td>0</td><td>0</td></tr>
+                            <tr><td>1</td><td>0</td><td>1</td><td>1</td></tr>
+                            <tr><td>1</td><td>1</td><td>0</td><td>0</td></tr>
+                            <tr><td>1</td><td>1</td><td>1</td><td>1</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-md-5 text-center">
+                    <h2>Block diagram</h2>
+                    <img src="assets/images/mux2to1.png" class="symbol img-fluid mt-3" alt="2-to-1 Multiplexer">
+                </div>
+            </div>
+
+            <hr style="border-color: rgba(46, 196, 182, 0.4); margin: 40px 0;">
+
+            <div class="row g-4 mb-5 align-items-center">
+                <div class="col-md-7 table-responsive">
+                    <h3>4-to-1 Multiplexer</h3>
+                    <p class="info-text">
+                        A 4-to-1 Multiplexer selects one of four input lines using two 
+                        select lines. The binary combination of the select lines determines 
+                        which input is routed to the output.
+                    </p>
+                    <table class="table table-bordered text-center mt-3">
+                        <thead>
+                            <tr>
+                                <th>S1</th>
+                                <th>S0</th>
+                                <th>Selected Input</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>0</td><td>0</td><td>I0</td></tr>
+                            <tr><td>0</td><td>1</td><td>I1</td></tr>
+                            <tr><td>1</td><td>0</td><td>I2</td></tr>
+                            <tr><td>1</td><td>1</td><td>I3</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-md-5 text-center">
+                    <h2>Block diagram</h2>
+                    <img src="assets/images/mux4to1.png" class="symbol img-fluid mt-3" alt="4-to-1 Multiplexer">
+                </div>
+            </div>
+
+            <hr style="border-color: rgba(46, 196, 182, 0.4); margin: 40px 0;">
+
+            <div class="row g-4 align-items-center">
+                <div class="col-md-7">
+                    <h3>Multiplexer Using Basic Logic Gates</h3>
+                    <p class="info-text">
+                        A Multiplexer can be implemented using basic logic gates such as 
+                        AND, OR, and NOT Gates. For example, the Boolean expression of a 
+                        2-to-1 Multiplexer is given by:
+                    </p>
+                    <p class="info-text text-center fw-bold fs-4" style="color: var(--blue);">Y = S’I0 + SI1</p>
+                </div>
+                <div class="col-md-5 text-center">
+                    <h2>Circuit diagram</h2>
+                    <img src="assets/images/mux_basic.png" class="symbol img-fluid mt-3" alt="MUX using AND, OR, NOT">
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="info-section py-5">
+        <h2 class="titlepage text-center mb-5">Trade-offs of Multiplexers</h2>
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-md-6">
+                    <h3 style="color: var(--orange); border-bottom: 2px solid var(--orange); padding-bottom: 10px;">Advantages</h3>
+                    <ul class="info-text mt-3" style="line-height: 1.8;">
+                        <li>Multiplexers reduce the number of data lines required.</li>
+                        <li>Multiplexers simplify data routing in digital systems.</li>
+                        <li>Multiplexers improve hardware efficiency.</li>
+                        <li>Multiplexers are widely used in communication systems.</li>
+                        <li>Multiplexers can implement Boolean functions.</li>
+                    </ul>
+                </div> 
+
+                <div class="col-md-6">
+                    <h3 style="color: var(--blue); border-bottom: 2px solid var(--blue); padding-bottom: 10px;">Disadvantages</h3>
+                    <ul class="info-text mt-3" style="line-height: 1.8;">
+                        <li>Propagation delay increases as the number of inputs increases.</li>
+                        <li>Complex multiplexers require more control logic.</li>
+                        <li>MUX circuits consume power, especially in large configurations.</li>
+                        <li>Faults in select lines can affect overall functionality.</li>
+                    </ul>
+                </div> 
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Logic Gates</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="assets/images/ripplecounter.png">
+</head>
+
+<body>
+    <section class="home-play">
+        <div class="welcome-box">
+            <img src="assets/images/logo.png" alt="Digital Lab Logo" class="home-logo">
+            <h1 class="page-title">Learn</h1>
+        </div>
+    </section>
+
+    <section class="info-section">
+
+        <h2 class="titlepage">Counters</h2>
+
+        <section class="what">
+            <h3>What is a Counter?</h3>
+            <p class="info-text">
+                A Counter is a sequential logic circuit that counts the number of clock 
+                pulses applied to its input. It stores the count in binary form and 
+                changes its state on each clock event. Counters are commonly used in 
+                digital systems for timing, event counting, frequency division, and 
+                control applications.
+            </p>
+        </section>
+    </section>
+
+    <section class="truth-tables section-two py-5">
+        <div class="container-fluid px-5">
+            <div class="text-center mb-5">
+                <h2 class="section-two-title">Types of Counters</h2>
+                <p class="info-text mt-3">
+                    Counters are classified based on how their flip-flops are clocked and 
+                    the sequence in which they count. This section discusses commonly used 
+                    counter designs in digital electronics.
+                </p>
+            </div>
+
+            <div class="row g-4 mb-5 align-items-center">
+                <div class="col-md-7 table-responsive">
+                    <h3>Asynchronous (Ripple) Counter</h3>
+                    <p class="info-text">
+                        An Asynchronous Counter, also known as a Ripple Counter, uses the 
+                        output of one flip-flop as the clock input for the next flip-flop. 
+                        While simple to implement, this design suffers from cumulative 
+                        propagation delay, making it unsuitable for high-speed applications.
+                    </p>
+                    <h4 class="mt-4 mb-3" style="color: var(--blue);">State Table (2-bit)</h4>
+                    <table class="table table-bordered text-center">
+                        <thead>
+                            <tr>
+                                <th>Clock Pulse</th>
+                                <th>Q1</th>
+                                <th>Q0</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>0</td><td>0</td><td>0</td></tr>
+                            <tr><td>1</td><td>0</td><td>1</td></tr>
+                            <tr><td>2</td><td>1</td><td>0</td></tr>
+                            <tr><td>3</td><td>1</td><td>1</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-md-5 text-center">
+                    <h2>Block diagram</h2>
+                    <img src="assets/images/ripplecounter.png" class="symbol img-fluid mt-3" alt="Asynchronous Counter">
+                </div>
+            </div>
+
+            <hr style="border-color: rgba(46, 196, 182, 0.4); margin: 40px 0;">
+
+            <div class="row g-4 mb-5 align-items-center">
+                <div class="col-md-7 table-responsive">
+                    <h3>Synchronous Counter</h3>
+                    <p class="info-text">
+                        A Synchronous Counter uses a common clock signal for all flip-flops. 
+                        This design eliminates ripple delay, allowing faster and more 
+                        reliable operation. Additional logic determines when each 
+                        flip-flop toggles.
+                    </p>
+                    <h4 class="mt-4 mb-3" style="color: var(--blue);">State Table (2-bit)</h4>
+                    <table class="table table-bordered text-center">
+                        <thead>
+                            <tr>
+                                <th>Clock Pulse</th>
+                                <th>Q1</th>
+                                <th>Q0</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>0</td><td>0</td><td>0</td></tr>
+                            <tr><td>1</td><td>0</td><td>1</td></tr>
+                            <tr><td>2</td><td>1</td><td>0</td></tr>
+                            <tr><td>3</td><td>1</td><td>1</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-md-5 text-center">
+                    <h2>Block diagram</h2>
+                    <img src="assets/images/synchronouscounter.png" class="symbol img-fluid mt-3" alt="Synchronous Counter">
+                </div>
+            </div>
+
+            <hr style="border-color: rgba(46, 196, 182, 0.4); margin: 40px 0;">
+
+            <div class="row g-4 mb-5 align-items-center">
+                <div class="col-md-7">
+                    <h3>Up Counter</h3>
+                    <p class="info-text">
+                        An Up Counter increments its count value on each clock pulse. 
+                        It progresses from its minimum state to its maximum state 
+                        before resetting or rolling over.
+                    </p>
+                </div>
+                <div class="col-md-5 text-center">
+                    <h2>Block diagram</h2>
+                    <img src="assets/images/upcounter.png" class="symbol img-fluid mt-3" alt="Up Counter">
+                </div>
+            </div>
+
+            <hr style="border-color: rgba(46, 196, 182, 0.4); margin: 40px 0;">
+
+            <div class="row g-4 mb-5 align-items-center">
+                <div class="col-md-7">
+                    <h3>Down Counter</h3>
+                    <p class="info-text">
+                        A Down Counter decrements its count value on each clock pulse. 
+                        It counts from a higher value down to zero before repeating 
+                        the sequence.
+                    </p>
+                </div>
+                <div class="col-md-5 text-center">
+                    <h2>Block diagram</h2>
+                    <img src="assets/images/downcounter.png" class="symbol img-fluid mt-3" alt="Down Counter">
+                </div>
+            </div>
+
+            <hr style="border-color: rgba(46, 196, 182, 0.4); margin: 40px 0;">
+
+            <div class="row g-4 align-items-center">
+                <div class="col-md-7">
+                    <h3>Modulus (MOD) Counter</h3>
+                    <p class="info-text">
+                        A Modulus Counter counts up to a specific number and then resets 
+                        to its initial state. For example, a MOD-10 counter counts from 
+                        0 to 9 and is commonly used in decimal display systems.
+                    </p>
+                </div>
+                <div class="col-md-5 text-center">
+                    <h2>Block diagram</h2>
+                    <img src="assets/images/modcounter.png" class="symbol img-fluid mt-3" alt="MOD Counter">
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="info-section py-5">
+        <h2 class="titlepage text-center mb-5">Trade-offs of Counters</h2>
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-md-6">
+                    <h3 style="color: var(--orange); border-bottom: 2px solid var(--orange); padding-bottom: 10px;">Advantages</h3>
+                    <ul class="info-text mt-3" style="line-height: 1.8;">
+                        <li>Counters provide accurate event counting.</li>
+                        <li>Counters are essential for timing and sequencing.</li>
+                        <li>Counters enable frequency division.</li>
+                        <li>Counters are widely used in control systems.</li>
+                        <li>Counters can be implemented using standard flip-flops.</li>
+                    </ul>
+                </div> 
+
+                <div class="col-md-6">
+                    <h3 style="color: var(--blue); border-bottom: 2px solid var(--blue); padding-bottom: 10px;">Disadvantages</h3>
+                    <ul class="info-text mt-3" style="line-height: 1.8;">
+                        <li>Asynchronous counters suffer from propagation delays.</li>
+                        <li>High-speed counters require complex designs.</li>
+                        <li>Counters consume power in continuous operation.</li>
+                        <li>Design complexity increases for large MOD counters.</li>
+                    </ul>
+                </div> 
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>
