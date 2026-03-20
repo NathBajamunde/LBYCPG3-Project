@@ -332,7 +332,7 @@ body {
 /* --- HOME SECTION --- */
 .home-intro {
     position: relative;
-    min-height: 40vh; 
+    min-height: 50vh; 
     width: 100%;
     background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url("assets/images/bgintro.jpg");
     background-size: cover;
@@ -345,7 +345,7 @@ body {
 
 .home-logicgates {
     position: relative;
-    min-height: 40vh; 
+    min-height: 50vh; 
     width: 100%;
     background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url("assets/images/bglogic.jpg");
     background-size: cover;
@@ -358,9 +358,9 @@ body {
 
 .home-quiz {
     position: relative;
-    min-height: 40vh; 
+    min-height: 50vh; 
     width: 100%;
-    background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url("assets/images/bgquiz.jpg");
+    background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url("assets/images/bgquiz1.jpg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -371,15 +371,35 @@ body {
 
 .home-play {
     position: relative;
-    min-height: 40vh; 
+    min-height: 50vh; 
     width: 100%;
-    background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url("assets/images/bgcalculator.jpg");
+    background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url("assets/images/bgcalculator1.jpg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     display: flex;
     align-items: flex-end;      
     justify-content: center; 
+}
+
+/* --- Modify Background Image Based on Specified Height --- */
+/* Tune as Needed*/ 
+@media (max-width: 1150px) {
+    .home-play {
+        background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url("assets/images/bgcalculator2.jpg");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+}
+
+@media (max-width: 700px) {
+    .home-quiz {
+        background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url("assets/images/bgquiz2.jpg");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
 }
 
 /* --- ORANGE BOX --- */
@@ -416,6 +436,11 @@ body {
     margin-left: -10px; 
 }
 
+.page-title {
+    color: var(--white);
+    margin-top: 20px;
+    font-family: 'Arial Black', sans-serif;
+}
 
 /* --- INFO SECTION --- */
 .info-section {
