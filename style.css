@@ -484,7 +484,7 @@ body {
 @media (max-width: 768px) {
     .searchBar {
         max-width: 100%;
-        margin: 8px 0;
+        margin: 0;
     }
     .welcome-box {
         padding: 30px;
@@ -500,21 +500,22 @@ body {
 
 @media (max-width: 991px) {
     .userIcon {
-        position: static;  
+        position: fixed;
         top: unset;
-        right: unset;
-        width: 44px;        
-        height: 44px;
-        font-size: 20px;
+        bottom: 24px;
+        right: 20px;
+        width: 54px;
+        height: 54px;
+        font-size: 22px;
         border-width: 2px;
-        box-shadow: none;
-        margin-left: 0px;  
+        box-shadow: 0 4px 16px rgba(255, 159, 28, 0.5);
+        margin-left: 0px;
+        z-index: 1100;
     }
-
+ 
     .searchBar {
-        max-width: 80%;
-        margin-right: 0; 
-        margin: 8px 0;
+        max-width: 100%;
+        margin: 0px; 
     }
 }
 
