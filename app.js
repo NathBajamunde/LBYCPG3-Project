@@ -717,7 +717,7 @@ Quiz Functionality
 ***********************************************/
 function initQuiz() {
     // QUESTION BANKS 
-    const baseImgPath = 'assets/images/';  // Updated to match your directory
+    const baseImgPath = 'assets/images/';  // Updated to match directory
 
     const easyBank = [
         { question: "What is the output of a 2-input AND gate when A=1, B=1?", options: ["0", "1", "undefined", "floating"], correct: 1, img: null },
