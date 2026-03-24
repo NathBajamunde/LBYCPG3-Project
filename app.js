@@ -76,6 +76,7 @@ async function pageChange(page) {
     clearList();
     addToList([]);
     rstCalc();
+    document.getElementById("searchInput").value = ""; // Blank Search Bar on change
 
     // Page Specific Calls
     if (page == "logicStudio") {
@@ -136,15 +137,15 @@ function addToList(filteredSearch) {
 
     // No User
     if (filteredSearch.length == 0) {
-        htmlListString = `<li><a class="dropdown-item item-search disabled" href="#" id="searchNoResults" onclick="">No Results Found</a></li>`
+        htmlListString = `<li><a class="dropdown-item item-search disabled" href="#" id="searchNoResults" onclick="">No Results Found</a></li>`;
     }
 
     // Create Search Dropdown using the Filtered Search Results
     else {
         // Create HTML code for adding list
         filteredSearch.forEach(item => {
-            var newItem = `<li><a class="dropdown-item item-search ${item[0]}" href="#" id="${item[1]}" onclick="${item[2]}">${item[3]}</a></li>` 
-            htmlListString = htmlListString.concat(newItem)
+            var newItem = `<li><a class="dropdown-item item-search ${item[0]}" href="#" id="${item[1]}" onclick="${item[2]}">${item[3]}</a></li>`; 
+            htmlListString = htmlListString.concat(newItem);
         });
     }
 
@@ -215,6 +216,7 @@ function search() {
 
 // Listener Variable
 var srchListen = document.getElementById("searchInput");
+var dropDownListen = document.getElementById("searchDropdownList");
 
 // Get element to drop down 
 const dropDown = new bootstrap.Dropdown(document.getElementById("searchDropdownList"));
@@ -238,8 +240,12 @@ srchListen.addEventListener("keydown", function(event) {
 });
 
 srchListen.addEventListener("focusout", function(event) {
-    dropDown.hide();
+    // 200ms delay before hiding to allow for clicking
+    setTimeout(() => {
+        dropDown.hide();
+    }, 200);
 });
+
 
 /***********************************************
 Logic Calculator Input Functions
