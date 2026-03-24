@@ -74,7 +74,7 @@ async function pageChange(page) {
     await changeContent(page);
     setActive(page);
     clearList();
-    addToList([0]);
+    addToList([]);
     rstCalc();
 
     // Page Specific Calls
@@ -91,7 +91,6 @@ Search Functionality
 ***********************************************/
 // Search Results Look Up Table
 const searchList = [
-    ["disabled", "searchNoResults",     "", "No Results Found"],
     ["", "searchLogicGates",    "pageChange('logicGates'); return false;", "Logic Gates"],
     ["", "searchCombiVsSeq",    "pageChange('combiVsSeq'); return false;", "Combinational vs Sequential Logic"],
     ["", "searchNot",           "pageChange('not'); return false;", "NOT Gate"],
@@ -122,7 +121,7 @@ function searchItems(searchTerm) {
     searchTerm = searchTerm.toLowerCase().replace(/\s+/g, "").replace(/-/g, "");
 
     // Return No Results Found if Empty searchTerm
-    if (searchTerm == "") return [searchList[0]];
+    if (searchTerm == "") return [];
 
     // Filter searchList that includes the search term
     return results = searchList.filter(
@@ -137,7 +136,7 @@ function addToList(filteredSearch) {
 
     // No User
     if (filteredSearch.length == 0) {
-        htmlListString = `<li><a class="dropdown-item item-search ${searchList[0][0]}" href="#" id="${searchList[0][1]}" onclick="${searchList[0][2]}">${searchList[0][3]}</a></li>`
+        htmlListString = `<li><a class="dropdown-item item-search disabled" href="#" id="searchNoResults" onclick="">No Results Found</a></li>`
     }
 
     // Create Search Dropdown using the Filtered Search Results
