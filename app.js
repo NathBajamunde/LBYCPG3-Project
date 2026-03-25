@@ -85,6 +85,8 @@ async function pageChange(page) {
     if (page == "quiz") {
         initQuiz(); 
     }
+
+    window.scrollTo(0, 0); // Go To Top of Page
 }
 
 /***********************************************
