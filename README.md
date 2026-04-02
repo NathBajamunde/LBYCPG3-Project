@@ -16,6 +16,7 @@ How to Setup:
 2. Clone the project.
     - Copy the GitHub link provided: https://github.com/NathBajamunde/LBYCPG3-Project.git
     - Select the <img width="32" height="46" alt="image" src="https://github.com/user-attachments/assets/d3d95583-8b9f-4ba3-8110-81cd5bb0dd5c" /> source control icon on your side bar.
+    - Install Git if not yet installed. Choose the installer for your system and just use the default options. Restart VS Code once done.
     - Select the clone repository option.
     - Paste the link on the text box that appears on top of the screen and select the clone from URL option.
     - Select a destination for the project and save.
