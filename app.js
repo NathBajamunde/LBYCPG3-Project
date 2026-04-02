@@ -175,6 +175,7 @@ function search() {
 
     //database of searchable pages (Removed .html because changeContent adds it automatically)
     const pages = [
+        { name: "home", file: "home" },
         { name: "and gate", file: "and" },
         { name: "or gate", file: "or" },
         { name: "not gate", file: "not" },
